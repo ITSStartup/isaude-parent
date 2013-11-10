@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.its.isaude.core.generic.interfaces.dao.GenericDAO;
-import br.com.its.isaude.core.generic.services.GenericService;
+import br.com.its.isaude.core.generic.interfaces.services.GenericService;
 @Service
 public class GenericServiceImpl<T, DAO extends GenericDAO<T>> implements GenericService<T> {
 	
