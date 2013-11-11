@@ -54,17 +54,5 @@
 	</dependencies>
 	<build>
 		<finalName>isaudeweb</finalName>
-		<plugins>
-			<!-- configurando o plugin do TOMCAT -->
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<configuration>
-					<port>8080</port>
-					<path>/isaude</path>
-					<contextReloadable>true</contextReloadable>
-				</configuration>
-			</plugin>
-		</plugins>
 	</build>
 </project>
