@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
 	<instituicao_medica id="1" nome_fantasia="Hospital Holândes"
-		razao_social="hospital holandes SA" CNPJ="18.495.662/0001-45" />
-		
+		razao_social="hospital holandes SA" CNPJ="18495662000145" />
 		
 </dataset>
