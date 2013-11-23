@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "agendamento_consulta_medica_paciente")
-public class AppointmentConsultMedicalPatient implements java.io.Serializable {
+public class AgendaConsultMedicalPatient implements java.io.Serializable {
 
 	/**
 	 * 
@@ -25,13 +25,13 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 	private static final long serialVersionUID = 5211071137689033585L;
 	private Integer id;
 	private Patient paciente;
-	private AgendaConsultMedica agendaConsultaMedica;
+	private MedicalConsultAgenda agendaConsultaMedica;
 
-	public AppointmentConsultMedicalPatient() {
+	public AgendaConsultMedicalPatient() {
 	}
 
-	public AppointmentConsultMedicalPatient(Patient paciente,
-			AgendaConsultMedica agendaConsultaMedica) {
+	public AgendaConsultMedicalPatient(Patient paciente,
+			MedicalConsultAgenda agendaConsultaMedica) {
 		this.paciente = paciente;
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
@@ -59,12 +59,12 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AGENDA_CONSULTA_MEDICA_ID", nullable = false)
-	public AgendaConsultMedica getAgendaConsultaMedica() {
+	public MedicalConsultAgenda getAgendaConsultaMedica() {
 		return this.agendaConsultaMedica;
 	}
 
 	public void setAgendaConsultaMedica(
-			AgendaConsultMedica agendaConsultaMedica) {
+			MedicalConsultAgenda agendaConsultaMedica) {
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
 
@@ -88,9 +88,9 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof AppointmentConsultMedicalPatient))
+		if (!(obj instanceof AgendaConsultMedicalPatient))
 			return false;
-		AppointmentConsultMedicalPatient other = (AppointmentConsultMedicalPatient) obj;
+		AgendaConsultMedicalPatient other = (AgendaConsultMedicalPatient) obj;
 		if (agendaConsultaMedica == null) {
 			if (other.agendaConsultaMedica != null)
 				return false;
