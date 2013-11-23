@@ -20,23 +20,23 @@ public class GenericServiceImpl<T, DAO extends GenericDAO<T>> implements Generic
 	}
 
 	public void saveOrUpdate(T entity) throws Exception {
-		// TODO Auto-generated method stub
+		dao.saveOrUpdate(entity);
 		
 	}
 
 	public void delete(T entity) throws Exception {
-		// TODO Auto-generated method stub
+		dao.delete(entity);
 		
 	}
 
 	public T getById(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.getById(id);
 	}
 
 	public List<T> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.list();
 	}
 
 
