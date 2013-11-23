@@ -23,7 +23,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "especialidade_medica", uniqueConstraints = @UniqueConstraint(columnNames = "DESCRICAO"))
-public class EspecialidadeMedica implements java.io.Serializable {
+public class MedicalSpecialty implements java.io.Serializable {
 
 	/**
 	 * 
@@ -33,10 +33,10 @@ public class EspecialidadeMedica implements java.io.Serializable {
 	private String descricao;
 	private Set<Medico> medicos = new HashSet<Medico>();
 
-	public EspecialidadeMedica() {
+	public MedicalSpecialty() {
 	}
 
-	public EspecialidadeMedica(String descricao, Set<Medico> medicos) {
+	public MedicalSpecialty(String descricao, Set<Medico> medicos) {
 		this.descricao = descricao;
 		this.medicos = medicos;
 	}
@@ -89,9 +89,9 @@ public class EspecialidadeMedica implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof EspecialidadeMedica))
+		if (!(obj instanceof MedicalSpecialty))
 			return false;
-		EspecialidadeMedica other = (EspecialidadeMedica) obj;
+		MedicalSpecialty other = (MedicalSpecialty) obj;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;

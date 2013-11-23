@@ -23,27 +23,27 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "agenda_consulta_medica")
-public class AgendaConsultaMedica implements java.io.Serializable {
+public class AgendaConsultMedica implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6610793708956177589L;
 	private Integer id;
-	private AgendaMedico agendaMedico;
+	private MedicoAgenda agendaMedico;
 	private Date dataConsulta;
 	private Date horarioConsulta;
-	private Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes = new HashSet<AgendamentoConsultaMedicaPaciente>();
+	private Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AppointmentConsultMedicalPatient>();
 
-	public AgendaConsultaMedica() {
+	public AgendaConsultMedica() {
 	}
 
-	public AgendaConsultaMedica(AgendaMedico agendaMedico) {
+	public AgendaConsultMedica(MedicoAgenda agendaMedico) {
 		this.agendaMedico = agendaMedico;
 	}
 
-	public AgendaConsultaMedica(AgendaMedico agendaMedico, Date dataConsulta,
-			Date horarioConsulta, Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes) {
+	public AgendaConsultMedica(MedicoAgenda agendaMedico, Date dataConsulta,
+			Date horarioConsulta, Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendaMedico = agendaMedico;
 		this.dataConsulta = dataConsulta;
 		this.horarioConsulta = horarioConsulta;
@@ -63,11 +63,11 @@ public class AgendaConsultaMedica implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AGENDA_MEDICO_ID", nullable = false)
-	public AgendaMedico getAgendaMedico() {
+	public MedicoAgenda getAgendaMedico() {
 		return this.agendaMedico;
 	}
 
-	public void setAgendaMedico(AgendaMedico agendaMedico) {
+	public void setAgendaMedico(MedicoAgenda agendaMedico) {
 		this.agendaMedico = agendaMedico;
 	}
 
@@ -92,11 +92,11 @@ public class AgendaConsultaMedica implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agendaConsultaMedica")
-	public Set<AgendamentoConsultaMedicaPaciente> getAgendamentoConsultaMedicaPacientes() {
+	public Set<AppointmentConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
 		return this.agendamentoConsultaMedicaPacientes;
 	}
 
-	public void setAgendamentoConsultaMedicaPacientes(Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes) {
+	public void setAgendamentoConsultaMedicaPacientes(Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
 	}
 
@@ -120,9 +120,9 @@ public class AgendaConsultaMedica implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof AgendaConsultaMedica))
+		if (!(obj instanceof AgendaConsultMedica))
 			return false;
-		AgendaConsultaMedica other = (AgendaConsultaMedica) obj;
+		AgendaConsultMedica other = (AgendaConsultMedica) obj;
 		if (agendaMedico == null) {
 			if (other.agendaMedico != null)
 				return false;

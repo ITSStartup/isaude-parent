@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "paciente")
-public class Paciente implements java.io.Serializable {
+public class Patient implements java.io.Serializable {
 
 	/**
 	 * 
@@ -29,12 +29,12 @@ public class Paciente implements java.io.Serializable {
 	private String email;
 	private String telefone;
 	private String celular;
-	private Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes = new HashSet<AgendamentoConsultaMedicaPaciente>();
+	private Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AppointmentConsultMedicalPatient>();
 
-	public Paciente() {
+	public Patient() {
 	}
 
-	public Paciente(String nomeCompleto, String email, String telefone,	String celular, Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes) {
+	public Patient(String nomeCompleto, String email, String telefone,	String celular, Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
 		this.telefone = telefone;
@@ -90,12 +90,12 @@ public class Paciente implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "paciente")
-	public Set<AgendamentoConsultaMedicaPaciente> getAgendamentoConsultaMedicaPacientes() {
+	public Set<AppointmentConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
 		return this.agendamentoConsultaMedicaPacientes;
 	}
 
 	public void setAgendamentoConsultaMedicaPacientes(
-			Set<AgendamentoConsultaMedicaPaciente> agendamentoConsultaMedicaPacientes) {
+			Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
 	}
 
@@ -119,9 +119,9 @@ public class Paciente implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Paciente))
+		if (!(obj instanceof Patient))
 			return false;
-		Paciente other = (Paciente) obj;
+		Patient other = (Patient) obj;
 		if (celular == null) {
 			if (other.celular != null)
 				return false;
