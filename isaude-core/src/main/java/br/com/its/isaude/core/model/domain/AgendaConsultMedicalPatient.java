@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "agendamento_consulta_medica_paciente")
-public class AppointmentConsultMedicalPatient implements java.io.Serializable {
+public class AgendaConsultMedicalPatient implements java.io.Serializable {
 
 	/**
 	 * 
@@ -27,10 +27,10 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 	private Patient paciente;
 	private MedicalConsultAgenda agendaConsultaMedica;
 
-	public AppointmentConsultMedicalPatient() {
+	public AgendaConsultMedicalPatient() {
 	}
 
-	public AppointmentConsultMedicalPatient(Patient paciente,
+	public AgendaConsultMedicalPatient(Patient paciente,
 			MedicalConsultAgenda agendaConsultaMedica) {
 		this.paciente = paciente;
 		this.agendaConsultaMedica = agendaConsultaMedica;
@@ -88,9 +88,9 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof AppointmentConsultMedicalPatient))
+		if (!(obj instanceof AgendaConsultMedicalPatient))
 			return false;
-		AppointmentConsultMedicalPatient other = (AppointmentConsultMedicalPatient) obj;
+		AgendaConsultMedicalPatient other = (AgendaConsultMedicalPatient) obj;
 		if (agendaConsultaMedica == null) {
 			if (other.agendaConsultaMedica != null)
 				return false;

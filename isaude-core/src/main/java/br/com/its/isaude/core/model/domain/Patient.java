@@ -29,12 +29,12 @@ public class Patient implements java.io.Serializable {
 	private String email;
 	private String telefone;
 	private String celular;
-	private Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AppointmentConsultMedicalPatient>();
+	private Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AgendaConsultMedicalPatient>();
 
 	public Patient() {
 	}
 
-	public Patient(String nomeCompleto, String email, String telefone,	String celular, Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+	public Patient(String nomeCompleto, String email, String telefone,	String celular, Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
 		this.telefone = telefone;
@@ -90,12 +90,12 @@ public class Patient implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "paciente")
-	public Set<AppointmentConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
+	public Set<AgendaConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
 		return this.agendamentoConsultaMedicaPacientes;
 	}
 
 	public void setAgendamentoConsultaMedicaPacientes(
-			Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+			Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
 	}
 

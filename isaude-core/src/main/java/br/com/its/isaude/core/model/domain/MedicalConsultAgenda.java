@@ -33,7 +33,7 @@ public class MedicalConsultAgenda implements java.io.Serializable {
 	private AgendaDoctor agendaMedico;
 	private Date dataConsulta;
 	private Date horarioConsulta;
-	private Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AppointmentConsultMedicalPatient>();
+	private Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AgendaConsultMedicalPatient>();
 
 	public MedicalConsultAgenda() {
 	}
@@ -43,7 +43,7 @@ public class MedicalConsultAgenda implements java.io.Serializable {
 	}
 
 	public MedicalConsultAgenda(AgendaDoctor agendaMedico, Date dataConsulta,
-			Date horarioConsulta, Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+			Date horarioConsulta, Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendaMedico = agendaMedico;
 		this.dataConsulta = dataConsulta;
 		this.horarioConsulta = horarioConsulta;
@@ -92,11 +92,11 @@ public class MedicalConsultAgenda implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agendaConsultaMedica")
-	public Set<AppointmentConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
+	public Set<AgendaConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
 		return this.agendamentoConsultaMedicaPacientes;
 	}
 
-	public void setAgendamentoConsultaMedicaPacientes(Set<AppointmentConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+	public void setAgendamentoConsultaMedicaPacientes(Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
 		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
 	}
 
