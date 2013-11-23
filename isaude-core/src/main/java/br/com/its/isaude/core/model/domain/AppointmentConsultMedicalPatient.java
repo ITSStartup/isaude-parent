@@ -17,21 +17,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "agendamento_consulta_medica_paciente")
-public class AgendamentoConsultaMedicaPaciente implements java.io.Serializable {
+public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5211071137689033585L;
 	private Integer id;
-	private Paciente paciente;
-	private AgendaConsultaMedica agendaConsultaMedica;
+	private Patient paciente;
+	private AgendaConsultMedica agendaConsultaMedica;
 
-	public AgendamentoConsultaMedicaPaciente() {
+	public AppointmentConsultMedicalPatient() {
 	}
 
-	public AgendamentoConsultaMedicaPaciente(Paciente paciente,
-			AgendaConsultaMedica agendaConsultaMedica) {
+	public AppointmentConsultMedicalPatient(Patient paciente,
+			AgendaConsultMedica agendaConsultaMedica) {
 		this.paciente = paciente;
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
@@ -49,22 +49,22 @@ public class AgendamentoConsultaMedicaPaciente implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PACIENTE_ID", nullable = false)
-	public Paciente getPaciente() {
+	public Patient getPaciente() {
 		return this.paciente;
 	}
 
-	public void setPaciente(Paciente paciente) {
+	public void setPaciente(Patient paciente) {
 		this.paciente = paciente;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AGENDA_CONSULTA_MEDICA_ID", nullable = false)
-	public AgendaConsultaMedica getAgendaConsultaMedica() {
+	public AgendaConsultMedica getAgendaConsultaMedica() {
 		return this.agendaConsultaMedica;
 	}
 
 	public void setAgendaConsultaMedica(
-			AgendaConsultaMedica agendaConsultaMedica) {
+			AgendaConsultMedica agendaConsultaMedica) {
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
 
@@ -88,9 +88,9 @@ public class AgendamentoConsultaMedicaPaciente implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof AgendamentoConsultaMedicaPaciente))
+		if (!(obj instanceof AppointmentConsultMedicalPatient))
 			return false;
-		AgendamentoConsultaMedicaPaciente other = (AgendamentoConsultaMedicaPaciente) obj;
+		AppointmentConsultMedicalPatient other = (AppointmentConsultMedicalPatient) obj;
 		if (agendaConsultaMedica == null) {
 			if (other.agendaConsultaMedica != null)
 				return false;

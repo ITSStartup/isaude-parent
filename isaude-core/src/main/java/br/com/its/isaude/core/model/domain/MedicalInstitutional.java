@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "instituicao_medica")
-public class InstituicaoMedica implements java.io.Serializable {
+public class MedicalInstitutional implements java.io.Serializable {
 
 	/**
 	 * 
@@ -31,14 +31,14 @@ public class InstituicaoMedica implements java.io.Serializable {
 	private String nomeFantasia;
 	private String razaoSocial;
 	private String cnpj;
-	private Set<AgendaMedico> agendaMedicos = new HashSet<AgendaMedico>();
+	private Set<MedicoAgenda> agendaMedicos = new HashSet<MedicoAgenda>();
 	private Set<Medico> medicos = new HashSet<Medico>();
 
-	public InstituicaoMedica() {
+	public MedicalInstitutional() {
 	}
 
-	public InstituicaoMedica(String nomeFantasia, String razaoSocial,
-			String cnpj, Set<AgendaMedico> agendaMedicos, Set<Medico> medicos) {
+	public MedicalInstitutional(String nomeFantasia, String razaoSocial,
+			String cnpj, Set<MedicoAgenda> agendaMedicos, Set<Medico> medicos) {
 		this.nomeFantasia = nomeFantasia;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
@@ -85,11 +85,11 @@ public class InstituicaoMedica implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instituicaoMedica")
-	public Set<AgendaMedico> getAgendaMedicos() {
+	public Set<MedicoAgenda> getAgendaMedicos() {
 		return this.agendaMedicos;
 	}
 
-	public void setAgendaMedicos(Set<AgendaMedico> agendaMedicos) {
+	public void setAgendaMedicos(Set<MedicoAgenda> agendaMedicos) {
 		this.agendaMedicos = agendaMedicos;
 	}
 

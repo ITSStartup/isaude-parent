@@ -34,16 +34,16 @@ public class Medico implements java.io.Serializable {
 	private String curriculo;
 	private String telefone;
 	private String crm;
-	private Set<EspecialidadeMedica> especialidadeMedicas = new HashSet<EspecialidadeMedica>();
-	private Set<AgendaMedico> agendaMedicos = new HashSet<AgendaMedico>();
-	private Set<InstituicaoMedica> instituicaoMedicas = new HashSet<InstituicaoMedica>();
+	private Set<MedicalSpecialty> especialidadeMedicas = new HashSet<MedicalSpecialty>();
+	private Set<MedicoAgenda> agendaMedicos = new HashSet<MedicoAgenda>();
+	private Set<MedicalInstitutional> instituicaoMedicas = new HashSet<MedicalInstitutional>();
 
 	public Medico() {
 	}
 
 	public Medico(String nome, String sobrenome, String email,
 			String curriculo, String telefone, String crm,
-			Set<EspecialidadeMedica> especialidadeMedicas, Set<AgendaMedico> agendaMedicos, Set<InstituicaoMedica> instituicaoMedicas) {
+			Set<MedicalSpecialty> especialidadeMedicas, Set<MedicoAgenda> agendaMedicos, Set<MedicalInstitutional> instituicaoMedicas) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
@@ -122,20 +122,20 @@ public class Medico implements java.io.Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "medico_has_especialidade_medica", catalog = "camilo_itsisaude", joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
-	public Set<EspecialidadeMedica> getEspecialidadeMedicas() {
+	public Set<MedicalSpecialty> getEspecialidadeMedicas() {
 		return this.especialidadeMedicas;
 	}
 
-	public void setEspecialidadeMedicas(Set<EspecialidadeMedica> especialidadeMedicas) {
+	public void setEspecialidadeMedicas(Set<MedicalSpecialty> especialidadeMedicas) {
 		this.especialidadeMedicas = especialidadeMedicas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "medico")
-	public Set<AgendaMedico> getAgendaMedicos() {
+	public Set<MedicoAgenda> getAgendaMedicos() {
 		return this.agendaMedicos;
 	}
 
-	public void setAgendaMedicos(Set<AgendaMedico> agendaMedicos) {
+	public void setAgendaMedicos(Set<MedicoAgenda> agendaMedicos) {
 		this.agendaMedicos = agendaMedicos;
 	}
 
@@ -143,11 +143,11 @@ public class Medico implements java.io.Serializable {
 	@JoinTable(name = "instituicao_medica_has_medico", 
 	joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, 
 	inverseJoinColumns = { @JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, updatable = false) })
-	public Set<InstituicaoMedica> getInstituicaoMedicas() {
+	public Set<MedicalInstitutional> getInstituicaoMedicas() {
 		return this.instituicaoMedicas;
 	}
 
-	public void setInstituicaoMedicas(Set<InstituicaoMedica> instituicaoMedicas) {
+	public void setInstituicaoMedicas(Set<MedicalInstitutional> instituicaoMedicas) {
 		this.instituicaoMedicas = instituicaoMedicas;
 	}
 
