@@ -23,7 +23,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "especialidade_medica", uniqueConstraints = @UniqueConstraint(columnNames = "DESCRICAO"))
-public class MedicalSpecialty implements java.io.Serializable {
+public class MedicalSpeciality implements java.io.Serializable {
 
 	/**
 	 * 
@@ -31,12 +31,12 @@ public class MedicalSpecialty implements java.io.Serializable {
 	private static final long serialVersionUID = -1476922851920296985L;
 	private Integer id;
 	private String descricao;
-	private Set<Medico> medicos = new HashSet<Medico>();
+	private Set<Doctor> medicos = new HashSet<Doctor>();
 
-	public MedicalSpecialty() {
+	public MedicalSpeciality() {
 	}
 
-	public MedicalSpecialty(String descricao, Set<Medico> medicos) {
+	public MedicalSpeciality(String descricao, Set<Doctor> medicos) {
 		this.descricao = descricao;
 		this.medicos = medicos;
 	}
@@ -65,11 +65,11 @@ public class MedicalSpecialty implements java.io.Serializable {
 	@JoinTable(name = "medico_has_especialidade_medica",
 	joinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) })
-	public Set<Medico> getMedicos() {
+	public Set<Doctor> getMedicos() {
 		return this.medicos;
 	}
 
-	public void setMedicos(Set<Medico> medicos) {
+	public void setMedicos(Set<Doctor> medicos) {
 		this.medicos = medicos;
 	}
 
@@ -89,9 +89,9 @@ public class MedicalSpecialty implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof MedicalSpecialty))
+		if (!(obj instanceof MedicalSpeciality))
 			return false;
-		MedicalSpecialty other = (MedicalSpecialty) obj;
+		MedicalSpeciality other = (MedicalSpeciality) obj;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;

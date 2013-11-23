@@ -25,13 +25,13 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 	private static final long serialVersionUID = 5211071137689033585L;
 	private Integer id;
 	private Patient paciente;
-	private AgendaConsultMedica agendaConsultaMedica;
+	private MedicalConsultAgenda agendaConsultaMedica;
 
 	public AppointmentConsultMedicalPatient() {
 	}
 
 	public AppointmentConsultMedicalPatient(Patient paciente,
-			AgendaConsultMedica agendaConsultaMedica) {
+			MedicalConsultAgenda agendaConsultaMedica) {
 		this.paciente = paciente;
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
@@ -59,12 +59,12 @@ public class AppointmentConsultMedicalPatient implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AGENDA_CONSULTA_MEDICA_ID", nullable = false)
-	public AgendaConsultMedica getAgendaConsultaMedica() {
+	public MedicalConsultAgenda getAgendaConsultaMedica() {
 		return this.agendaConsultaMedica;
 	}
 
 	public void setAgendaConsultaMedica(
-			AgendaConsultMedica agendaConsultaMedica) {
+			MedicalConsultAgenda agendaConsultaMedica) {
 		this.agendaConsultaMedica = agendaConsultaMedica;
 	}
 

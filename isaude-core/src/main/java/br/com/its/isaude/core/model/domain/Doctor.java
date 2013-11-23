@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "medico")
-public class Medico implements java.io.Serializable {
+public class Doctor implements java.io.Serializable {
 
 	/**
 	 * 
@@ -34,16 +34,16 @@ public class Medico implements java.io.Serializable {
 	private String curriculo;
 	private String telefone;
 	private String crm;
-	private Set<MedicalSpecialty> especialidadeMedicas = new HashSet<MedicalSpecialty>();
-	private Set<MedicoAgenda> agendaMedicos = new HashSet<MedicoAgenda>();
+	private Set<MedicalSpeciality> especialidadeMedicas = new HashSet<MedicalSpeciality>();
+	private Set<AgendaDoctor> agendaMedicos = new HashSet<AgendaDoctor>();
 	private Set<MedicalInstitutional> instituicaoMedicas = new HashSet<MedicalInstitutional>();
 
-	public Medico() {
+	public Doctor() {
 	}
 
-	public Medico(String nome, String sobrenome, String email,
+	public Doctor(String nome, String sobrenome, String email,
 			String curriculo, String telefone, String crm,
-			Set<MedicalSpecialty> especialidadeMedicas, Set<MedicoAgenda> agendaMedicos, Set<MedicalInstitutional> instituicaoMedicas) {
+			Set<MedicalSpeciality> especialidadeMedicas, Set<AgendaDoctor> agendaMedicos, Set<MedicalInstitutional> instituicaoMedicas) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
@@ -122,20 +122,20 @@ public class Medico implements java.io.Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "medico_has_especialidade_medica", catalog = "camilo_itsisaude", joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
-	public Set<MedicalSpecialty> getEspecialidadeMedicas() {
+	public Set<MedicalSpeciality> getEspecialidadeMedicas() {
 		return this.especialidadeMedicas;
 	}
 
-	public void setEspecialidadeMedicas(Set<MedicalSpecialty> especialidadeMedicas) {
+	public void setEspecialidadeMedicas(Set<MedicalSpeciality> especialidadeMedicas) {
 		this.especialidadeMedicas = especialidadeMedicas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "medico")
-	public Set<MedicoAgenda> getAgendaMedicos() {
+	public Set<AgendaDoctor> getAgendaMedicos() {
 		return this.agendaMedicos;
 	}
 
-	public void setAgendaMedicos(Set<MedicoAgenda> agendaMedicos) {
+	public void setAgendaMedicos(Set<AgendaDoctor> agendaMedicos) {
 		this.agendaMedicos = agendaMedicos;
 	}
 
@@ -174,9 +174,9 @@ public class Medico implements java.io.Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Medico))
+		if (!(obj instanceof Doctor))
 			return false;
-		Medico other = (Medico) obj;
+		Doctor other = (Doctor) obj;
 		if (crm == null) {
 			if (other.crm != null)
 				return false;

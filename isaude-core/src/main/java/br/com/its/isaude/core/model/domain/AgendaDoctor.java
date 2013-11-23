@@ -20,28 +20,28 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "agenda_medico")
-public class MedicoAgenda implements java.io.Serializable {
+public class AgendaDoctor implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -73381106725948111L;
 	private Integer id;
-	private Medico medico;
+	private Doctor medico;
 	private MedicalInstitutional instituicaoMedica;
 	private String nomeAgenda;
-	private Set<AgendaConsultMedica> agendaConsultaMedicas = new HashSet<AgendaConsultMedica>();
+	private Set<MedicalConsultAgenda> agendaConsultaMedicas = new HashSet<MedicalConsultAgenda>();
 
-	public MedicoAgenda() {
+	public AgendaDoctor() {
 	}
 
-	public MedicoAgenda(Medico medico, MedicalInstitutional instituicaoMedica) {
+	public AgendaDoctor(Doctor medico, MedicalInstitutional instituicaoMedica) {
 		this.medico = medico;
 		this.instituicaoMedica = instituicaoMedica;
 	}
 
-	public MedicoAgenda(Medico medico, MedicalInstitutional instituicaoMedica,
-			String nomeAgenda, Set<AgendaConsultMedica> agendaConsultaMedicas) {
+	public AgendaDoctor(Doctor medico, MedicalInstitutional instituicaoMedica,
+			String nomeAgenda, Set<MedicalConsultAgenda> agendaConsultaMedicas) {
 		this.medico = medico;
 		this.instituicaoMedica = instituicaoMedica;
 		this.nomeAgenda = nomeAgenda;
@@ -61,11 +61,11 @@ public class MedicoAgenda implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MEDICO_ID", nullable = false)
-	public Medico getMedico() {
+	public Doctor getMedico() {
 		return this.medico;
 	}
 
-	public void setMedico(Medico medico) {
+	public void setMedico(Doctor medico) {
 		this.medico = medico;
 	}
 
@@ -89,11 +89,11 @@ public class MedicoAgenda implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agendaMedico")
-	public Set<AgendaConsultMedica> getAgendaConsultaMedicas() {
+	public Set<MedicalConsultAgenda> getAgendaConsultaMedicas() {
 		return this.agendaConsultaMedicas;
 	}
 
-	public void setAgendaConsultaMedicas(Set<AgendaConsultMedica> agendaConsultaMedicas) {
+	public void setAgendaConsultaMedicas(Set<MedicalConsultAgenda> agendaConsultaMedicas) {
 		this.agendaConsultaMedicas = agendaConsultaMedicas;
 	}
 
