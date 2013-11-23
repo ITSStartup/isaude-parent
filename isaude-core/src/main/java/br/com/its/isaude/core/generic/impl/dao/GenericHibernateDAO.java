@@ -1,5 +1,8 @@
 package br.com.its.isaude.core.generic.impl.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,33 @@ public abstract class GenericHibernateDAO<T> implements GenericDAO<T> {
 	private SessionFactory sessionFactory;
 	
 	//override code here
+	public void saveOrUpdate(T entity) {
+		getCurrentSession().saveOrUpdate(entity);
+	}
 	
+
+	public void delete(T entity) {
+		getCurrentSession().delete(entity);
+	}
+
+
+	public T getById(Long id) {
+		return (T) getCurrentSession().get(persistentClass, id);
+	}
+	
+	public List<T> list() {
+		List<T> list = getCurrentSession()
+			.createCriteria(persistentClass)
+			.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+			.list();
+		return list;
+	}
+	
+	
+	public long getCount(T entity) {
+		return getCurrentSession().createCriteria(persistentClass).list().size();
+	}
+
 
 	public Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
