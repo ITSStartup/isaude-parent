@@ -58,7 +58,7 @@ public class MedicalInstitutional implements java.io.Serializable {
 		this.id = id;
 	}
 	@NotNull
-	@Column(name = "NOME FANTASIA", length = 80)
+	@Column(name = "NOME_FANTASIA", length = 80)
 	public String getNomeFantasia() {
 		return this.nomeFantasia;
 	}

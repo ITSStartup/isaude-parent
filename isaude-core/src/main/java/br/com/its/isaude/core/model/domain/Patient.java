@@ -53,7 +53,7 @@ public class Patient implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "NOME COMPLETO", length = 45)
+	@Column(name = "NOME_COMPLETO", length = 45)
 	public String getNomeCompleto() {
 		return this.nomeCompleto;
 	}
