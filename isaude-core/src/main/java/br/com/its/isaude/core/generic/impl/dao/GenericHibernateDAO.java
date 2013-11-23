@@ -20,7 +20,7 @@ public abstract class GenericHibernateDAO<T> implements GenericDAO<T> {
 	private SessionFactory sessionFactory;
 	
 	//override code here
-	public void saveOrUpdate(T entity) {
+	public void save(T entity) {
 		getCurrentSession().saveOrUpdate(entity);
 	}
 	
@@ -46,7 +46,10 @@ public abstract class GenericHibernateDAO<T> implements GenericDAO<T> {
 	public long getCount(T entity) {
 		return getCurrentSession().createCriteria(persistentClass).list().size();
 	}
-
+	
+	public void update(T entity) {
+		getCurrentSession().update(entity);
+	}
 
 	public Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();

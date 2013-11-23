@@ -21,24 +21,25 @@ public class GenericServiceImpl<T, DAO extends GenericDAO<T>> implements Generic
 		return dao;
 	}
 
-	public void saveOrUpdate(T entity) throws Exception {
-		dao.saveOrUpdate(entity);
-		
+	public void save(T entity) throws Exception {
+		dao.save(entity);
 	}
 
 	public void delete(T entity) throws Exception {
 		dao.delete(entity);
-		
 	}
 
 	public T getById(Long id) throws Exception {
-		
 		return dao.getById(id);
 	}
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public List<T> list() throws Exception {
-		
 		return dao.list();
+	}
+
+	public void update(T entity) throws Exception {
+		dao.update(entity);
+		
 	}
 
 
