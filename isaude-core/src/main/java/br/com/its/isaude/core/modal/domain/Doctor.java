@@ -1,4 +1,4 @@
-package br.com.its.isaude.core.model.domain;
+package br.com.its.isaude.core.modal.domain;
 
 // Generated 21/11/2013 15:00:51 by Hibernate Tools 4.0.0
 
@@ -121,7 +121,7 @@ public class Doctor implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "medico_has_especialidade_medica", catalog = "camilo_itsisaude", joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "medico_has_especialidade_medica",  joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
 	public Set<MedicalSpeciality> getEspecialidadeMedicas() {
 		return this.especialidadeMedicas;
 	}

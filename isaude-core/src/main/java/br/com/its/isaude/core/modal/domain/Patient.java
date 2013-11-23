@@ -1,4 +1,4 @@
-package br.com.its.isaude.core.model.domain;
+package br.com.its.isaude.core.modal.domain;
 
 // Generated 21/11/2013 15:00:51 by Hibernate Tools 4.0.0
 
