@@ -1,0 +1,95 @@
+<div class="span9" id="content">
+                      <!-- morris stacked chart -->
+                    <div class="row-fluid">
+
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Instituição Médica</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                     <form class="form-horizontal" novalidate name="medicalinstitutionform">
+                                      <fieldset>
+                                        <legend>Cadastro Instituição Médica</legend>
+                                        <div class="control-group">
+                                          <label class="control-label" for="nomeFantasia">Nome Fantasia *</label>
+                                          <div class="controls">
+                                            <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia">
+                                            <div ng-show="medicalinstitutionform.nomeFantasia.$dirty && medicalinstitutionform.nomeFantasia.$invalid">                                              
+                                                  <span class="error" ng-show="medicalinstitutionform.nomeFantasia.$error.required">Nome Fantasia é obrigatório</span>                           
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="razaosocial">Razão Social *</label>
+                                          <div class="controls">
+                                            <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial">
+                                            <div ng-show="medicalinstitutionform.razaosocial.$dirty && medicalinstitutionform.razaosocial.$invalid">                                       
+                                              <span class="error" ng-show="medicalinstitutionform.razaosocial.$error.required">Razão Social é obrigatório</span>
+                                          </div>                           
+                                            
+                                          </div>
+                                          </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="cnpj">CNPJ *</label>
+                                          <div class="controls">
+                                            <input class="span6" id="cnpj" type="number" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj">
+                                             <span ng-show="cnpjInvalid">CNPJ existente</span>
+                                          </div>
+                                        </div>
+                                        
+                                              
+                                        <div class="form-actions">
+                                          <input type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()"/>
+                                          <button type="reset" ng-click="reset()" class="btn">Limpar</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /block -->
+<!--Table -->
+<div >
+    <!-- block -->
+    <div class="block">
+      <div class="navbar navbar-inner block-header">
+        <div class="muted pull-left">Instituições Médicas Cadastradas</div>
+      </div>
+      <div class="block-content collapse in">
+        <div class="span12">
+
+          <h4>Instituições Médicas Cadastradas</h4>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nome Fantasia</th>
+                <th>Razão Social</th>
+                <th>CNPJ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="med in listMedicalInstitutional">
+                <td></td>
+                <td>{{med.nomeFantasia}}</td>
+                <td>{{med.razaoSocial}}</td>
+                <td>{{med.cnpj}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <!-- /block -->
+  </div>
+
+                    </div>
+
