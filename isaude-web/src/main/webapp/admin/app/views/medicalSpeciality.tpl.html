@@ -1,0 +1,70 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="block">
+			<div class="navbar navbar-inner block-header">
+				<div class="muted pull-left">Especialidade M&eacute;dica - Campos</div>
+			</div>
+			<div class="block-content collapse in">
+				<div class="alert alert-success" ng-show="isMedicalSpecialityInsertSuccess==true">Cadastro realizado com sucesso</div>
+				<div class="alert alert-success" ng-show="isMedicalSpecialityEditSuccess==true">Altera&ccedil;&atilde;o realizada com sucesso</div>
+				<div class="alert alert-danger" ng-show="isMedicalSpecialityInsertNotSuccess==true">Cadastro n&atilde;o p&ocirc;de ser realizado</div>
+				<div class="alert alert-danger" ng-show="isMedicalSpecialityEditNotSuccess==true">Altera&ccedil;&atilde;o n&atilde;o p&ocirc;de ser realizada</div>
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label for="description">Descri&ccedil;&atilde;o</label>
+						<input class="input-xlarge" id="description" ng-model="speciality.description" type="text" placeholder="Descri&ccedil;&atilde;o">
+						<div class="alert alert-warning" ng-show="isDescriptionDuplicated==true">Especialidade existente</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary" ng-click="save()">Salvar</button>
+						<button type="reset" class="btn" ng-click="reset()">Limpar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div><!--remove this and adjust css class span12-->
+<div class="row-fluid"><!--remove this and adjust css class span12-->
+	<div class="span12">
+		<div class="block">
+			<div class="navbar navbar-inner block-header">
+				<div class="muted pull-left">Especialidade M&eacute;dica - Listagem</div>
+			</div>
+			<div class="block-content collapse in">
+				<div class="alert alert-danger" ng-show="specialitiesCannotBelisted==true">N&atilde;o foi poss&iacute;vel exibir as especialidades cadastradas</div>
+				<div class="alert alert-success" ng-show="isMedicalSpecialityRemoveSuccess==true">Remo&ccedil;&atilde;o realizada com sucesso</div>
+				<div class="alert alert-danger" ng-show="isMedicalSpecialityRemoveNotSuccess==true">Remo&ccedil;&atilde;o n&atilde;o p&ocirc;de ser realizada</div>
+				<div ng-show="specialitiesCannotBelisted == false">
+					<h4>Especialidades cadastradas</h4>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Descri&ccedil;&atilde;o</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="speciality in specialities | orderBy:'id'">
+								<td ng-click="edit(speciality)">{{speciality.description}}</td>
+								<td><a href="#removeModal" data-toggle="modal" ng-click="remove(speciality)">Remover</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="removeModal" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button">&times;</button>
+		<h3>Remover Especialidade</h3>
+	</div>
+	<div class="modal-body">
+		<h4>Tem certeza que deseja remover "{{specialityToRemove.description}}"?</h4>
+	</div>
+	<div class="modal-footer">
+		<a data-dismiss="modal" class="btn btn-primary" href="#" ng-click="doRemove()">Confirm</a>
+		<a data-dismiss="modal" class="btn" href="#">Cancel</a>
+	</div>
+</div>

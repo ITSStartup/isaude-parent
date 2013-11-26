@@ -8,6 +8,8 @@ angular.module('iSaudeAdminApp', ['ngCookies', 'ngResource', 'ngSanitize'])
 	
 	.when('/', {templateUrl : 'views/main.html', controller : 'MainCtrl'})
 	
+	.when('/speciality', {templateUrl : 'views/medicalSpeciality.tpl.html', controller : 'MedicalSpecialityCtrl'})
+
 	.otherwise({redirectTo : '/'});
 	
 });

@@ -1,5 +1,6 @@
 package com.its.isaude.core.dbunit.config;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class DBUnitHibernateUtil {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> T getEntityByTypeAndId(SessionFactory sessionFactory, Class<T> className, Long id) {
+	public static <T> T getEntityByTypeAndId(SessionFactory sessionFactory, Class<T> className, Serializable id) {
 		return (T) sessionFactory.getCurrentSession().get(className, id);
 	}
 

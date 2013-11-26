@@ -12,7 +12,7 @@ public interface GenericDAO<T> {
 	
 	void delete(T entity);
 
-	T getById(Long id);
+	T getById(Integer id);
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	List<T> list();

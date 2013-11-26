@@ -92,7 +92,7 @@
 	                                <a tabindex="-1" href="#">Cadastro Médico</a>
 	                            </li>
 	                            <li>
-	                                <a tabindex="-1" href="#">Cadastro Especialidade Médica</a>
+	                                <a tabindex="-1" href="#speciality">Cadastro Especialidade Médica</a>
 	                            </li>
 	                        </ul>
 	                    </li>
@@ -104,7 +104,7 @@
 	</div>
 	<div class="container-fluid">
 	    <div class="row-fluid">
-	        <div class="span3" id="sidebar">
+	        <div class="span2" id="sidebar">
 	            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
 	                <li>
 	                    <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
@@ -124,7 +124,7 @@
 	            </ul>
 	        </div>
 	        <!--/span-->
-	        <div class="span9" id="content">
+	        <div class="span2" id="content">
 	            <!-- Add your site or application content here -->
 	            <div class="container" ng-view=""></div>
 	        </div>
@@ -174,6 +174,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/medicalSpeciality.js"></script>
+        <script src="scripts/services/medicalSpeciality.js"></script>
         <!-- endbuild -->
 </body>
 </html>

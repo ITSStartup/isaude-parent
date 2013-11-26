@@ -29,7 +29,7 @@ public class GenericServiceImpl<T, DAO extends GenericDAO<T>> implements Generic
 		dao.delete(entity);
 	}
 
-	public T getById(Long id) throws Exception {
+	public T getById(Integer id) throws Exception {
 		return dao.getById(id);
 	}
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)

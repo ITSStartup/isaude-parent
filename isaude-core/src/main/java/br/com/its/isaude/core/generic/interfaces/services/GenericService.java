@@ -14,7 +14,7 @@ public interface GenericService<T> {
 
 	void delete(T entity) throws Exception;
 
-	T getById(Long id) throws Exception;
+	T getById(Integer id) throws Exception;
 	
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	List<T> list() throws Exception;
