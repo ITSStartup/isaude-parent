@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 /**
@@ -89,16 +90,16 @@ public class MedicalInstitutional implements java.io.Serializable {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instituicaoMedica")
 	public Set<AgendaDoctor> getAgendaMedicos() {
 		return this.agendaMedicos;
 	}
-
+	
 	public void setAgendaMedicos(Set<AgendaDoctor> agendaMedicos) {
 		this.agendaMedicos = agendaMedicos;
 	}
-
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "instituicao_medica_has_medico",  joinColumns = { @JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) })
