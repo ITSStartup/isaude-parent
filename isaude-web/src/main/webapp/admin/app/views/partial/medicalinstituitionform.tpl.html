@@ -39,7 +39,7 @@
                                         <div class="control-group">
                                           <label class="control-label" for="cnpj">CNPJ *</label>
                                           <div class="controls">
-                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" 
+                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" ng-disabled="!editCnpj"
                                             ng-pattern="/^\d+$/">
                                              <span ng-show="cnpjInvalid">CNPJ existente</span>
                                           </div>

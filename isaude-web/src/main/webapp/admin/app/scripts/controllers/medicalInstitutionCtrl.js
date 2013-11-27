@@ -8,10 +8,12 @@ angular.module('iSaudeAdminApp')
   	$scope.listMedicalInstitutional = MedicalInstitutionalService.list();
     $scope.cnpjInvalid=false;
     $scope.dataSuccess = false;
+    $scope.editCnpj = true;
 
     //save
   		$scope.save = function(){
-        if($scope.medicalInstitutional.id > 0){
+        var id = 0
+        if($scope.medicalInstitutional.id > id){
           $scope.update();
         }else{
           $scope.medicalInstitutional.$create(function(){
@@ -35,6 +37,8 @@ angular.module('iSaudeAdminApp')
 
     $scope.edit = function(med){
       $scope.medicalInstitutional = med;
+      $scope.editCnpj = false;
+       $scope.dataSuccess = false;
     };
 
    //update
@@ -64,6 +68,7 @@ angular.module('iSaudeAdminApp')
   		$scope.medicalInstitutional = new MedicalInstitutionalService();
       $scope.cnpjInvalid=false;
        $scope.dataSuccess = false;
+        $scope.editCnpj = true;
   	};
   
   }]);
