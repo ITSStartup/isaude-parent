@@ -13,7 +13,7 @@ angular.module('iSaudeAdminApp')
         if($scope.medicalInstitutional.id > 0){
           $scope.update();
         }else{
-          $scope.medicalInstitutional.$save(function(){
+          $scope.medicalInstitutional.$create(function(){
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
         },function(response){

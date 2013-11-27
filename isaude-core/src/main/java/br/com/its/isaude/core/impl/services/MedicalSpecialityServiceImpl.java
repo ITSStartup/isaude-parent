@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import br.com.its.isaude.core.exception.MedicalSpecialityException;
-import br.com.its.isaude.core.exception.enums.MedicalSpecialityStatus;
+import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 import br.com.its.isaude.core.generic.impl.services.GenericServiceImpl;
 import br.com.its.isaude.core.interfaces.dao.MedicalSpecialityDAO;
 import br.com.its.isaude.core.interfaces.services.MedicalSpecialityService;
@@ -29,7 +29,7 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		} catch (ConstraintViolationException e) {
 			raiseConstraintException(e);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MedicalSpecialityStatus.INSERT_NOT_SUCCESS);
+			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.INSERT_NOT_SUCCESS);
 		}
 	}
 
@@ -40,7 +40,7 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		} catch (ConstraintViolationException e) {
 			raiseConstraintException(e);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MedicalSpecialityStatus.EDIT_NOT_SUCCESS);
+			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.EDIT_NOT_SUCCESS);
 		}
 	}
 	
@@ -49,13 +49,13 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		try {
 			super.delete(entity);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MedicalSpecialityStatus.REMOVE_NOT_SUCCESS);
+			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.REMOVE_NOT_SUCCESS);
 		}
 	}
 
 	private void raiseConstraintException(ConstraintViolationException e) throws MedicalSpecialityException {
 		if (e.getMessage().contains("Duplicate entry")) {
-			throw new MedicalSpecialityException(e, MedicalSpecialityStatus.DESCRIPTION_DUPLICATED);
+			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.DESCRIPTION_DUPLICATED);
 		} else throw e;
 	}
 	

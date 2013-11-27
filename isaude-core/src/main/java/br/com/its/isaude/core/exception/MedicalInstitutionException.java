@@ -1,18 +1,20 @@
 package br.com.its.isaude.core.exception;
 
-import br.com.its.isaude.core.exception.enums.MsgResponseEnum;
+import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
+
+
 
 public class MedicalInstitutionException extends Exception {
 
 	private static final long serialVersionUID = -8196278471624471676L;
 
-	private MsgResponseEnum msg;
+	private MessageResponseStatusEnum msg;
 
-	public MedicalInstitutionException(MsgResponseEnum message) {
-		this.msg = message;
+	public MedicalInstitutionException(MessageResponseStatusEnum msg) {
+		this.msg = msg;
 	}
 
-	public MsgResponseEnum getMsg() {
+	public MessageResponseStatusEnum getMsg() {
 		return msg;
 	}
 

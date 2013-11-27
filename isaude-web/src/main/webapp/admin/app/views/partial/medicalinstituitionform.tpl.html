@@ -44,8 +44,8 @@
                                         
                                               
                                         <div class="form-actions">
-                                          <button type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()">Salvar </button>
-                                          <button type="reset" ng-click="reset()"  class="btn">Limpar</button>
+                                          <button type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()"><i class="icon-ok"></i> Salvar </button>
+                                          <button type="reset" ng-click="reset()"  class="btn"><i class="icon-ban-circle"></i>Limpar</button>
                                           
                                         </div>
                                       </fieldset>
@@ -78,7 +78,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="med in listMedicalInstitutional">
-                <td><a href ng-click="remove(med)">Excluir</a>                   
+                <td><a href ng-click="remove(med)"><center><img ng-src="images/trash.png"></center> </a>                   
                 </td>
                 <td ><a href ng-click="edit(med)"> {{med.nomeFantasia}}</a></td>
                 <td>{{med.razaoSocial}}</td>
