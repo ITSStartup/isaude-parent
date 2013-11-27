@@ -44,13 +44,15 @@ angular.module('iSaudeAdminApp')
 
     //remove 
     $scope.remove = function(medicalInstitutional){
-      medicalInstitutional.$remove({id : medicalInstitutional.id},function(res){
-        $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
-        $scope.medicalInstitutional = new MedicalInstitutionalService();        
-      });            
+     $scope.medicalInstitutionalToRemove = medicalInstitutional;         
       };
 
-
+    $scope.doRemove = function(){
+      $scope.medicalInstitutionalToRemove.$remove({id : $scope.medicalInstitutionalToRemove.id},function(res){
+        $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
+        $scope.medicalInstitutional = new MedicalInstitutionalService();        
+      });   
+    }
 
     $scope.reset = function(){
   		$scope.medicalInstitutional = new MedicalInstitutionalService();

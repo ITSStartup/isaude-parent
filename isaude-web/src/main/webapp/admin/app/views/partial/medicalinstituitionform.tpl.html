@@ -78,8 +78,16 @@
             </thead>
             <tbody>
               <tr ng-repeat="med in listMedicalInstitutional">
-                <td><a href ng-click="remove(med)"><center><img ng-src="images/trash.png"></center> </a>                   
-                </td>
+                <td>
+                  <!-- icon ou img? validar-->
+                  <!--<a href="#removeModal" ng-click="remove(med)"><center><img ng-src="images/trash.png"></center> 
+                  </a>-->
+                  <a href="#removeModal" data-toggle="modal" ng-click="remove(med)">
+                <div class="btn">
+                      <div class="icon-trash"></div>
+                    </div>                 
+                  </a>
+                </td> 
                 <td ><a href ng-click="edit(med)"> {{med.nomeFantasia}}</a></td>
                 <td>{{med.razaoSocial}}</td>
                 <td>{{med.cnpj}}</td>
@@ -95,4 +103,18 @@
   </div>
 
   </div>
+  <!-- REMOVE CONFIRMATION DIALOG -->
+  <div id="removeModal" class="modal hide">
+  <div class="modal-header">
+    <button data-dismiss="modal" class="close" type="button">&times;</button>
+    <h4>Remover Instituição Médica</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja remover a Instituição Médica <b>"{{medicalInstitutionalToRemove.nomeFantasia}}"?</b>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Ok</a>
+    <a data-dismiss="modal" class="btn" href="#">Cancelar</a>
+  </div>
+</div>
 
