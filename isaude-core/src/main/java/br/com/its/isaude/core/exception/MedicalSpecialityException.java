@@ -1,15 +1,15 @@
 package br.com.its.isaude.core.exception;
 
-import br.com.its.isaude.core.exception.enums.MedicalSpecialityStatus;
+import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 
 @SuppressWarnings("serial")
 public class MedicalSpecialityException extends Exception {
 
 	private Exception rootException;
 	
-	private MedicalSpecialityStatus medicalSpecialityStatus; 
+	private MessageResponseStatusEnum medicalSpecialityStatus; 
 	
-	public MedicalSpecialityException(Exception rootException, MedicalSpecialityStatus medicalSpecialityStatus) {
+	public MedicalSpecialityException(Exception rootException, MessageResponseStatusEnum medicalSpecialityStatus) {
 		this.rootException = rootException;
 		this.medicalSpecialityStatus = medicalSpecialityStatus;
 	}
@@ -18,7 +18,7 @@ public class MedicalSpecialityException extends Exception {
 		return rootException;
 	}
 	
-	public MedicalSpecialityStatus getMedicalSpecialityStatus() {
+	public MessageResponseStatusEnum getMedicalSpecialityStatus() {
 		return medicalSpecialityStatus;
 	}
 	
