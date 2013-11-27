@@ -7,6 +7,7 @@ angular.module('iSaudeAdminApp')
     $scope.medicalInstitutional = new MedicalInstitutionalService();
   	$scope.listMedicalInstitutional = MedicalInstitutionalService.list();
     $scope.cnpjInvalid=false;
+    $scope.dataSuccess = false;
 
     //save
   		$scope.save = function(){
@@ -16,7 +17,9 @@ angular.module('iSaudeAdminApp')
           $scope.medicalInstitutional.$create(function(){
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
-        },function(err){
+          $scope.dataSuccess = true;
+        }, 
+         function(err){
               var errors = err.data;              
               angular.forEach(errors, function(error){
                 if (error.message=='CNPJ_EXISTS') {
@@ -39,6 +42,7 @@ angular.module('iSaudeAdminApp')
       $scope.medicalInstitutional.$update(function(){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
         $scope.reset();
+
       });
     };//end of update
 
@@ -50,13 +54,15 @@ angular.module('iSaudeAdminApp')
     $scope.doRemove = function(){
       $scope.medicalInstitutionalToRemove.$remove({id : $scope.medicalInstitutionalToRemove.id},function(res){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
-        $scope.medicalInstitutional = new MedicalInstitutionalService();        
+        $scope.medicalInstitutional = new MedicalInstitutionalService();  
+         
       });   
     }
 
     $scope.reset = function(){
   		$scope.medicalInstitutional = new MedicalInstitutionalService();
       $scope.cnpjInvalid=false;
+       $scope.dataSuccess = false;
   	};
   
   }]);
