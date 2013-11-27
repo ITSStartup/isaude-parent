@@ -33,7 +33,7 @@ public class MedicalSpeciality implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1476922851920296985L;
-	private Integer id;
+	private Long id;
 	private String description;
 	private Set<Doctor> doctors = new HashSet<Doctor>();
 
@@ -48,11 +48,11 @@ public class MedicalSpeciality implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

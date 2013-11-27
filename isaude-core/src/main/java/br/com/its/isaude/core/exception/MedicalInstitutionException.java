@@ -1,6 +1,6 @@
 package br.com.its.isaude.core.exception;
 
-import br.com.its.isaude.core.enums.MsgResponseEnum;
+import br.com.its.isaude.core.exception.enums.MsgResponseEnum;
 
 public class MedicalInstitutionException extends Exception {
 

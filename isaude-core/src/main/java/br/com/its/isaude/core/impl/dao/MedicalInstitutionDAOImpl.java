@@ -1,9 +1,10 @@
-package br.com.its.isaude.core.generic.impl.dao;
+package br.com.its.isaude.core.impl.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import br.com.its.isaude.core.generic.impl.dao.GenericHibernateDAO;
 import br.com.its.isaude.core.generic.interfaces.dao.MedicalInstitutionDAO;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 @Repository

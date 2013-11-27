@@ -76,7 +76,7 @@ public class MedicalSpecialityController {
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") Integer id, MedicalSpeciality medicalSpeciality) {
+	public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
 		
 		medicalSpeciality.setId(id);
 

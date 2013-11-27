@@ -1,11 +1,12 @@
-package br.com.its.isaude.core.generic.impl.services;
+package br.com.its.isaude.core.impl.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import br.com.its.isaude.core.enums.MsgResponseEnum;
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
+import br.com.its.isaude.core.exception.enums.MsgResponseEnum;
+import br.com.its.isaude.core.generic.impl.services.GenericServiceImpl;
 import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
 import br.com.its.isaude.core.generic.interfaces.dao.MedicalInstitutionDAO;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;

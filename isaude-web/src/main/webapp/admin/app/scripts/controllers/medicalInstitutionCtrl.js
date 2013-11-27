@@ -17,7 +17,7 @@ angular.module('iSaudeAdminApp')
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
         },function(response){
-              var errors =   response.data; 
+             
               if(response.data == '"CNPJ_EXISTS"'){                
                 $scope.cnpjInvalid=true;
               }             
@@ -30,7 +30,7 @@ angular.module('iSaudeAdminApp')
 
     $scope.edit = function(med){
       $scope.medicalInstitutional = med;
-    }
+    };
 
    //update
     $scope.update = function(){
