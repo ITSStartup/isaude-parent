@@ -8,6 +8,9 @@
                                 <div class="muted pull-left">Instituição Médica</div>
                             </div>
                             <div class="block-content collapse in">
+                              <div class="alert alert-success" ng-show="dataSuccess">
+                                  As informações foram salvas com sucesso.
+                              </div>
                                 <div class="span12">
                                      <form class="form-horizontal" novalidate name="medicalinstitutionform">
                                       <fieldset>
@@ -36,7 +39,7 @@
                                         <div class="control-group">
                                           <label class="control-label" for="cnpj">CNPJ *</label>
                                           <div class="controls">
-                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" 
+                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" ng-disabled="!editCnpj"
                                             ng-pattern="/^\d+$/">
                                              <span ng-show="cnpjInvalid">CNPJ existente</span>
                                           </div>
@@ -44,8 +47,8 @@
                                         
                                               
                                         <div class="form-actions">
-                                          <button type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()">Salvar </button>
-                                          <button type="reset" ng-click="reset()"  class="btn">Limpar</button>
+                                          <button type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()"><i class="icon-ok"></i> Salvar </button>
+                                          <button type="reset" ng-click="reset()"  class="btn"><i class="icon-ban-circle"></i>Limpar</button>
                                           
                                         </div>
                                       </fieldset>
@@ -78,8 +81,16 @@
             </thead>
             <tbody>
               <tr ng-repeat="med in listMedicalInstitutional">
-                <td><a href ng-click="remove(med)">Excluir</a>                   
-                </td>
+                <td>
+                  <!-- icon ou img? validar-->
+                  <!--<a href="#removeModal" ng-click="remove(med)"><center><img ng-src="images/trash.png"></center> 
+                  </a>-->
+                  <a href="#removeModal" data-toggle="modal" ng-click="remove(med)">
+                <div class="btn">
+                      <div class="icon-trash"></div>
+                    </div>                 
+                  </a>
+                </td> 
                 <td ><a href ng-click="edit(med)"> {{med.nomeFantasia}}</a></td>
                 <td>{{med.razaoSocial}}</td>
                 <td>{{med.cnpj}}</td>
@@ -95,4 +106,18 @@
   </div>
 
   </div>
+  <!-- REMOVE CONFIRMATION DIALOG -->
+  <div id="removeModal" class="modal hide">
+  <div class="modal-header">
+    <button data-dismiss="modal" class="close" type="button">&times;</button>
+    <h4>Remover Instituição Médica</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja remover a Instituição Médica <b>"{{medicalInstitutionalToRemove.nomeFantasia}}"?</b>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Ok</a>
+    <a data-dismiss="modal" class="btn" href="#">Cancelar</a>
+  </div>
+</div>
 

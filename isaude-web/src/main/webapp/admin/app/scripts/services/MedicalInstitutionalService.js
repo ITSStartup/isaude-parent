@@ -3,7 +3,7 @@
 angular.module('iSaudeAdminApp')
   .factory('MedicalInstitutionalService', function ($resource) {
      return $resource('../../api/medicalinstitution/:id',{},{
-    save:{
+    create:{
       method:'POST'
     },
     list:{

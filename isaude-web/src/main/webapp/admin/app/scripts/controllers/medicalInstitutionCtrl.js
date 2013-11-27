@@ -7,20 +7,27 @@ angular.module('iSaudeAdminApp')
     $scope.medicalInstitutional = new MedicalInstitutionalService();
   	$scope.listMedicalInstitutional = MedicalInstitutionalService.list();
     $scope.cnpjInvalid=false;
+    $scope.dataSuccess = false;
+    $scope.editCnpj = true;
 
     //save
   		$scope.save = function(){
-        if($scope.medicalInstitutional.id > 0){
+        var id = 0
+        if($scope.medicalInstitutional.id > id){
           $scope.update();
         }else{
-          $scope.medicalInstitutional.$save(function(){
+          $scope.medicalInstitutional.$create(function(){
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
-        },function(response){
-             
-              if(response.data == '"CNPJ_EXISTS"'){                
-                $scope.cnpjInvalid=true;
-              }             
+          $scope.dataSuccess = true;
+        }, 
+         function(err){
+              var errors = err.data;              
+              angular.forEach(errors, function(error){
+                if (error.message=='CNPJ_EXISTS') {
+                  $scope.cnpjInvalid=true;
+                };
+              });
           
         });  
         }
@@ -30,6 +37,8 @@ angular.module('iSaudeAdminApp')
 
     $scope.edit = function(med){
       $scope.medicalInstitutional = med;
+      $scope.editCnpj = false;
+       $scope.dataSuccess = false;
     };
 
    //update
@@ -37,22 +46,29 @@ angular.module('iSaudeAdminApp')
       $scope.medicalInstitutional.$update(function(){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
         $scope.reset();
+         $scope.dataSuccess = true;
+
       });
     };//end of update
 
     //remove 
     $scope.remove = function(medicalInstitutional){
-      medicalInstitutional.$remove({id : medicalInstitutional.id},function(res){
-        $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
-        $scope.medicalInstitutional = new MedicalInstitutionalService();        
-      });            
+     $scope.medicalInstitutionalToRemove = medicalInstitutional;         
       };
 
+    $scope.doRemove = function(){
+      $scope.medicalInstitutionalToRemove.$remove({id : $scope.medicalInstitutionalToRemove.id},function(res){
+        $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
+        $scope.medicalInstitutional = new MedicalInstitutionalService();  
 
+      });   
+    }
 
     $scope.reset = function(){
   		$scope.medicalInstitutional = new MedicalInstitutionalService();
       $scope.cnpjInvalid=false;
+       $scope.dataSuccess = false;
+        $scope.editCnpj = true;
   	};
   
   }]);

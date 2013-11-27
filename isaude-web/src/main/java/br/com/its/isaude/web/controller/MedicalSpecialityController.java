@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import br.com.its.isaude.core.exception.MedicalSpecialityException;
-import br.com.its.isaude.core.exception.enums.MedicalSpecialityStatus;
+import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 import br.com.its.isaude.core.interfaces.services.MedicalSpecialityService;
 import br.com.its.isaude.core.modal.domain.MedicalSpeciality;
 import br.com.its.isaude.web.util.AjaxMsg;
@@ -52,7 +52,7 @@ public class MedicalSpecialityController {
 		
 		} catch (Exception e) {
 			
-			errors.add(addAjaxMessage(MedicalSpecialityStatus.CANNOT_BE_LISTED));
+			errors.add(addAjaxMessage(MessageResponseStatusEnum.CANNOT_BE_LISTED));
 		
 		} finally {
 			
@@ -86,13 +86,13 @@ public class MedicalSpecialityController {
 
 	private Response saveOrUpdate(MedicalSpeciality medicalSpeciality, boolean insertingMedicalSpeciality) {
 		
-		MedicalSpecialityStatus medicalSpecialityStatusSuccess = MedicalSpecialityStatus.EDIT_SUCCESS;
-		MedicalSpecialityStatus medicalSpecialityStatusNotSuccess = MedicalSpecialityStatus.EDIT_NOT_SUCCESS;
+		MessageResponseStatusEnum medicalSpecialityStatusSuccess = MessageResponseStatusEnum.EDIT_SUCCESS;
+		MessageResponseStatusEnum medicalSpecialityStatusNotSuccess = MessageResponseStatusEnum.EDIT_NOT_SUCCESS;
 		
 		if (insertingMedicalSpeciality) {
 			
-			medicalSpecialityStatusSuccess = MedicalSpecialityStatus.INSERT_SUCCESS;
-			medicalSpecialityStatusNotSuccess = MedicalSpecialityStatus.INSERT_NOT_SUCCESS;
+			medicalSpecialityStatusSuccess = MessageResponseStatusEnum.INSERT_SUCCESS;
+			medicalSpecialityStatusNotSuccess = MessageResponseStatusEnum.INSERT_NOT_SUCCESS;
 		
 		}
 		
@@ -154,7 +154,7 @@ public class MedicalSpecialityController {
 
 		} catch (Exception e) {
 			
-			errors.add(addAjaxMessage(MedicalSpecialityStatus.REMOVE_NOT_SUCCESS));
+			errors.add(addAjaxMessage(MessageResponseStatusEnum.REMOVE_NOT_SUCCESS));
 
 		} finally {
 			
@@ -163,7 +163,7 @@ public class MedicalSpecialityController {
 				return responseStatus;
 			}
 			
-			AjaxMsg removeSuccess = new AjaxMsg(MedicalSpecialityStatus.REMOVE_SUCCESS.name());
+			AjaxMsg removeSuccess = new AjaxMsg(MessageResponseStatusEnum.REMOVE_SUCCESS.name());
 			responseStatus = Response.status(Response.Status.OK).entity(removeSuccess).build();
 			
 		}
@@ -172,7 +172,7 @@ public class MedicalSpecialityController {
 
 	}
 
-	private AjaxMsg addAjaxMessage(MedicalSpecialityStatus medicalSpecialityStatus) {
+	private AjaxMsg addAjaxMessage(MessageResponseStatusEnum medicalSpecialityStatus) {
 		return new AjaxMsg(medicalSpecialityStatus.name());
 	}
 

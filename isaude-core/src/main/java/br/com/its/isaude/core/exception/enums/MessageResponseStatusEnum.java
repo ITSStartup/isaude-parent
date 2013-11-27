@@ -1,6 +1,6 @@
 package br.com.its.isaude.core.exception.enums;
 
-public enum MedicalSpecialityStatus {
+public enum MessageResponseStatusEnum {
 
 	ERROR_UNEXPECTED, 
 	DESCRIPTION_DUPLICATED, 
@@ -10,6 +10,8 @@ public enum MedicalSpecialityStatus {
 	REMOVE_SUCCESS,
 	INSERT_NOT_SUCCESS, 
 	EDIT_NOT_SUCCESS, 
-	REMOVE_NOT_SUCCESS;
+	REMOVE_NOT_SUCCESS,
+	CNPJ_EXISTS,
+	RAZAO_SOCIAL_EXISTS	;
 
 }

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
-import br.com.its.isaude.core.exception.enums.MsgResponseEnum;
+import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 import br.com.its.isaude.core.generic.impl.services.GenericServiceImpl;
 import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
 import br.com.its.isaude.core.generic.interfaces.dao.MedicalInstitutionDAO;
@@ -36,14 +36,14 @@ public class MedicalInstitutionServiceImpl extends GenericServiceImpl<MedicalIns
 	private void validateRazaoSocial(	MedicalInstitutional entityMedicalInstitutional)	throws MedicalInstitutionException {
 		MedicalInstitutional medicalInstitutionalByRazaoSocial = getDao().getByRazaoSocial(entityMedicalInstitutional.getRazaoSocial());
 		if (medicalInstitutionalByRazaoSocial!=null) {
-			throw new MedicalInstitutionException(MsgResponseEnum.RAZAO_SOCIAL_EXISTS);
+			throw new MedicalInstitutionException(MessageResponseStatusEnum.RAZAO_SOCIAL_EXISTS);
 		}
 	}
 
 	private void validateCnpjExist(MedicalInstitutional entityMedicalInstitutional)	throws MedicalInstitutionException {
 		MedicalInstitutional medicalInstitutional = getDao().getByCnpj(entityMedicalInstitutional.getCnpj());
 		if(medicalInstitutional!=null){
-			throw new MedicalInstitutionException(MsgResponseEnum.CNPJ_EXISTS);
+			throw new MedicalInstitutionException(MessageResponseStatusEnum.CNPJ_EXISTS);
 		}
 	}
 
