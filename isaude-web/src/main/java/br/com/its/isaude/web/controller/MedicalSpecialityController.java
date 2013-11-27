@@ -76,7 +76,7 @@ public class MedicalSpecialityController {
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") Integer id, MedicalSpeciality medicalSpeciality) {
+	public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
 		
 		medicalSpeciality.setId(id);
 
@@ -138,7 +138,7 @@ public class MedicalSpecialityController {
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response remove(@PathParam("id") Integer id) {
+	public Response remove(@PathParam("id") Long id) {
 		
 		Response responseStatus = null;
 		List<AjaxMsg> errors = new ArrayList<AjaxMsg>();

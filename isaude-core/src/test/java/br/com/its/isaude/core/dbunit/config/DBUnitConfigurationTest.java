@@ -1,4 +1,4 @@
-package com.its.isaude.core.dbunit.config;
+package br.com.its.isaude.core.dbunit.config;
 
 import org.junit.Before;
 import org.junit.Test;

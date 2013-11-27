@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.its.isaude.core.dbunit.config.DBUnitConfiguration;
+import br.com.its.isaude.core.exception.MedicalInstitutionException;
 import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 
-import com.its.isaude.core.dbunit.config.DBUnitConfiguration;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MedicalInstitutionServiceImplATest extends DBUnitConfiguration {
@@ -100,14 +102,33 @@ public class MedicalInstitutionServiceImplATest extends DBUnitConfiguration {
 		}
 	}
 	
+	
 	@Test
-	public void testRazaoSocialAlreadyExist() throws Exception{
-		MedicalInstitutional medicalInstitutionalInvalid = new MedicalInstitutional();
-		medicalInstitutionalInvalid.setNomeFantasia("Hospital Hol");
-		medicalInstitutionalInvalid.setRazaoSocial("hospital holandes SA");
-		final String CNPJ = "50482726000186";
-		medicalInstitutionalInvalid.setCnpj(CNPJ);
-		medicalInstitutionServiceImpl.save(medicalInstitutionalInvalid);
+	public void testGetMedicalInstitutionalByCnpj(){
+		MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getByCnpj("18495662000145");
+		Long idExpected = 1L;
+		assertEquals(idExpected,medicalInstitutional.getId());
+	}
+	
+	@Test(expected=MedicalInstitutionException.class)
+	public void testCannotAddMedicalInstituicionalCnpjBecauseItAlreadyExistThrowMedicalInstitutionException() throws Exception{
+		medicalInstitutional.setCnpj("18495662000145");
+		medicalInstitutionServiceImpl.save(medicalInstitutional);
+	}
+	@Test(expected=MedicalInstitutionException.class)
+	public void testCannotAddMedicalInstituicionalRazaoSocialAlreadyExist() throws Exception{
+		String razaoSocial = "hospital holandes SA";
+		medicalInstitutional.setRazaoSocial(razaoSocial );
+		medicalInstitutionServiceImpl.save(medicalInstitutional);
+		
+	}
+	@Test
+	public void testUpdateNameFantasyWithSuccess() throws Exception{
+		MedicalInstitutional medInstitutional = medicalInstitutionServiceImpl.getById(1L);
+		final String newNameFantasy = "Hospital Espanhol";
+		medInstitutional.setNomeFantasia(newNameFantasy);
+ 		medicalInstitutionServiceImpl.update(medInstitutional);
+ 		assertEquals(newNameFantasy, medicalInstitutionServiceImpl.getById(1L).getNomeFantasia());
 	}
 
 }

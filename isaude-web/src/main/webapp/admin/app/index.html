@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="styles/bootstrap.css">
         <link rel="stylesheet" href="styles/bootstrap-responsive.css">
         <link rel="stylesheet" href="styles/main.css">
-        <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
         <!-- endbuild -->
 </head>
   <body ng-app="iSaudeAdminApp">
@@ -86,7 +86,7 @@
 	                        </a>
 	                        <ul class="dropdown-menu">
 	                            <li>
-	                                <a tabindex="-1" href="#">Cadastro Instituição Médica</a>
+	                                <a tabindex="-1" href="#/medicalinstitution">Cadastro Instituição Médica</a>
 	                            </li>
 	                            <li>
 	                                <a tabindex="-1" href="#">Cadastro Médico</a>
@@ -174,8 +174,17 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+      
+        <script src="scripts/controllers\medicalInstitutionCtrl.js"></script>
+        <script src="scripts/services\MedicalInstitutionalService.js"></script>
         <script src="scripts/controllers/medicalSpeciality.js"></script>
         <script src="scripts/services/medicalSpeciality.js"></script>
+
         <!-- endbuild -->
+
+        <!--vendors -->
+         <script src="vendors/jquery-1.9.1.js"></script>
+         <script src="assets/scripts.js"></script>
+       
 </body>
 </html>

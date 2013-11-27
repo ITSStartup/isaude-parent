@@ -1,4 +1,4 @@
-package com.its.isaude.core.impl.services;
+package br.com.its.isaude.core.impl.services;
 
 import java.util.List;
 
@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.its.isaude.core.dbunit.config.DBUnitConfiguration;
 import br.com.its.isaude.core.interfaces.services.MedicalSpecialityService;
 import br.com.its.isaude.core.modal.domain.MedicalSpeciality;
-
-import com.its.isaude.core.dbunit.config.DBUnitConfiguration;
-
-import static com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.*;
+import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
@@ -33,12 +31,9 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 	@Test
 	public void testGetAllMedicalSpecialityRegistered() throws Exception {
-		
 		List<MedicalSpeciality> medicalSpecialities = medicalSpecialityService.list();
-
 		assertNotNull(medicalSpecialities);
 		assertFalse(medicalSpecialities.isEmpty());
-
 	}
 
 	@Test
@@ -81,7 +76,7 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 		
 		int beforeSaveQuantity = listAllMedicalSpecialities().size();
 		
-		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(1);
+		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(1L);
 		
 		medicalSpecialityService.delete(medicalSpecialityToBeRemoved);
 
@@ -101,7 +96,7 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 		return (List<MedicalSpeciality>) listAllEntitiesByType(getSessionFactory(), MedicalSpeciality.class);
 	}
 
-	private MedicalSpeciality getMedicalSpecialityById(int id) {
+	private MedicalSpeciality getMedicalSpecialityById(long id) {
 		return (MedicalSpeciality) getEntityByTypeAndId(getSessionFactory(), MedicalSpeciality.class, id);
 	}
 

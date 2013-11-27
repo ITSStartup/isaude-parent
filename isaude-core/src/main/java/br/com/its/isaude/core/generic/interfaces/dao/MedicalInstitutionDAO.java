@@ -4,4 +4,8 @@ import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 
 public interface MedicalInstitutionDAO extends GenericDAO<MedicalInstitutional>{
 
+	MedicalInstitutional getByCnpj(String cnpj);
+
+	MedicalInstitutional getByRazaoSocial(String razaoSocial);
+
 }

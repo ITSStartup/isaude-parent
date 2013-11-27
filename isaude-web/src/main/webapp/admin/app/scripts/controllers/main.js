@@ -7,4 +7,5 @@ angular.module('iSaudeAdminApp')
       'AngularJS',
       'Karma'
     ];
-  });
+  }) ;
+
