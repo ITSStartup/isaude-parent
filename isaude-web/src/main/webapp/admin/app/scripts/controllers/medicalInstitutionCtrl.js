@@ -42,6 +42,7 @@ angular.module('iSaudeAdminApp')
       $scope.medicalInstitutional.$update(function(){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
         $scope.reset();
+         $scope.dataSuccess = true;
 
       });
     };//end of update
@@ -55,7 +56,7 @@ angular.module('iSaudeAdminApp')
       $scope.medicalInstitutionalToRemove.$remove({id : $scope.medicalInstitutionalToRemove.id},function(res){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
         $scope.medicalInstitutional = new MedicalInstitutionalService();  
-         
+
       });   
     }
 
