@@ -16,11 +16,13 @@ angular.module('iSaudeAdminApp')
           $scope.medicalInstitutional.$create(function(){
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
-        },function(response){
-             
-              if(response.data == '"CNPJ_EXISTS"'){                
-                $scope.cnpjInvalid=true;
-              }             
+        },function(err){
+              var errors = err.data;              
+              angular.forEach(errors, function(error){
+                if (error.message=='CNPJ_EXISTS') {
+                  $scope.cnpjInvalid=true;
+                };
+              });
           
         });  
         }

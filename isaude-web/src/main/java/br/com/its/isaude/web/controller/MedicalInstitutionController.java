@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
 import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
+import br.com.its.isaude.web.util.AjaxMsg;
 
 @Controller
 @Path("/medicalinstitution")
@@ -28,6 +29,11 @@ public class MedicalInstitutionController {
 	@Autowired
 	@Qualifier("medicalInstitutionServiceImpl")
 	private MedicalInstitutionService medicalInstitutionServiceImpl;
+	
+	private List<AjaxMsg>listErrors = new ArrayList<AjaxMsg>();
+	private AjaxMsg ajaxMessageError;
+
+	private Response response = Response.ok().build();
 
 	public MedicalInstitutionService getMedicalInstitutionServiceImpl() {
 		return medicalInstitutionServiceImpl;
@@ -38,17 +44,25 @@ public class MedicalInstitutionController {
 		this.medicalInstitutionServiceImpl = medicalInstitutionServiceImpl;
 	}
 
+	@SuppressWarnings("finally")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(MedicalInstitutional medicalInstitutional) {
 		try {
 			medicalInstitutionServiceImpl.save(medicalInstitutional);
 		} catch (MedicalInstitutionException e) {
-			return Response.status(Response.Status.NOT_ACCEPTABLE).entity(e.getMsg()).build();
+			final String messageErrorName = e.getMsg().toString();
+			ajaxMessageError =  new AjaxMsg(messageErrorName);
+			listErrors.add(ajaxMessageError);
+			 response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
 		}catch (Exception e) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+			final String messageError = e.getMessage();
+			ajaxMessageError = new AjaxMsg(messageError);
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}finally{
+			return response;
 		}
-		return Response.ok().build();
+		
 	}
 	
 	@PUT
@@ -69,9 +83,12 @@ public class MedicalInstitutionController {
 		try {
 			MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getById(id);
 			medicalInstitutionServiceImpl.delete(medicalInstitutional);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 //			TODO
 			e.printStackTrace();
+		}finally{
+//			TODO
 		}
 	}
 
