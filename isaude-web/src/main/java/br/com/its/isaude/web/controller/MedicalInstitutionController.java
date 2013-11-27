@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -43,12 +46,34 @@ public class MedicalInstitutionController {
 		} catch (MedicalInstitutionException e) {
 			return Response.status(Response.Status.NOT_ACCEPTABLE).entity(e.getMsg()).build();
 		}catch (Exception e) {
-//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return Response.ok().build();
 	}
 	
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void update(MedicalInstitutional medicalInstitutional){
+		try {
+			medicalInstitutionServiceImpl.update(medicalInstitutional);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	@Consumes({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
+	public void remove(@PathParam("id")Long id){
+		try {
+			MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getById(id);
+			medicalInstitutionServiceImpl.delete(medicalInstitutional);
+		} catch (Exception e) {
+//			TODO
+			e.printStackTrace();
+		}
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -57,6 +82,7 @@ public class MedicalInstitutionController {
 		try {
 			list = medicalInstitutionServiceImpl.list();
 		} catch (Exception e) {
+//			TODO
 			e.printStackTrace();
 		}
 		return list;

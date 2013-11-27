@@ -9,6 +9,13 @@ angular.module('iSaudeAdminApp')
     list:{
       method:'GET',
       isArray:true
+    },
+    update:{
+      method:'PUT'
+    },
+    remove:{
+      method:'DELETE'
     }
-  });
+  }
+  );
 });

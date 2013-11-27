@@ -16,7 +16,7 @@
                                           <label class="control-label" for="nomeFantasia">Nome Fantasia *</label>
                                           <div class="controls">
                                             <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia">
-                                            <div ng-show="medicalinstitutionform.nomeFantasia.$dirty && medicalinstitutionform.nomeFantasia.$invalid">                                              
+                                            <div ng-show="medicalinstitutionform.nomeFantasia.$pristine && medicalinstitutionform.nomeFantasia.$dirty && medicalinstitutionform.nomeFantasia.$invalid">                                              
                                                   <span class="error" ng-show="medicalinstitutionform.nomeFantasia.$error.required">Nome Fantasia é obrigatório</span>                           
                                             </div>
                                           </div>
@@ -26,7 +26,7 @@
                                           <label class="control-label" for="razaosocial">Razão Social *</label>
                                           <div class="controls">
                                             <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial">
-                                            <div ng-show="medicalinstitutionform.razaosocial.$dirty && medicalinstitutionform.razaosocial.$invalid">                                       
+                                            <div ng-show="medicalinstitutionform.razaosocial.$dirty && medicalinstitutionform.razaosocial.$pristine && medicalinstitutionform.razaosocial.$invalid">                                       
                                               <span class="error" ng-show="medicalinstitutionform.razaosocial.$error.required">Razão Social é obrigatório</span>
                                           </div>                           
                                             
@@ -36,15 +36,17 @@
                                         <div class="control-group">
                                           <label class="control-label" for="cnpj">CNPJ *</label>
                                           <div class="controls">
-                                            <input class="span6" id="cnpj" type="number" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj">
+                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" 
+                                            ng-pattern="/^\d+$/">
                                              <span ng-show="cnpjInvalid">CNPJ existente</span>
                                           </div>
                                         </div>
                                         
                                               
                                         <div class="form-actions">
-                                          <input type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()"/>
-                                          <button type="reset" ng-click="reset()" class="btn">Limpar</button>
+                                          <button type="submit" class="btn btn-success" ng-disabled="medicalinstitutionform.$invalid" value="salvar" ng-click="save()">Salvar </button>
+                                          <button type="reset" ng-click="reset()"  class="btn">Limpar</button>
+                                          
                                         </div>
                                       </fieldset>
                                     </form>
@@ -76,8 +78,9 @@
             </thead>
             <tbody>
               <tr ng-repeat="med in listMedicalInstitutional">
-                <td></td>
-                <td>{{med.nomeFantasia}}</td>
+                <td><a href ng-click="remove(med)">Excluir</a>                   
+                </td>
+                <td ><a href ng-click="edit(med)"> {{med.nomeFantasia}}</a></td>
                 <td>{{med.razaoSocial}}</td>
                 <td>{{med.cnpj}}</td>
               </tr>
@@ -91,5 +94,5 @@
     <!-- /block -->
   </div>
 
-                    </div>
+  </div>
 

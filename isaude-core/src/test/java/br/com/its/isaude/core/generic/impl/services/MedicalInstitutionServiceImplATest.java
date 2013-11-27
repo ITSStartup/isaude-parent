@@ -122,5 +122,13 @@ public class MedicalInstitutionServiceImplATest extends DBUnitConfiguration {
 		medicalInstitutionServiceImpl.save(medicalInstitutional);
 		
 	}
+	@Test
+	public void testUpdateNameFantasyWithSuccess() throws Exception{
+		MedicalInstitutional medInstitutional = medicalInstitutionServiceImpl.getById(1L);
+		final String newNameFantasy = "Hospital Espanhol";
+		medInstitutional.setNomeFantasia(newNameFantasy);
+ 		medicalInstitutionServiceImpl.update(medInstitutional);
+ 		assertEquals(newNameFantasy, medicalInstitutionServiceImpl.getById(1L).getNomeFantasia());
+	}
 
 }
