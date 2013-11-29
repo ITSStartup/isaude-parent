@@ -12,5 +12,6 @@ public class MedicalSpecialityDAOImpl extends GenericHibernateDAO<MedicalSpecial
 	public MedicalSpecialityDAOImpl() {
 		super(MedicalSpeciality.class);
 	}
+	
 
 }
