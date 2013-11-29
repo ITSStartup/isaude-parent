@@ -27,9 +27,10 @@ public class MedicalInstitutionServiceImpl extends GenericServiceImpl<MedicalIns
 	
 	@Override
 	public void save(MedicalInstitutional entityMedicalInstitutional) throws MedicalInstitutionException {
-//		TODO refactoring Design Pattern 
+//		TODO Window Sprint  refactoring Design Pattern 
 		validateCnpjExist(entityMedicalInstitutional);
-		validateRazaoSocial(entityMedicalInstitutional);
+//		TODO
+//		validateRazaoSocial(entityMedicalInstitutional);
 		getDao().save(entityMedicalInstitutional);
 	}
 
