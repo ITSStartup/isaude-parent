@@ -1,7 +1,5 @@
 package br.com.its.isaude.core.dbunit.config;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -21,16 +19,6 @@ public class DBUnitHibernateUtil {
 	
 	public static <T> Long getCountTotalSizeByType(SessionFactory sessionFactory, Class<T> klass) {
 		return (Long) sessionFactory.getCurrentSession().createCriteria(klass).setProjection(Projections.rowCount()).uniqueResult();
-	}
-
-	@SuppressWarnings("unchecked")
-	public static <T> List<T> listAllEntitiesByType(SessionFactory sessionFactory, Class<T> klass) {
-		return sessionFactory.getCurrentSession().createCriteria(klass).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	public static <T> T getEntityByTypeAndId(SessionFactory sessionFactory, Class<T> className, Serializable id) {
-		return (T) sessionFactory.getCurrentSession().get(className, id);
 	}
 
 	public static <T> Set<ConstraintViolation<T>> getViolations(T entity) {

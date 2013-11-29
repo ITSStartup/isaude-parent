@@ -15,9 +15,9 @@ import br.com.its.isaude.core.modal.domain.MedicalSpeciality;
 @Service
 public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpeciality, MedicalSpecialityDAO> implements MedicalSpecialityService {
 
+	@Override
 	@Autowired
 	@Qualifier("medicalSpecialityDAOImpl")
-	@Override
 	public void setDao(MedicalSpecialityDAO dao) {
 		super.setDao(dao);
 	}
@@ -27,9 +27,9 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		try {
 			super.save(entity);
 		} catch (ConstraintViolationException e) {
-			raiseConstraintException(e);
+			throwConstraintMedicalSpecialityException(e);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.INSERT_NOT_SUCCESS);
+			throw new MedicalSpecialityException(MessageResponseStatusEnum.SAVE_NOT_SUCCESS);
 		}
 	}
 
@@ -38,9 +38,9 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		try {
 			super.update(entity);
 		} catch (ConstraintViolationException e) {
-			raiseConstraintException(e);
+			throwConstraintMedicalSpecialityException(e);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.EDIT_NOT_SUCCESS);
+			throw new MedicalSpecialityException(MessageResponseStatusEnum.SAVE_NOT_SUCCESS);
 		}
 	}
 	
@@ -49,13 +49,13 @@ public class MedicalSpecialityServiceImpl extends GenericServiceImpl<MedicalSpec
 		try {
 			super.delete(entity);
 		} catch (Exception e) {
-			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.REMOVE_NOT_SUCCESS);
+			throw new MedicalSpecialityException(MessageResponseStatusEnum.REMOVE_NOT_SUCCESS);
 		}
 	}
 
-	private void raiseConstraintException(ConstraintViolationException e) throws MedicalSpecialityException {
+	private void throwConstraintMedicalSpecialityException(ConstraintViolationException e) throws MedicalSpecialityException {
 		if (e.getMessage().contains("Duplicate entry")) {
-			throw new MedicalSpecialityException(e, MessageResponseStatusEnum.DESCRIPTION_DUPLICATED);
+			throw new MedicalSpecialityException(MessageResponseStatusEnum.DESCRIPTION_DUPLICATED);
 		} else throw e;
 	}
 	
