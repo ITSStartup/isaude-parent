@@ -1,8 +1,12 @@
 package br.com.its.isaude.core.impl.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
 import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
@@ -33,8 +37,9 @@ public class MedicalInstitutionServiceImpl extends GenericServiceImpl<MedicalIns
 //		validateRazaoSocial(entityMedicalInstitutional);
 		getDao().save(entityMedicalInstitutional);
 	}
+	
 
-	private void validateRazaoSocial(	MedicalInstitutional entityMedicalInstitutional)	throws MedicalInstitutionException {
+	private void validateRazaoSocial(MedicalInstitutional entityMedicalInstitutional)	throws MedicalInstitutionException {
 		MedicalInstitutional medicalInstitutionalByRazaoSocial = getDao().getByRazaoSocial(entityMedicalInstitutional.getRazaoSocial());
 		if (medicalInstitutionalByRazaoSocial!=null) {
 			throw new MedicalInstitutionException(MessageResponseStatusEnum.RAZAO_SOCIAL_EXISTS);

@@ -1,5 +1,8 @@
 package br.com.its.isaude.core.impl.services;
 
+import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.getEntityByTypeAndId;
+import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.listAllEntitiesByType;
+
 import java.util.List;
 
 import org.junit.Before;
@@ -12,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import br.com.its.isaude.core.dbunit.config.DBUnitConfiguration;
 import br.com.its.isaude.core.interfaces.services.MedicalSpecialityService;
 import br.com.its.isaude.core.modal.domain.MedicalSpeciality;
-import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {

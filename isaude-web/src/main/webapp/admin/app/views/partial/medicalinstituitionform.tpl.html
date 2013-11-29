@@ -74,7 +74,8 @@
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th></th>
+                <th>Excluir</th>
+                <th>Editar</th>
                 <th>Nome Fantasia</th>
                 <th>Razão Social</th>
                 <th>CNPJ</th>
@@ -87,11 +88,11 @@
                 <div class="btn">
                       <div class="icon-trash"></div>
                     </div>                 
-                  </a>
-                  <a href ng-click="edit(med)" title="editar">
-                    <div class="icon-edit"></div>
-                  </a>
+                  </a>                  
                 </td> 
+                <td><a href ng-click="edit(med)" title="editar">
+                    <div class="icon-edit"></div>
+                  </a></td>
                 <td >{{med.nomeFantasia}}</td>
                 <td>{{med.razaoSocial}}</td>
                 <td>{{med.cnpj}}</td>
