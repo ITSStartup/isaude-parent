@@ -33,7 +33,7 @@ public class MedicalInstitutionController {
 	private List<AjaxMsg>listErrors = new ArrayList<AjaxMsg>();
 	private AjaxMsg ajaxMessageError;
 
-	private Response response = Response.ok().build();
+	
 
 	public MedicalInstitutionService getMedicalInstitutionServiceImpl() {
 		return medicalInstitutionServiceImpl;
@@ -48,6 +48,7 @@ public class MedicalInstitutionController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(MedicalInstitutional medicalInstitutional) {
+		 Response response = Response.ok().build();
 		try {
 			medicalInstitutionServiceImpl.save(medicalInstitutional);
 		} catch (MedicalInstitutionException e) {
@@ -58,7 +59,8 @@ public class MedicalInstitutionController {
 		}catch (Exception e) {
 			final String messageError = e.getMessage();
 			ajaxMessageError = new AjaxMsg(messageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+			listErrors.add(ajaxMessageError);
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
 		}finally{
 			return response;
 		}
@@ -71,9 +73,9 @@ public class MedicalInstitutionController {
 		try {
 			medicalInstitutionServiceImpl.update(medicalInstitutional);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	@DELETE
@@ -85,24 +87,24 @@ public class MedicalInstitutionController {
 			medicalInstitutionServiceImpl.delete(medicalInstitutional);
 		}
 		catch (Exception e) {
-//			TODO
 			e.printStackTrace();
-		}finally{
-//			TODO
 		}
 	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<MedicalInstitutional> list(){
+	public Response list(){
 		List<MedicalInstitutional> list = new ArrayList<MedicalInstitutional>();
+		 Response response = Response.ok().build();
 		try {
 			list = medicalInstitutionServiceImpl.list();
+			response = Response.status(Response.Status.OK).entity(list).build();
 		} catch (Exception e) {
-//			TODO
-			e.printStackTrace();
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}finally{
+			return response;
 		}
-		return list;
+		
 	}
 
 }

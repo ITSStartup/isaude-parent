@@ -19,7 +19,7 @@ angular.module('iSaudeAdminApp')
           $scope.medicalInstitutional.$create(function(){
           $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
           $scope.reset();
-          $scope.dataSuccess = true;
+          //$scope.dataSuccess = true;
         }, 
          function(err){
               var errors = err.data;              
