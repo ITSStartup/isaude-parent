@@ -44,31 +44,46 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	}
 
 	@Test
-	public void testGetEachOneMedicalSpecialityRegistered() throws Exception {
+	public void testGetMedicalSpecialityCardiologiaRegistered() throws Exception {
 		
 		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(1l);
 		
-		String medicalSpecialityCardiologia = medicalSpeciality.getDescription();
-		
-		medicalSpeciality = medicalSpecialityServiceImpl.getById(2l);
-		
-		String medicalSpecialityGinecologia = medicalSpeciality.getDescription();
+		String medicalSpecialityDescriptionExpected = "Cardiologia";
 
-		medicalSpeciality = medicalSpecialityServiceImpl.getById(3l);
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
 		
-		String medicalSpecialityUrologia = medicalSpeciality.getDescription();
+	}
 
-		medicalSpeciality = medicalSpecialityServiceImpl.getById(4l);
+	@Test
+	public void testGetMedicalSpecialityGinecologiaRegistered() throws Exception {
 		
-		String medicalSpecialityGeriatria = medicalSpeciality.getDescription();
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(2l);
+		
+		String medicalSpecialityDescriptionExpected = "Ginecologia";
 
-		assertEquals("Cardiologia", medicalSpecialityCardiologia);
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
 		
-		assertEquals("Ginecologia", medicalSpecialityGinecologia);
+	}
+
+	@Test
+	public void testGetMedicalSpecialityUrologiaRegistered() throws Exception {
 		
-		assertEquals("Urologia", medicalSpecialityUrologia);
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(3l);
 		
-		assertEquals("Geriatria", medicalSpecialityGeriatria);
+		String medicalSpecialityDescriptionExpected = "Urologia";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
+		
+	}
+
+	@Test
+	public void testGetMedicalSpecialityGeriatriaRegistered() throws Exception {
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(4l);
+		
+		String medicalSpecialityDescriptionExpected = "Geriatria";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
 		
 	}
 
@@ -83,9 +98,11 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 		int afterSaveQuantity = listAllMedicalSpecialities().size();
 
+		String medicalSpecialityDescriptionExpected = "Ginecologia";
+		
 		assertTrue(afterSaveQuantity > beforeSaveQuantity);
 		
-		assertEquals("Ginecologia", medicalSpecialitySaved.getDescription());
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialitySaved.getDescription());
 		
 	}
 
@@ -104,9 +121,11 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 		int afterSaveQuantity = listAllMedicalSpecialities().size();
 
+		String medicalSpecialityDescriptionExpected = "Cardiologista";
+		
 		assertEquals(afterSaveQuantity, beforeSaveQuantity);
 		
-		assertEquals("Cardiologista", medicalSpecialityUpdated.getDescription());
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialityUpdated.getDescription());
 		
 	}
 

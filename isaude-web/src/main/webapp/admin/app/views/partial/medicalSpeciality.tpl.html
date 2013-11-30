@@ -2,7 +2,7 @@
 	<div class="span12">
 		<div class="block">
 			<div class="navbar navbar-inner block-header">
-				<div class="muted pull-left">Especialidade M&eacute;dica</div>
+				<div class="muted pull-left">Especialidade Médica</div>
 			</div>
 			<div class="block-content collapse in">
 
@@ -17,7 +17,7 @@
 								<label class="control-label" for="description">Descrição</label>
 								<div class="controls">
 									<input class="input-xlarge" id="description" ng-model="speciality.description" type="text" 
-										ng-maxlength=80 name="description" placeholder="Informe a descrição da especialidade" required/>
+										ng-maxlength=80 name="description" placeholder="Informe a Especialidade Médica" required/>
 									<span class="alert alert-warning" 
 										ng-show="medicalSpecialityform.description.$pristine &&medicalSpecialityform.description.$dirty && medicalSpecialityform.description.$error.required">
 										Descrição da especialidade é obrigatória
@@ -45,7 +45,7 @@
 	<div class="span12">
 		<div class="block">
 			<div class="navbar navbar-inner block-header">
-				<div class="muted pull-left">Especialidades Médicas Cadastradas</div>
+				<div class="muted pull-left">Últimas Especialidades Médicas Cadastradas</div>
 			</div>
 			<div class="block-content collapse in">
 				<div class="alert alert-danger" ng-show="dataCannotBelisted">Não foi possível exibir as especialidades cadastradas</div>
@@ -62,7 +62,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="speciality in specialities | orderBy:'id'">
+							<tr ng-repeat="speciality in specialities">
 								<td class="span1">
 									<a href="#removeModal" data-toggle="modal" ng-click="remove(speciality)">
 										<div class="btn">
@@ -95,7 +95,7 @@
 		Tem certeza que deseja remover "{{specialityToRemove.description}}"?
 	</div>
 	<div class="modal-footer">
-		<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Confirm</a>
+		<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Confirmar</a>
 		<a data-dismiss="modal" class="btn" href="#">Cancel</a>
 	</div>
 </div>

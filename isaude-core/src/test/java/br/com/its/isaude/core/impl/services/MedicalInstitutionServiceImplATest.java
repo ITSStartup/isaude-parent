@@ -1,4 +1,4 @@
-package br.com.its.isaude.core.generic.impl.services;
+package br.com.its.isaude.core.impl.services;
 
 
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.its.isaude.core.dbunit.config.DBUnitConfiguration;
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
-import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
+import br.com.its.isaude.core.interfaces.services.MedicalInstitutionService;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 
 
