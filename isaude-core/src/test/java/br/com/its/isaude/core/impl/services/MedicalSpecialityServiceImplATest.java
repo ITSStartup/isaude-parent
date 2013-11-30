@@ -1,8 +1,5 @@
 package br.com.its.isaude.core.impl.services;
 
-import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.getEntityByTypeAndId;
-import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.listAllEntitiesByType;
-
 import java.util.List;
 
 import org.junit.Before;
