@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,7 +23,7 @@ import br.com.its.isaude.web.util.AjaxMsg;
 @Path("/doctor")
 public class DoctorController {
 	@Autowired
-	@Qualifier("doctoServiceImpl")
+	@Qualifier("doctorServiceImpl")
 	private DoctorService doctorServiceImpl;
 	private List<AjaxMsg>listErrors = new ArrayList<AjaxMsg>();
 	private AjaxMsg ajaxMessageError;
@@ -45,6 +46,30 @@ public class DoctorController {
 			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return response;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getList(){
+		 Response response = Response.ok().build();
+		 try {
+			List<Doctor> listDoctors = doctorServiceImpl.list();
+			response = Response.status(Status.OK).entity(listDoctors).build();
+		}catch(DoctorException e){
+			messageError = e.getMsg().toString();
+			ajaxMessageError = new AjaxMsg(messageError);
+			listErrors.add(ajaxMessageError);
+			response = Response.status(Status.NOT_ACCEPTABLE).entity(listErrors).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}finally{
+		 return response;
+		} 
+	}
+
+	public DoctorService getDoctorServiceImpl() {
+		return doctorServiceImpl;
 	}
 	
 }
