@@ -20,10 +20,7 @@
                                           <div class="controls">
                                             <input class="span6"  name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
                                             
-                                            <div ng-show="doctorform.nome.$pristine && doctorform.nome.$dirty && doctorform.nome.$invalid">                                              
-                                                  <span class="error" ng-show="doctorform.nome.$error.required">Nome é obrigatório</span> 
-
-                                            </div>
+                                            
                                           </div>
                                         </div>
 
@@ -57,13 +54,13 @@
                                           <div class="control-group">
                                           <label class="control-label" for="especialidademedica">Especialidade Médica *</label>
                                           <div class="controls">
-                                            <select multiple ng-options="es in awesomeThings" required></select>
+                                            <select multiple ng-options="es in listMedicalSpecialisty" required></select>
                                           </div>                                                                          </div>     
 
                                           <div class="control-group">
                                           <label class="control-label" for="Foto">Foto</label>
                                           <div class="controls">
-                                            <button type="submit" class="btn btn-success" ng-disabled="true" value="upload"><i class="icon-upload"></i> Upload </button>
+                                          <button type="submit" class="btn btn-success" ng-disabled="true" value="upload"><i class="icon-upload"></i> Upload </button>
                                           </div>                                                                          </div>
 
                                           <div class="control-group">
