@@ -2,6 +2,8 @@
 <dataset>
 	<instituicao_medica id="1" nome_fantasia="Hospital Holândes"
 		razao_social="hospital holandes SA" CNPJ="18495662000145" />
+	<instituicao_medica id="2" nome_fantasia="Hospital Europa"
+		razao_social="hospital europa SA" CNPJ="72872581000162" />
 
 	<especialidade_medica id="1" descricao="Cardiologia" />		
 	<especialidade_medica id="2" descricao="Ginecologia" />		

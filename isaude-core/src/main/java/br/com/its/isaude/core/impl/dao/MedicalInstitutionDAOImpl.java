@@ -1,6 +1,9 @@
 package br.com.its.isaude.core.impl.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +30,13 @@ public class MedicalInstitutionDAOImpl extends GenericHibernateDAO<MedicalInstit
 		return (MedicalInstitutional) criteria.uniqueResult();
 		
 	}
-
+	
+	@Override
+	public List<MedicalInstitutional> list() {
+			Criteria criteria = getCurrentSession().createCriteria(getPersistentClass());
+			criteria.addOrder(Order.desc("id"));
+		final List<MedicalInstitutional> listMedicalInstitutional = criteria.list();
+		return listMedicalInstitutional;
+	}
 
 }

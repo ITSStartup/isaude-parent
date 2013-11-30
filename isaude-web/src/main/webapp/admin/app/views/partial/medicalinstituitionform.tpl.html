@@ -18,9 +18,11 @@
                                         <div class="control-group">
                                           <label class="control-label" for="nomeFantasia">Nome Fantasia *</label>
                                           <div class="controls">
-                                            <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia">
+                                            <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia" ng-maxlength="80">
+                                            
                                             <div ng-show="medicalinstitutionform.nomeFantasia.$pristine && medicalinstitutionform.nomeFantasia.$dirty && medicalinstitutionform.nomeFantasia.$invalid">                                              
-                                                  <span class="error" ng-show="medicalinstitutionform.nomeFantasia.$error.required">Nome Fantasia é obrigatório</span>                           
+                                                  <span class="error" ng-show="medicalinstitutionform.nomeFantasia.$error.required">Nome Fantasia é obrigatório</span> 
+
                                             </div>
                                           </div>
                                         </div>
@@ -28,11 +30,9 @@
                                         <div class="control-group">
                                           <label class="control-label" for="razaosocial">Razão Social *</label>
                                           <div class="controls">
-                                            <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial">
-                                            <div ng-show="medicalinstitutionform.razaosocial.$dirty && medicalinstitutionform.razaosocial.$pristine && medicalinstitutionform.razaosocial.$invalid">                                       
-                                              <span class="error" ng-show="medicalinstitutionform.razaosocial.$error.required">Razão Social é obrigatório</span>
-                                          </div>                           
-                                            
+                                            <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial" ng-maxlength="80">                                            
+                                              <span class="error" ng-show="razaoSocialInvalid">Razão social existente</span>
+                                                                                      
                                           </div>
                                           </div>
 
@@ -41,7 +41,8 @@
                                           <div class="controls">
                                             <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="medicalInstitutional.cnpj" ng-disabled="!editCnpj"
                                             ng-pattern="/^\d+$/">
-                                             <span ng-show="cnpjInvalid">CNPJ existente</span>
+                                             <span ng-show="cnpjInvalid">CNPJ inválido ou existente</span>
+
                                           </div>
                                         </div>
                                         
@@ -69,29 +70,30 @@
       <div class="block-content collapse in">
         <div class="span12">
 
-          <h4>Instituições Médicas Cadastradas</h4>
+          <h4>Últimas Instituições Médicas Cadastradas</h4>
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th></th>
+                <th>Excluir</th>
+                <th>Editar</th>
                 <th>Nome Fantasia</th>
                 <th>Razão Social</th>
                 <th>CNPJ</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="med in listMedicalInstitutional">
-                <td>
-                  <!-- icon ou img? validar-->
-                  <!--<a href="#removeModal" ng-click="remove(med)"><center><img ng-src="images/trash.png"></center> 
-                  </a>-->
-                  <a href="#removeModal" data-toggle="modal" ng-click="remove(med)">
+              <tr ng-repeat="med in listMedicalInstitutional | orderBy:'id':true">
+                <td>                  
+                  <a href="#removeModal" data-toggle="modal" ng-click="remove(med)" title="remover">
                 <div class="btn">
                       <div class="icon-trash"></div>
                     </div>                 
-                  </a>
+                  </a>                  
                 </td> 
-                <td ><a href ng-click="edit(med)"> {{med.nomeFantasia}}</a></td>
+                <td><a href ng-click="edit(med)" title="editar">
+                    <div class="icon-edit"></div>
+                  </a></td>
+                <td >{{med.nomeFantasia}}</td>
                 <td>{{med.razaoSocial}}</td>
                 <td>{{med.cnpj}}</td>
               </tr>
