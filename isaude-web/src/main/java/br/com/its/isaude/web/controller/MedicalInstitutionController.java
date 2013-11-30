@@ -21,7 +21,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
 import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
-import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
+import br.com.its.isaude.core.interfaces.services.MedicalInstitutionService;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 import br.com.its.isaude.web.util.AjaxMsg;
 
