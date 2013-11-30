@@ -1,0 +1,174 @@
+<div class="span9" id="content">
+                      <!-- morris stacked chart -->
+                    <div class="row-fluid">
+
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Cadastro Médico</div>
+                            </div>
+                            <div class="block-content collapse in">
+                              <div class="alert alert-success" ng-show="dataSuccess">
+                                  As informações foram salvas com sucesso.
+                              </div>
+                                <div class="span12">
+                                     <form class="form-horizontal" novalidate name="doctorform">
+                                      <fieldset>
+                                        <legend>Cadastro Médico</legend>
+                                        <div class="control-group">
+                                          <label class="control-label" for="nome">Nome *</label>
+                                          <div class="controls">
+                                            <input class="span6"  name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
+                                            
+                                            <div ng-show="doctorform.nome.$pristine && doctorform.nome.$dirty && doctorform.nome.$invalid">                                              
+                                                  <span class="error" ng-show="doctorform.nome.$error.required">Nome é obrigatório</span> 
+
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="sobrenome">Sobrenome *</label>
+                                          <div class="controls">
+                                          <input class="span6" id="sobrenome" name="sobrenome" type="text" placeholder="Informe o sobrenome" required ng-model="doctor.sobrenome" ng-maxlength="45">                             
+                                          </div>
+                                          </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="email">E-mail *</label>
+                                          <div class="controls">
+                                            <input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">                                       
+                                             <span ng-show="emailInvalid">formato do email inválido ou existente</span>
+                                          </div>
+                                        </div>
+                                        
+                                         <div class="control-group">
+                                          <label class="control-label" for="telefone">Telefone *</label>
+                                          <div class="controls">
+                                            <input class="span6" id="telefone" type="tel" name="telefone" placeholder="(xx)xxxx-xxxx" required ng-model="doctor.telefone">
+                                          </div>                                                                          </div>             
+                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="crm">CRM *</label>
+                                          <div class="controls">
+                                           <input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm">
+                                          </div>                                                                          </div>  
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="especialidademedica">Especialidade Médica *</label>
+                                          <div class="controls">
+                                            <select multiple ng-options="es in awesomeThings" required></select>
+                                          </div>                                                                          </div>     
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="Foto">Foto</label>
+                                          <div class="controls">
+                                            <button type="submit" class="btn btn-success" ng-disabled="true" value="upload"><i class="icon-upload"></i> Upload </button>
+                                          </div>                                                                          </div>
+
+                                          <div class="control-group">
+                                          <label class="control-label" for="cv">Curriculo *</label>
+                                          <div class="controls">
+                                           <textarea name="cv" required></textarea>
+                                          </div>                                                                          </div>      
+                                                                                
+                                              
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-success" ng-disabled="doctorform.$invalid" value="salvar" ng-click="save()"><i class="icon-ok"></i> Salvar </button>
+                                          <button type="reset" ng-click="reset()"  class="btn"><i class="icon-ban-circle"></i>Limpar</button>
+                                        </div>  
+                                        
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /block -->
+<!--Table -->
+<div >
+    <!-- block -->
+    <div class="block">
+      <div class="navbar navbar-inner block-header">
+        <div class="muted pull-left">Médicos Cadastrados</div>
+      </div>
+      <div class="block-content collapse in">
+        <div class="span12">
+
+          <h4>Últimos Médicos Cadastrados</h4>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Excluir</th>
+                <th>Editar</th>
+                <th>Info</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>                
+                <th>CRM</th>
+                <th>Especialidade Médica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="med in listdoctor | orderBy:'id':true">
+                <td>                  
+                  <a href="#removeModal" data-toggle="modal" ng-click="remove(med)" title="remover">
+                <div class="btn">
+                      <div class="icon-trash"></div>
+                    </div>                 
+                  </a>                  
+                </td> 
+                <td><a href ng-click="edit(med)" title="editar">
+                    <div class="icon-edit"></div>
+                  </a>
+                </td>
+                <td>
+                  <a href="#infoModal" data-toggle="modal"  title="informações detalhadas">
+                <div class="btn">
+                      <div class="icon-info-sign"></div>
+                    </div>                 
+                  </a>  
+                  
+                </td>
+                <td >{{med.nome}}</td>
+                <td>{{med.sobrenome}}</td>
+                <td>{{med.email}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <!-- /block -->
+  </div>
+
+  </div>
+  <!-- REMOVE CONFIRMATION DIALOG -->
+  <div id="removeModal" class="modal hide">
+  <div class="modal-header">
+    <button data-dismiss="modal" class="close" type="button">&times;</button>
+    <h4>Remover Médico</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja remover o(a) médico (a) <b>"{{doctorToRemove.nome}}"?</b>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Ok</a>
+    <a data-dismiss="modal" class="btn" href="#">Cancelar</a>
+  </div>
+</div>
+
+<!-- INFO DETAILS DIALOG -->
+  <div id="infoModal" class="modal hide">
+  <div class="modal-header">    
+    <h4>Informações sobre Médico {{doctorInfo.nome}}</h4>
+  </div>
+  <div class="modal-body">
+    <!-- TODO here-->
+  </div>
+  <div class="modal-footer">  
+    
+  </div>
+</div>

@@ -24,6 +24,7 @@ public class DoctorServiceImpl extends GenericServiceImpl<Doctor, DoctorDAO> imp
 	
 	@Override
 	public void save(Doctor entity) throws DoctorException {
+//		TODO design pattern window Sprint
 		checkCrm(entity.getCrm());
 		checkEmail(entity.getEmail());
 		getDao().save(entity);
