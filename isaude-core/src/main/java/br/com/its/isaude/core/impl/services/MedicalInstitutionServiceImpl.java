@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import br.com.its.isaude.core.exception.MedicalInstitutionException;
 import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 import br.com.its.isaude.core.generic.impl.services.GenericServiceImpl;
-import br.com.its.isaude.core.generic.interfaces.MedicalInstitutionService;
 import br.com.its.isaude.core.generic.interfaces.dao.MedicalInstitutionDAO;
+import br.com.its.isaude.core.interfaces.services.MedicalInstitutionService;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 @Service
 public class MedicalInstitutionServiceImpl extends GenericServiceImpl<MedicalInstitutional, MedicalInstitutionDAO> implements MedicalInstitutionService {

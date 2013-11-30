@@ -8,6 +8,16 @@
 	<especialidade_medica id="1" descricao="Cardiologia" />		
 	<especialidade_medica id="2" descricao="Ginecologia" />		
 	<especialidade_medica id="3" descricao="Urologia" />		
-	<especialidade_medica id="4" descricao="Geriatria" />		
+	<especialidade_medica id="4" descricao="Geriatria" />	
+	
+	<medico id="1" nome="Roberto" sobrenome="Carlos" email="rc@xpto.com" curriculo="Formado em medicina pela USP em 1998" telefone="1196989969" crm="CRM-987" />
+	
+	<medico id="2" nome="Renato" sobrenome="Pereira" email="rt@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196989978" crm="CRM-982" />
+	
+	<medico_has_especialidade_medica MEDICO_ID="1" ESPECIALIDADE_MEDICA_ID="1"/>
+	<medico_has_especialidade_medica MEDICO_ID="2" ESPECIALIDADE_MEDICA_ID="3"/>
+	
+	<instituicao_medica_has_medico INSTITUICAO_MEDICA_ID="1" MEDICO_ID="1" />
+	<instituicao_medica_has_medico INSTITUICAO_MEDICA_ID="1" MEDICO_ID="2" />
 
 </dataset>

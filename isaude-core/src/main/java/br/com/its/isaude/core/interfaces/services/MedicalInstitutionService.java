@@ -1,4 +1,4 @@
-package br.com.its.isaude.core.generic.interfaces;
+package br.com.its.isaude.core.interfaces.services;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
