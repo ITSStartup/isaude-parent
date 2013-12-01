@@ -10,7 +10,7 @@ angular.module('iSaudeAdminApp')
     $scope.razaoSocialInvalid=false;
     $scope.dataSuccess = false;
     $scope.editCnpj = true;
-
+    $scope.dataRemoveSuccess = false;
     //save
   		$scope.save = function(){
         var id = 0
@@ -35,7 +35,7 @@ angular.module('iSaudeAdminApp')
               });
           
         });  
-        }
+        } //end of if/else
   			
   	};//end of save 
   	
@@ -43,7 +43,7 @@ angular.module('iSaudeAdminApp')
     $scope.edit = function(med){
       $scope.medicalInstitutional = med;
       $scope.editCnpj = false;
-       $scope.dataSuccess = false;
+      $scope.dataSuccess = false;
     };
 
    //update
@@ -65,7 +65,7 @@ angular.module('iSaudeAdminApp')
       $scope.medicalInstitutionalToRemove.$remove({id : $scope.medicalInstitutionalToRemove.id},function(res){
         $scope.listMedicalInstitutional = MedicalInstitutionalService.list();
         $scope.medicalInstitutional = new MedicalInstitutionalService();  
-
+        $scope.dataRemoveSuccess = true;
       });   
     }
 
@@ -75,6 +75,8 @@ angular.module('iSaudeAdminApp')
        $scope.dataSuccess = false;
         $scope.editCnpj = true;
          $scope.razaoSocialInvalid=false;
+         $scope.dataRemoveSuccess = false;
   	};
-  
+
+
   }]);
