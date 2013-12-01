@@ -1,21 +1,16 @@
 'use strict';
 
 angular.module('iSaudeAdminApp')
-  .factory('DoctorService', function ($resource) {
-     return $resource('../../api/doctor/:id',{},{
-    create:{
-      method:'POST'
-    },
-    list:{
-      method:'GET',
-      isArray:true
-    },
-    update:{
-      method:'PUT'
-    },
-    remove:{
-      method:'DELETE'
-    }
-  }
-  );
+
+.factory('DoctorService', ['$resource', function($resource) {
+
+  return $resource('../../api/doctor/:id', {
+    id : '@id'
+  }, {
+    list: {method: 'GET', isArray : true},
+    update: {method: 'PUT'},
+    create: {method: 'POST'},
+    remove: {method: 'DELETE'}
   });
+
+}]);

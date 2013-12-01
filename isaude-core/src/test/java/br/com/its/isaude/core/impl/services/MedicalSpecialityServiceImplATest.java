@@ -90,17 +90,11 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testSaveMedicalSpecialityWithSuccess() throws Exception {
 		
-		int beforeSaveQuantity = listAllMedicalSpecialities().size();
-		
 		medicalSpecialityServiceImpl.save(medicalSpeciality);
 
 		MedicalSpeciality medicalSpecialitySaved = getMedicalSpecialityById(medicalSpeciality.getId());
 
-		int afterSaveQuantity = listAllMedicalSpecialities().size();
-
 		String medicalSpecialityDescriptionExpected = "Ginecologia";
-		
-		assertTrue(afterSaveQuantity > beforeSaveQuantity);
 		
 		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialitySaved.getDescription());
 		
@@ -108,8 +102,6 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 	@Test
 	public void testUpdateMedicalSpecialityWithSuccess() throws Exception {
-		
-		int beforeSaveQuantity = listAllMedicalSpecialities().size();
 		
 		MedicalSpeciality medicalSpecialityBefore = getMedicalSpecialityById(1l);
 
@@ -119,11 +111,7 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 		MedicalSpeciality medicalSpecialityUpdated = getMedicalSpecialityById(1l);
 
-		int afterSaveQuantity = listAllMedicalSpecialities().size();
-
 		String medicalSpecialityDescriptionExpected = "Cardiologista";
-		
-		assertEquals(afterSaveQuantity, beforeSaveQuantity);
 		
 		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialityUpdated.getDescription());
 		
@@ -154,18 +142,12 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testRemoveMedicalSpecialityWithSuccess() throws Exception {
 		
-		int beforeSaveQuantity = listAllMedicalSpecialities().size();
-		
 		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(1L);
 		
 		medicalSpecialityServiceImpl.delete(medicalSpecialityToBeRemoved);
 
 		MedicalSpeciality medicalSpecialityRemoved = getMedicalSpecialityById(1L);
 
-		int afterSaveQuantity = listAllMedicalSpecialities().size();
-
-		assertTrue(afterSaveQuantity < beforeSaveQuantity);
-		
 		assertNull(medicalSpecialityRemoved);
 
 	}
@@ -174,11 +156,6 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 		MedicalSpeciality m = new MedicalSpeciality();
 		m.setDescription("Ginecologia");
 		return m;
-	}
-
-	private List<MedicalSpeciality> listAllMedicalSpecialities() throws Exception {
-		List<MedicalSpeciality> list = medicalSpecialityServiceImpl.list();
-		return list;
 	}
 
 	private MedicalSpeciality getMedicalSpecialityById(long id) throws Exception {

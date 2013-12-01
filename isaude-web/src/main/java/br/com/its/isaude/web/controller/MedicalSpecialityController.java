@@ -35,20 +35,13 @@ public class MedicalSpecialityController {
 	@Autowired
 	@Qualifier("medicalSpecialityServiceImpl")
 	private MedicalSpecialityService medicalSpecialityServiceImpl;
-	
-
-	private void init() {
-		listErrors = new ArrayList<AjaxMsg>();
-		ajaxMessageError = null;
-		response = Response.ok().build();
-	}
 
 	@GET
 	@SuppressWarnings("finally")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getList() throws Exception {
 
-		init();
+		Response response = Response.ok().build();
 
 		try {
 
@@ -83,7 +76,7 @@ public class MedicalSpecialityController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response save(MedicalSpeciality medicalSpeciality) {
 
-		init();
+		Response response = Response.ok().build();
 
 		try {
 
@@ -117,7 +110,7 @@ public class MedicalSpecialityController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
 		
-		init();
+		Response response = Response.ok().build();
 
 		try {
 
@@ -152,7 +145,7 @@ public class MedicalSpecialityController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response remove(@PathParam("id") Long id) {
 	
-		init();
+		Response response = Response.ok().build();
 
 		try {
 
