@@ -4,11 +4,14 @@ package br.com.its.isaude.core.modal.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -133,6 +137,7 @@ public class Doctor implements java.io.Serializable {
 		this.especialidadeMedicas = especialidadeMedicas;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "medico")
 	public Set<AgendaDoctor> getAgendaMedicos() {
 		return this.agendaMedicos;
@@ -142,6 +147,7 @@ public class Doctor implements java.io.Serializable {
 		this.agendaMedicos = agendaMedicos;
 	}
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "instituicao_medica_has_medico", 
 	joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, 

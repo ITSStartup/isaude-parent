@@ -1,8 +1,5 @@
 package br.com.its.isaude.core.impl.services;
 
-import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.getEntityByTypeAndId;
-import static br.com.its.isaude.core.dbunit.config.DBUnitHibernateUtil.listAllEntitiesByType;
-
 import java.util.List;
 
 import org.junit.Before;
@@ -21,7 +18,7 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 	@Autowired
 	@Qualifier("medicalSpecialityServiceImpl")
-	private MedicalSpecialityService medicalSpecialityService;
+	private MedicalSpecialityService medicalSpecialityServiceImpl;
 	
 	private MedicalSpeciality medicalSpeciality;
 	
@@ -33,30 +30,99 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 	@Test
 	public void testGetAllMedicalSpecialityRegistered() throws Exception {
-		List<MedicalSpeciality> medicalSpecialities = medicalSpecialityService.list();
+		
+		List<MedicalSpeciality> medicalSpecialities = medicalSpecialityServiceImpl.list();
+		
+		int quantity = medicalSpecialities.size();
+		
 		assertNotNull(medicalSpecialities);
+		
 		assertFalse(medicalSpecialities.isEmpty());
+	
+		assertEquals(4, quantity);
+		
+	}
+
+	@Test
+	public void testGetMedicalSpecialityCardiologiaRegistered() throws Exception {
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(1l);
+		
+		String medicalSpecialityDescriptionExpected = "Cardiologia";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
+		
+	}
+
+	@Test
+	public void testGetMedicalSpecialityGinecologiaRegistered() throws Exception {
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(2l);
+		
+		String medicalSpecialityDescriptionExpected = "Ginecologia";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
+		
+	}
+
+	@Test
+	public void testGetMedicalSpecialityUrologiaRegistered() throws Exception {
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(3l);
+		
+		String medicalSpecialityDescriptionExpected = "Urologia";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
+		
+	}
+
+	@Test
+	public void testGetMedicalSpecialityGeriatriaRegistered() throws Exception {
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(4l);
+		
+		String medicalSpecialityDescriptionExpected = "Geriatria";
+
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpeciality.getDescription());
+		
 	}
 
 	@Test
 	public void testSaveMedicalSpecialityWithSuccess() throws Exception {
 		
-		int beforeSaveQuantity = listAllMedicalSpecialities().size();
+		medicalSpecialityServiceImpl.save(medicalSpeciality);
+
+		MedicalSpeciality medicalSpecialitySaved = getMedicalSpecialityById(medicalSpeciality.getId());
+
+		String medicalSpecialityDescriptionExpected = "Ginecologia";
 		
-		medicalSpecialityService.save(medicalSpeciality);
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialitySaved.getDescription());
+		
+	}
 
-		int afterSaveQuantity = listAllMedicalSpecialities().size();
+	@Test
+	public void testUpdateMedicalSpecialityWithSuccess() throws Exception {
+		
+		MedicalSpeciality medicalSpecialityBefore = getMedicalSpecialityById(1l);
 
-		assertTrue(afterSaveQuantity > beforeSaveQuantity);
+		medicalSpecialityBefore.setDescription("Cardiologista");
+		
+		medicalSpecialityServiceImpl.update(medicalSpecialityBefore);
 
+		MedicalSpeciality medicalSpecialityUpdated = getMedicalSpecialityById(1l);
+
+		String medicalSpecialityDescriptionExpected = "Cardiologista";
+		
+		assertEquals(medicalSpecialityDescriptionExpected, medicalSpecialityUpdated.getDescription());
+		
 	}
 
 	@Test
 	public void testDescriptionCannotBeNullMedicalSpecialityCannotBeSavedExceptionThrow(){
-		medicalSpeciality.setDescription(null);
 		try {
-			medicalSpecialityService.save(medicalSpeciality);
-			fail("should be not executed");
+			medicalSpeciality.setDescription(null);
+			medicalSpecialityServiceImpl.save(medicalSpeciality);
+			fail("Not Expected result");
 		} catch (Exception e) {
 			assertTrue("expected result", true);
 		}
@@ -64,10 +130,10 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 
 	@Test
 	public void testDescriptionCannotBeEmptyMedicalSpecialityCannotBeSavedExceptionThrow(){
-		medicalSpeciality.setDescription("");
 		try {
-			medicalSpecialityService.save(medicalSpeciality);
-			fail("should be not executed");
+			medicalSpeciality.setDescription("");
+			medicalSpecialityServiceImpl.save(medicalSpeciality);
+			fail("Not Expected result");
 		} catch (Exception e) {
 			assertTrue("expected result", true);
 		}
@@ -76,30 +142,25 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testRemoveMedicalSpecialityWithSuccess() throws Exception {
 		
-		int beforeSaveQuantity = listAllMedicalSpecialities().size();
-		
 		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(1L);
 		
-		medicalSpecialityService.delete(medicalSpecialityToBeRemoved);
+		medicalSpecialityServiceImpl.delete(medicalSpecialityToBeRemoved);
 
-		int afterSaveQuantity = listAllMedicalSpecialities().size();
+		MedicalSpeciality medicalSpecialityRemoved = getMedicalSpecialityById(1L);
 
-		assertTrue(afterSaveQuantity < beforeSaveQuantity);
+		assertNull(medicalSpecialityRemoved);
 
 	}
 
 	private MedicalSpeciality getNewMedicalSpeciality() {
 		MedicalSpeciality m = new MedicalSpeciality();
-		m.setDescription("SpecialityToTest");
+		m.setDescription("Ginecologia");
 		return m;
 	}
 
-	private List<MedicalSpeciality> listAllMedicalSpecialities() {
-		return (List<MedicalSpeciality>) listAllEntitiesByType(getSessionFactory(), MedicalSpeciality.class);
-	}
-
-	private MedicalSpeciality getMedicalSpecialityById(long id) {
-		return (MedicalSpeciality) getEntityByTypeAndId(getSessionFactory(), MedicalSpeciality.class, id);
+	private MedicalSpeciality getMedicalSpecialityById(long id) throws Exception {
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
+		return medicalSpeciality;
 	}
 
 }

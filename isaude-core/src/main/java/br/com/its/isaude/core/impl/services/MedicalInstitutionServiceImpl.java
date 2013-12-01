@@ -35,7 +35,7 @@ public class MedicalInstitutionServiceImpl extends GenericServiceImpl<MedicalIns
 	}
 	
 
-	private void validateRazaoSocial(MedicalInstitutional entityMedicalInstitutional)	throws MedicalInstitutionException {
+	private void validateRazaoSocial(MedicalInstitutional entityMedicalInstitutional) throws MedicalInstitutionException {
 		MedicalInstitutional medicalInstitutionalByRazaoSocial = getDao().getByRazaoSocial(entityMedicalInstitutional.getRazaoSocial());
 		if (medicalInstitutionalByRazaoSocial!=null) {
 			throw new MedicalInstitutionException(MessageResponseStatusEnum.RAZAO_SOCIAL_EXISTS);

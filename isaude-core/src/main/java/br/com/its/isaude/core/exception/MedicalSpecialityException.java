@@ -5,31 +5,14 @@ import br.com.its.isaude.core.exception.enums.MessageResponseStatusEnum;
 @SuppressWarnings("serial")
 public class MedicalSpecialityException extends Exception {
 
-	private Exception rootException;
-	
-	private MessageResponseStatusEnum medicalSpecialityStatus; 
-	
-	public MedicalSpecialityException(Exception rootException, MessageResponseStatusEnum medicalSpecialityStatus) {
-		this.rootException = rootException;
-		this.medicalSpecialityStatus = medicalSpecialityStatus;
+	private MessageResponseStatusEnum msg;
+
+	public MedicalSpecialityException(MessageResponseStatusEnum msg) {
+		this.msg = msg;
 	}
-	
-	public Exception getRootException() {
-		return rootException;
-	}
-	
-	public MessageResponseStatusEnum getMedicalSpecialityStatus() {
-		return medicalSpecialityStatus;
-	}
-	
-	@Override
-	public String getMessage() {
-		return getRootException().getMessage();
-	}
-	
-	@Override
-	public String toString() {
-		return getMedicalSpecialityStatus().name();
+
+	public MessageResponseStatusEnum getMsg() {
+		return msg;
 	}
 
 }

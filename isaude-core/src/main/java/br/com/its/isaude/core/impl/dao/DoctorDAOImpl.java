@@ -3,6 +3,7 @@ package br.com.its.isaude.core.impl.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,8 @@ public class DoctorDAOImpl extends GenericHibernateDAO<Doctor> implements
 	@Override
 	public List<Doctor> list() {
 		Criteria criteria = getCurrentSession().createCriteria(getPersistentClass());
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		criteria.setFetchMode("especialidadeMedicas", FetchMode.JOIN);
 		criteria.addOrder(Order.desc("id"));
 		final List<Doctor> listDoctors = criteria.list();
 		return listDoctors;
