@@ -10,83 +10,83 @@
 				<div class="alert alert-success" ng-show="dataSuccess">As
 					informações foram salvas com sucesso.</div>
 				<div class="span12">
-					<form class="form-horizontal" novalidate name="doctorform">
-						<fieldset>
-							<legend>Cadastro Médico</legend>
-							<div class="control-group">
-								<label class="control-label" for="nome">Nome *</label>
-								<div class="controls">
-									<input class="span6" name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
-								</div>
+				<form class="form-horizontal" novalidate name="doctorform">
+					<fieldset>
+						<legend>Cadastro Médico <span class="badge badge-info">Os campos * são obrigatórios</span></legend>
+						<div class="control-group">
+							<label class="control-label" for="nome">Nome *</label>
+							<div class="controls">
+								<input class="span6" name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="sobrenome">Sobrenome *</label>
-								<div class="controls">
-									<input class="span6" id="sobrenome" name="sobrenome" type="text" placeholder="Informe o sobrenome" required ng-model="doctor.sobrenome" ng-maxlength="45">
-								</div>
+						<div class="control-group">
+							<label class="control-label" for="sobrenome">Sobrenome *</label>
+							<div class="controls">
+								<input class="span6" id="sobrenome" name="sobrenome" type="text" placeholder="Informe o sobrenome" required ng-model="doctor.sobrenome" ng-maxlength="45">
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="email">E-mail *</label>
-								<div class="controls">
-									<input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">
-                  <span ng-show="emailInvalid">Formato do email inválido ou existente</span>
-								</div>
+						<div class="control-group">
+							<label class="control-label" for="email">E-mail *</label>
+							<div class="controls">
+								<input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">
+                <span class="alert alert-warning" ng-show="doctorform.email.$error.email">Formato do email inválido ou existente</span>
+                <span class="alert alert-warning" ng-show="doctorEmailExists">Email existente</span>
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="telefone">Telefone *</label>
-								<div class="controls">
-									<input class="span6" id="telefone" type="tel" name="telefone" placeholder="(xx)xxxx-xxxx" required ng-model="doctor.telefone">
-								</div>
+						<div class="control-group">
+							<label class="control-label" for="telefone">Telefone *</label>
+							<div class="controls">
+								<input class="span6" id="telefone" type="tel" name="telefone" placeholder="(xx)xxxx-xxxx" required ng-model="doctor.telefone" ng-pattern="phonePattern">
+                <span class="alert alert-warning" ng-show="doctorform.telefone.$error.pattern">Formato inválido: (xx)xxxx-xxxx</span>
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="crm">CRM *</label>
-								<div class="controls">
-									<input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm">
-                  <span class="alert alert-warning" ng-show="crmExists">
-                    CRM existente
-                  </span>
-								</div>
+						<div class="control-group">
+							<label class="control-label" for="crm">CRM *</label>
+							<div class="controls">
+								<input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm">
+                <span class="alert alert-warning" ng-show="crmExists">CRM existente</span>
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="especialidademedicas">Especialidades Médica *</label>
-								<div class="controls">
-                  <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" 
-                    ng-options="e.description for e in medicalSpecialities" required></select>
-								</div>
+						<div class="control-group">
+							<label class="control-label" for="especialidademedicas">Especialidades Médica *</label>
+							<div class="controls">
+                <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" 
+                  ng-options="e.description for e in medicalSpecialities" required></select>
 							</div>
+						</div>
 
-							<div class="control-group">
-								<label class="control-label" for="Foto">Foto</label>
-								<div class="controls">
-									<button type="submit" class="btn btn-success" ng-disabled="true" value="upload">
-										<i class="icon-upload"></i> Upload
-									</button>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="cv">Curriculo *</label>
-								<div class="controls">
-									<textarea name="cv" ng-model="doctor.curriculo" required></textarea>
-								</div>
-							</div>
-
-							<div class="form-actions">
-								<button type="submit" class="btn btn-success" ng-disabled="doctorform.$invalid" value="salvar" ng-click="save()">
-									<i class="icon-ok"></i> Salvar
-								</button>
-								<button type="reset" ng-click="reset()" class="btn">
-									<i class="icon-ban-circle"></i>Limpar
+						<div class="control-group">
+							<label class="control-label" for="Foto">Foto</label>
+							<div class="controls">
+								<button type="submit" class="btn btn-success" ng-disabled="true" value="upload">
+									<i class="icon-upload"></i> Upload
 								</button>
 							</div>
+						</div>
 
-						</fieldset>
-					</form>
+						<div class="control-group">
+							<label class="control-label" for="cv">Curriculo *</label>
+							<div class="controls">
+								<textarea name="cv" ng-model="doctor.curriculo" required></textarea>
+							</div>
+						</div>
+
+						<div class="form-actions">
+							<button type="submit" class="btn btn-success" ng-disabled="doctorform.$invalid" value="salvar" ng-click="save()">
+								<i class="icon-ok"></i> Salvar
+							</button>
+							<button type="reset" ng-click="reset()" class="btn">
+								<i class="icon-ban-circle"></i>Limpar
+							</button>
+						</div>
+
+					</fieldset>
+				</form>
 
 				</div>
 
