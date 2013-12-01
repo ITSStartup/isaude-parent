@@ -14,12 +14,24 @@
                                 <div class="span12">
                                      <form class="form-horizontal" novalidate name="medicalinstitutionform">
                                       <fieldset>
-                                        <legend>Cadastro Instituição Médica <span class="badge badge-info">Os campos * são obrigatórios</span></legend>
+
+                                        <legend>Cadastro Instituição Médica</legend>
+                                        <div>
+                                              <span class="badge badge-info">Os campos * são obrigatórios</span>
+                                              <p/>
+                                        </div>
+
+                                        <legend>Cadastro Instituição Médica</legend>
+
                                         <div class="control-group">
+
                                           <label class="control-label" for="nomeFantasia">Nome Fantasia *</label>
                                           <div class="controls">
-                                            <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia" ng-maxlength="80">
+                                            <input class="span6"  name="nomeFantasia" type="text" placeholder="Informe o Nome Fantasia" required ng-model="medicalInstitutional.nomeFantasia" ng-maxlength=80>
                                             
+                                            <span class="alert alert-warning" ng-show="medicalinstitutionform.nomefantasia.$error.maxlength">
+                                            O tamanho máximo do campo foi excedido (80 caracteres)
+                                                </span>
                                             <div ng-show="medicalinstitutionform.nomeFantasia.$pristine && medicalinstitutionform.nomeFantasia.$dirty && medicalinstitutionform.nomeFantasia.$invalid">                                              
                                                   <span class="error" ng-show="medicalinstitutionform.nomeFantasia.$error.required">Nome Fantasia é obrigatório</span> 
 
@@ -30,8 +42,11 @@
                                         <div class="control-group">
                                           <label class="control-label" for="razaosocial">Razão Social *</label>
                                           <div class="controls">
-                                            <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial" ng-maxlength="80">                                            
+                                            <input class="span6" id="razaosocial" name="razaosocial" type="text" placeholder="Informe a Razão Social" required ng-model="medicalInstitutional.razaoSocial" ng-maxlength=80>                                            
                                               <span class="error" ng-show="razaoSocialInvalid">Razão social existente</span>
+                                              <span class="alert alert-warning" ng-show="medicalinstitutionform.razaosocial.$error.maxlength">
+                                                    O tamanho máximo do campo foi excedido (80 caracteres)
+                                              </span>
                                                                                       
                                           </div>
                                           </div>
@@ -69,6 +84,7 @@
       </div>
       <div class="block-content collapse in">
         <div class="span12">
+          <div class="alert alert-success" ng-show="dataRemoveSuccess">Registro excluido com sucesso</div>
           <h4>Últimas Instituições Médicas Cadastradas</h4>
           <table class="table table-bordered table-hover">
             <thead>

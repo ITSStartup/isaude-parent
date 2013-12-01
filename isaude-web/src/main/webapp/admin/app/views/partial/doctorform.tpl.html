@@ -10,6 +10,20 @@
 				<div class="alert alert-success" ng-show="dataSuccess">As
 					informações foram salvas com sucesso.</div>
 				<div class="span12">
+<<<<<<< HEAD
+					<form class="form-horizontal" novalidate name="doctorform">
+						<fieldset>
+							<legend>Cadastro Médico</legend>
+							<div>
+                                              <span class="badge badge-info">Os campos * são obrigatórios</span>
+                                              <p/>
+                             </div>
+							<div class="control-group">
+								<label class="control-label" for="nome">Nome *</label>
+								<div class="controls">
+									<input class="span6" name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
+								</div>
+=======
 				<form class="form-horizontal" novalidate name="doctorform">
 					<fieldset>
 						<legend>Cadastro Médico <span class="badge badge-info">Os campos * são obrigatórios</span></legend>
@@ -17,6 +31,7 @@
 							<label class="control-label" for="nome">Nome *</label>
 							<div class="controls">
 								<input class="span6" name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
+>>>>>>> 8a8a2a422e60b5ed2f91bc41272821cbbd3f152b
 							</div>
 						</div>
 
@@ -125,7 +140,7 @@
 											</div>
                     </a>
                   </td>
-									<td><a href="" ng-click="edit(doctor)" title="editar">
+						<td><a href="" ng-click="edit(doctor)" title="editar">
                       <div class="btn">
   											<div class="icon-edit"></div>
                       </div>
@@ -174,7 +189,7 @@
 	<div id="infoModal" class="modal hide">
 		<div class="modal-header">
 			<h4>Informações sobre Médico {{doctorInfo.nome}}</h4>
-		</div>
+		</div>	
 		<div class="modal-body">
       <div class="block">
         <span class="badge badge-info">Nome: {{doctorInfo.nome}}</span>

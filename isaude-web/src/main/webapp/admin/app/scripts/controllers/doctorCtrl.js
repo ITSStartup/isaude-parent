@@ -17,6 +17,7 @@ angular.module('iSaudeAdminApp')
 
 			$scope.crmExists=false;
 			$scope.doctorEmailExists=false;
+			$scope.dataRemoveSuccess = false;
 
 		};
 
@@ -52,7 +53,9 @@ angular.module('iSaudeAdminApp')
 		}
 
 		$scope.save = function() {
-
+			if ($scope.doctor.id > 0) {
+				$scope.update();
+			} else{
 			$scope.doctor.$create(function(success) {
 				$scope.reset();
 				$scope.list();
@@ -68,7 +71,33 @@ angular.module('iSaudeAdminApp')
 					}
 				});
 			});
+		}//end of if/else
 
+		}
+
+		$scope.remove = function(doctor){
+			$scope.doctorToRemove = doctor;
+		}
+
+		$scope.doRemove = function(){
+			$scope.doctorToRemove.$remove({id:$scope.doctorToRemove.id},function(res){
+				$scope.list = DoctorService.list();
+				$scope.doctor = new DoctorService();
+				$scope.dataRemoveSuccess = true;
+			})
+		}
+
+		$scope.edit = function(doc){
+			$scope.doctor = doc;
+			$scope.showCrm=false;
+			$scope.dataSuccess = false;
+		}
+		$scope.update = function(){
+			$scope.doctor.$update(function(){
+			$scope.list = DoctorService.list();
+			$scope.reset();
+			$scope.dataSuccess = true;
+			})
 		}
 
 		$scope.doctors = [];
