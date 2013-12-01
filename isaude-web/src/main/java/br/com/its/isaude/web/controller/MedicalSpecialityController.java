@@ -41,7 +41,8 @@ public class MedicalSpecialityController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getList() throws Exception {
 
-		Response response = Response.ok().build();
+		listErrors = new ArrayList<AjaxMsg>();
+		response = Response.ok().build();
 
 		try {
 
@@ -76,7 +77,8 @@ public class MedicalSpecialityController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response save(MedicalSpeciality medicalSpeciality) {
 
-		Response response = Response.ok().build();
+		listErrors = new ArrayList<AjaxMsg>();
+		response = Response.ok().build();
 
 		try {
 
@@ -110,7 +112,8 @@ public class MedicalSpecialityController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
 		
-		Response response = Response.ok().build();
+		listErrors = new ArrayList<AjaxMsg>();
+		response = Response.ok().build();
 
 		try {
 
@@ -145,7 +148,8 @@ public class MedicalSpecialityController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response remove(@PathParam("id") Long id) {
 	
-		Response response = Response.ok().build();
+		listErrors = new ArrayList<AjaxMsg>();
+		response = Response.ok().build();
 
 		try {
 

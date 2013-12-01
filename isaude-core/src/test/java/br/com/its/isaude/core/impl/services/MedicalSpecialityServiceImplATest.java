@@ -46,7 +46,9 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testGetMedicalSpecialityCardiologiaRegistered() throws Exception {
 		
-		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(1l);
+		long id = 1l;
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
 		
 		String medicalSpecialityDescriptionExpected = "Cardiologia";
 
@@ -57,7 +59,9 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testGetMedicalSpecialityGinecologiaRegistered() throws Exception {
 		
-		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(2l);
+		long id = 2l;
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
 		
 		String medicalSpecialityDescriptionExpected = "Ginecologia";
 
@@ -68,7 +72,9 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testGetMedicalSpecialityUrologiaRegistered() throws Exception {
 		
-		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(3l);
+		long id = 3l;
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
 		
 		String medicalSpecialityDescriptionExpected = "Urologia";
 
@@ -79,7 +85,9 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testGetMedicalSpecialityGeriatriaRegistered() throws Exception {
 		
-		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(4l);
+		long id = 4l;
+		
+		MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
 		
 		String medicalSpecialityDescriptionExpected = "Geriatria";
 
@@ -103,13 +111,15 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testUpdateMedicalSpecialityWithSuccess() throws Exception {
 		
-		MedicalSpeciality medicalSpecialityBefore = getMedicalSpecialityById(1l);
+		long id = 1l;
+		
+		MedicalSpeciality medicalSpecialityBefore = getMedicalSpecialityById(id);
 
 		medicalSpecialityBefore.setDescription("Cardiologista");
 		
 		medicalSpecialityServiceImpl.update(medicalSpecialityBefore);
 
-		MedicalSpeciality medicalSpecialityUpdated = getMedicalSpecialityById(1l);
+		MedicalSpeciality medicalSpecialityUpdated = getMedicalSpecialityById(id);
 
 		String medicalSpecialityDescriptionExpected = "Cardiologista";
 		
@@ -142,11 +152,13 @@ public class MedicalSpecialityServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testRemoveMedicalSpecialityWithSuccess() throws Exception {
 		
-		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(1L);
+		long id = 1l;
+		
+		MedicalSpeciality medicalSpecialityToBeRemoved = getMedicalSpecialityById(id);
 		
 		medicalSpecialityServiceImpl.delete(medicalSpecialityToBeRemoved);
 
-		MedicalSpeciality medicalSpecialityRemoved = getMedicalSpecialityById(1L);
+		MedicalSpeciality medicalSpecialityRemoved = getMedicalSpecialityById(id);
 
 		assertNull(medicalSpecialityRemoved);
 
