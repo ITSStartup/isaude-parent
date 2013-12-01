@@ -16,8 +16,8 @@ angular.module('iSaudeAdminApp', ['ngCookies', 'ngResource', 'ngSanitize'])
 		controller:'MedicalinstitutionCtrl'
 	})
 	
-	.when('/speciality', {
-		templateUrl : 'views/partial/medicalSpeciality.tpl.html', 
+	.when('/medicalspeciality', {
+		templateUrl : 'views/partial/medicalspecialityform.tpl.html', 
 		controller : 'MedicalSpecialityCtrl'
 	})
 
