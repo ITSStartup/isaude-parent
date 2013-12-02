@@ -36,7 +36,7 @@
 							<label class="control-label" for="email">E-mail *</label>
 							<div class="controls">
 								<input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">
-                <span class="alert alert-warning" ng-show="doctorform.email.$error.email">Formato do email inválido ou existente</span>
+                <span class="alert alert-warning" ng-show="doctorform.email.$error.email">Formato do email inválido</span>
                 <span class="alert alert-warning" ng-show="doctorEmailExists">Email existente</span>
 							</div>
 						</div>
@@ -44,8 +44,8 @@
 						<div class="control-group">
 							<label class="control-label" for="telefone">Telefone *</label>
 							<div class="controls">
-								<input class="span6" id="telefone" type="tel" name="telefone" placeholder="(xx)xxxx-xxxx" required ng-model="doctor.telefone" ng-pattern="phonePattern">
-                <span class="alert alert-warning" ng-show="doctorform.telefone.$error.pattern">Formato inválido: (xx)xxxx-xxxx</span>
+						<input class="span6" id="telefone" type="text" name="telefone" placeholder="Informe apenas os números " required ng-model="doctor.telefone" ng-pattern="/^\d+$/">
+                			
 							</div>
 						</div>
 
@@ -60,8 +60,15 @@
 						<div class="control-group">
 							<label class="control-label" for="especialidademedicas">Especialidades Médica *</label>
 							<div class="controls">
-                <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" 
-                  ng-options="e.description for e in medicalSpecialities" required></select>
+          			      <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" ng-options="e.description for e in medicalSpecialities" required></select>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="instituicoesmedicas">Instituições Médicas *</label>
+							<div class="controls">
+                			<select class="form-control" ng-model="doctor.instituicaoMedicas" multiple 
+                			name="instituicaoMedicas" ng-options="e.nomeFantasia for e in instituicaoMedicas"></select>
 							</div>
 						</div>
 
@@ -171,7 +178,7 @@
 		</div>
 		<div class="modal-footer">
 			<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
-      <a data-dismiss="modal" class="btn" href="#">Não</a>
+      		<a data-dismiss="modal" class="btn" href="#">Não</a>
 		</div>
 	</div>
 
@@ -181,23 +188,25 @@
 			<h4>Informações sobre Médico {{doctorInfo.nome}}</h4>
 		</div>	
 		<div class="modal-body">
-      <div class="block">
-        <span class="badge badge-info">Nome: {{doctorInfo.nome}}</span>
+      <div>
+        <span><b>Nome:</b></span>
+        <span>{{doctorInfo.nome}}</span>
+        
       </div>
-      <div class="block">
-        <span class="badge badge-info">Sobrenome: {{doctorInfo.sobrenome}}</span>
+      <div >
+        <span><b>Sobrenome:</b> {{doctorInfo.sobrenome}}</span>
       </div>
-      <div class="block">
-        <span class="badge badge-info">E-mail: {{doctorInfo.email}}</span>
+      <div >
+        <span><b>E-mail:</b> {{doctorInfo.email}}</span>
       </div>
-      <div class="block">
-        <span class="badge badge-info">Telefone: {{doctorInfo.telefone}}</span>
+      <div >
+        <span><b>Telefone:</b> {{doctorInfo.telefone}}</span>
       </div>
-      <div class="block">
-        <span class="badge badge-info">CRM: {{doctorInfo.crm}}</span>
+      <div >
+        <span><b>CRM:</b> {{doctorInfo.crm}}</span>
       </div>
-      <div class="block">
-        <span class="badge badge-info">Especialidades Médica:
+      <div >
+        <span><b>Especialidades Médica:</b>
           <ul>
             <li ng-repeat="speciality in doctorInfo.especialidadeMedicas">
               {{speciality.description}}
@@ -205,9 +214,11 @@
           </ul>
         </span>
       </div>
-      <div class="block">
-        <span class="badge badge-info">Curriculo: {{doctorInfo.curriculo}}</span>
+      <div >
+        <span><b>Curriculo:</b> {{doctorInfo.curriculo}}</span>
       </div>
 		</div>
-		<div class="modal-footer"></div>
+		<div class="modal-footer">
+			<a data-dismiss="modal" class="btn" href="#">Fechar</a>
+		</div>
 	</div>
