@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -86,6 +87,21 @@ public class DoctorController {
 		}finally{
 			return response;	
 		}		
-		
+	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response update(Doctor doctor){
+		Response response = Response.ok().build();
+		try {
+			doctorServiceImpl.update(doctor);
+		} catch (Exception e) {
+			messageError = e.getMessage();
+			ajaxMessageError = new AjaxMsg(messageError);
+			listErrors.add(ajaxMessageError);
+			response = Response.status(Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+		}
+		return response; 
 	}
 }

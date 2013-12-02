@@ -52,7 +52,7 @@
 						<div class="control-group">
 							<label class="control-label" for="crm">CRM *</label>
 							<div class="controls">
-								<input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm">
+								<input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm" ng-disabled="disableCrm">
                 <span class="alert alert-warning" ng-show="crmExists">CRM existente</span>
 							</div>
 						</div>

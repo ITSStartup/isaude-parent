@@ -17,6 +17,7 @@ angular.module('iSaudeAdminApp')
 			$scope.crmExists=false;
 			$scope.doctorEmailExists=false;
 			$scope.dataRemoveSuccess = false;
+			$scope.disableCrm=false;
 
 		};
 
@@ -88,7 +89,7 @@ angular.module('iSaudeAdminApp')
 
 		$scope.edit = function(doc){
 			$scope.doctor = doc;
-			$scope.showCrm=false;
+			$scope.disableCrm=true;
 			$scope.dataSuccess = false;
 		}
 		$scope.update = function(){
