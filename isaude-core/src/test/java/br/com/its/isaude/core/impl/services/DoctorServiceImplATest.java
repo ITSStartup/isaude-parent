@@ -56,7 +56,7 @@ public class DoctorServiceImplATest extends DBUnitConfiguration {
 	@Test
 	public void testGetAllMedicosByOrderDescId() throws Exception{
 		List<Doctor> list = doctorServiceImpl.list();
-		Integer idExpected = 2;
+		Long  idExpected = 2L;
 		final int indexElement = 0;
 		assertEquals(idExpected , list.get(indexElement).getId());
 	}
