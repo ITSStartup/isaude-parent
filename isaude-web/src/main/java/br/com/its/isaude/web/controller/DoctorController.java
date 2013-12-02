@@ -15,12 +15,13 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 
 import br.com.its.isaude.core.exception.DoctorException;
 import br.com.its.isaude.core.interfaces.services.DoctorService;
 import br.com.its.isaude.core.modal.domain.Doctor;
 import br.com.its.isaude.web.util.AjaxMsg;
-
+@Controller
 @Path("/doctor")
 public class DoctorController {
 	@Autowired
@@ -44,6 +45,7 @@ public class DoctorController {
 			listErrors.add(ajaxMessageError);
 			response = Response.status(Status.NOT_ACCEPTABLE).entity(listErrors).build();
 		}catch (Exception e) {
+			e.printStackTrace();
 			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return response;

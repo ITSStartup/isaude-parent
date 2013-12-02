@@ -6,8 +6,7 @@ angular.module('iSaudeAdminApp')
 
 	function ($scope, MedicalSpecialityService, DoctorService) {
 
-		$scope.phonePattern = /^\(?(\d{2})\)?[ .-]?(\d{4})[ .-]?(\d{4})$/;
-
+		
 		$scope.prepareValidations = function() {
 
 			$scope.dataCannotBelisted = false;
