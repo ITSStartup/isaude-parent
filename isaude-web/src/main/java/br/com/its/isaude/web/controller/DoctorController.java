@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -77,13 +78,19 @@ public class DoctorController {
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response remove(Doctor entity){
+	@Consumes({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
+	@Path("/{id}")
+	public Response remove(@PathParam("id")Long id){
 		Response response = Response.ok().build();
 		try {
-			doctorServiceImpl.delete(entity);
+			Doctor doctor = doctorServiceImpl.getById(id);
+			doctorServiceImpl.delete(doctor);
 		} catch (Exception e) {
-			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			e.printStackTrace();
+			messageError = e.getMessage();
+			ajaxMessageError = new AjaxMsg(messageError);
+			listErrors.add(ajaxMessageError);
+			response = Response.status(Status.NOT_ACCEPTABLE).entity(listErrors).build();
 		}finally{
 			return response;	
 		}		

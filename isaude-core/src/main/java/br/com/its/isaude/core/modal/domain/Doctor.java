@@ -32,7 +32,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Doctor implements java.io.Serializable {
 
 	private static final long serialVersionUID = -5437070110427241608L;
-	private Integer id;
+	private Long id;
 	private String nome;
 	private String sobrenome;
 	private String email;
@@ -63,11 +63,11 @@ public class Doctor implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

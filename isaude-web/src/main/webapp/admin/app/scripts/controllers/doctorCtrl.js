@@ -75,13 +75,13 @@ angular.module('iSaudeAdminApp')
 
 		}
 
-		$scope.remove = function(doctor){
-			$scope.doctorToRemove = doctor;
+		$scope.remove = function(doc){
+			$scope.doctorToRemove = doc;
 		}
 
 		$scope.doRemove = function(){
 			$scope.doctorToRemove.$remove({id:$scope.doctorToRemove.id},function(res){
-				$scope.list = DoctorService.list();
+				$scope.doctors = DoctorService.list();
 				$scope.doctor = new DoctorService();
 				$scope.dataRemoveSuccess = true;
 			})
@@ -94,7 +94,7 @@ angular.module('iSaudeAdminApp')
 		}
 		$scope.update = function(){
 			$scope.doctor.$update(function(){
-			$scope.list = DoctorService.list();
+			$scope.doctors = DoctorService.list();
 			$scope.reset();
 			$scope.dataSuccess = true;
 			})
