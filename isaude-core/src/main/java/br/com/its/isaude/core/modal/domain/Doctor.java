@@ -128,7 +128,9 @@ public class Doctor implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "medico_has_especialidade_medica",  joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "MEDICO_HAS_ESPECIALIDADE_MEDICA",  
+	joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, 
+	inverseJoinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) })
 	public Set<MedicalSpeciality> getEspecialidadeMedicas() {
 		return this.especialidadeMedicas;
 	}
