@@ -63,14 +63,14 @@
           			      <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" ng-options="e.description for e in medicalSpecialities" required></select>
 							</div>
 						</div>
-							<!-- do not remove this block 
+							
 						<div class="control-group">
 							<label class="control-label" for="instituicoesmedicas">Instituições Médicas *</label>
 							<div class="controls">
                 			<select class="form-control" ng-model="doctor.instituicaoMedicas" multiple 
-                			name="instituicaoMedicas" ng-options="e.nomeFantasia for e in instituicaoMedicas"></select>
+                			name="instituicaoMedicas" required ng-options="e.nomeFantasia for e in listMedicalInstitutional"></select>
 							</div>
-						</div> -->
+						</div> 
 
 						<div class="control-group">
 							<label class="control-label" for="Foto">Foto</label>

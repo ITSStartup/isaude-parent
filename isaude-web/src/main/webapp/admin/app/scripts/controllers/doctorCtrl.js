@@ -2,9 +2,9 @@
 
 angular.module('iSaudeAdminApp')
 
-.controller('DoctorCtrl', ['$scope','MedicalSpecialityService','DoctorService', 
+.controller('DoctorCtrl', ['$scope','MedicalSpecialityService','DoctorService', 'MedicalInstitutionalService', 
 
-	function ($scope, MedicalSpecialityService, DoctorService) {
+	function ($scope, MedicalSpecialityService, DoctorService, MedicalInstitutionalService) {
 
 		
 		$scope.prepareValidations = function() {
@@ -32,6 +32,12 @@ angular.module('iSaudeAdminApp')
 		$scope.fillSpecialities = function() {
 			MedicalSpecialityService.list(function(data) {
 				$scope.medicalSpecialities=data;
+			});
+		};
+
+		$scope.getListMedicalInstitutional = function(){
+			MedicalInstitutionalService.list(function(data){
+				$scope.listMedicalInstitutional =data;
 			});
 		};
 
@@ -104,7 +110,7 @@ angular.module('iSaudeAdminApp')
 		$scope.fillSpecialities();
 		$scope.reset();
 		$scope.list();
-
+		$scope.getListMedicalInstitutional();
 	}
 
 ]);
