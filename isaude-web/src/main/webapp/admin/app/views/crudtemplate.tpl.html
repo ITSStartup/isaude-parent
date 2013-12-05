@@ -1,0 +1,178 @@
+<div class="span9" id="content">
+	<!-- morris stacked chart -->
+	<div class="row-fluid">
+		<!-- block -->
+		<div class="block">
+		  <div class="navbar navbar-inner block-header">
+				<div class="muted pull-left">Title here</div>
+			</div>
+			<div class="block-content collapse in">
+				<div class="alert alert-success" ng-show="dataSuccess">As
+					informações foram salvas com sucesso.</div>
+				<div class="span12">
+
+				                   		
+				<form class="form-horizontal" novalidate name="nameform">
+					<fieldset>
+						<legend>Title form here</legend>
+						 <span class="badge badge-info">Os campos * são obrigatórios</span>
+						 <p/>
+						 <!-- input text group -->
+						<div class="control-group">
+							<label class="control-label" for="nome">input text *</label>
+							<div class="controls">
+								<input class="span6" name="nome" type="text" placeholder="input text" required 
+								ng-model="object.variable" ng-maxlength="45">
+
+							</div>
+						</div>
+
+						<!-- input email group -->
+						<div class="control-group">
+							<label class="control-label" for="email">E-mail *</label>
+							<div class="controls">
+						<input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="item.email" ng-maxlength="45">
+                		<span class="alert alert-warning" ng-show="nameform.email.$error.email">Formato do email inválido</span>
+                		<span class="alert alert-warning" ng-show="true">Email existente</span>
+						</div>
+						</div>
+
+						<!-- input only numbers are permitted -->
+
+							<div class="control-group">
+                                          <label class="control-label" for="cnpj">label *</label>
+                                          <div class="controls">
+                                            <input class="span6" id="cnpj" type="text" name="cnpj" placeholder="Informe apenas os números" required ng-model="object.variable"   ng-pattern="/^\d+$/">
+                                             <span ng-show="cnpjInvalid">InputName inválido ou existente</span>
+
+                                          </div>
+                                        </div>
+                          <!-- select multiple field -->
+						<div class="control-group">
+							<label class="control-label" for="especialidademedicas">Label *</label>
+							<div class="controls">
+          			      <select class="form-control" ng-model="object.variable" multiple name="fieldName" ng-options="e.field for e in list" required></select>
+							</div>
+						</div>							
+						
+							<!--upload field -->
+						<div class="control-group">
+							<label class="control-label" for="upload">label</label>
+							<div class="controls">
+								<button type="submit" class="btn btn-success" ng-disabled="true" value="upload">
+									<i class="icon-upload"></i> Upload
+								</button>
+							</div>
+						</div>
+							<!--textarea field -->
+						<div class="control-group">
+							<label class="control-label" for="xx"></label>
+							<div class="controls">
+								<textarea name="xx" ng-model="variable" required></textarea>
+							</div>
+						</div>
+							<!--bottons -->
+						<div class="form-actions">
+							<button type="submit" class="btn btn-success" ng-disabled="nameform.$invalid" value="salvar" ng-click="save()">
+								<i class="icon-ok"></i> Salvar
+							</button>
+							<button type="reset" ng-click="reset()" class="btn">
+								<i class="icon-ban-circle"></i>Limpar
+							</button>
+						</div>
+
+					</fieldset>
+				</form>
+
+				</div>
+
+			</div>
+		</div>
+		
+		<!--Table -->
+		<div>
+			<!-- block -->
+			<div class="block">
+				<div class="navbar navbar-inner block-header">
+					<div class="muted pull-left">Tables title</div>
+				</div>
+				<div class="block-content collapse in">
+					<div class="span12">
+
+						<h4>Últimos XXX Cadastrados</h4>
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Excluir</th>
+									<th>Editar</th>
+									<th>Info</th>
+									<th>field</th>
+									<th>field</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<!--List -->
+								<tr ng-repeat="item in list">
+									<td>
+                    			<a href="#removeModal" data-toggle="modal" ng-click="remove(item)" title="remover">
+											<div class="btn">
+												<div class="icon-trash"></div>
+											</div>
+                    </a>
+                  </td>
+						<td><a href="" ng-click="edit(item)" title="editar">
+                      <div class="btn">
+  						<div class="icon-edit"></div>
+                      </div>
+									</a></td>
+									<td><a href="#infoModal" ng-click="info(item)" data-toggle="modal" title="informações detalhadas">
+											<div class="btn">
+												<div class="icon-info-sign"></div>
+											</div>
+									</a></td>
+									<td>{{item.xxxx}}</td>
+									
+                  			</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+			<!-- /block -->
+		</div>
+
+	</div>
+	<!-- REMOVE CONFIRMATION DIALOG -->
+	<div id="removeModal" class="modal hide">
+		<div class="modal-header">
+			<button data-dismiss="modal" class="close" type="button">&times;</button>
+			<h4>Remover XXXX</h4>
+		</div>
+		<div class="modal-body">
+			Tem certeza que deseja remover o(a) XPTO (a) <b>"{{itemToRemove.nome}}"?</b>
+		</div>
+		<div class="modal-footer">
+			<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
+      		<a data-dismiss="modal" class="btn" href="#">Não</a>
+		</div>
+	</div>
+
+	<!-- INFO DETAILS DIALOG -->
+	<div id="infoModal" class="modal hide">
+		<div class="modal-header">
+			<h4>XXX {{itemInfo.nome}}</h4>
+		</div>	
+		<div class="modal-body">
+      <div>
+        <span><b>Nome:</b></span>
+        <span>{{itemInfo.nome}}</span>        
+      </div>
+      
+	</div>
+		<div class="modal-footer">
+			<a data-dismiss="modal" class="btn" href="#">Fechar</a>
+		</div>
+	</div>
