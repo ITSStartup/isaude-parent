@@ -144,9 +144,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `camilo_itsisaude`.`INSTITUICAO_MEDICA_has_MEDICO`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `camilo_itsisaude`.`INSTITUICAO_MEDICA_has_MEDICO` ;
+DROP TABLE IF EXISTS `camilo_itsisaude`.`INSTITUICAO_MEDICA_HAS_MEDICO` ;
 
-CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`INSTITUICAO_MEDICA_has_MEDICO` (
+CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`INSTITUICAO_MEDICA_HAS_MEDICO` (
   `INSTITUICAO_MEDICA_ID` INT NOT NULL ,
   `MEDICO_ID` INT NOT NULL ,
   PRIMARY KEY (`INSTITUICAO_MEDICA_ID`, `MEDICO_ID`) ,
@@ -168,9 +168,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `camilo_itsisaude`.`MEDICO_has_ESPECIALIDADE_MEDICA`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `camilo_itsisaude`.`MEDICO_has_ESPECIALIDADE_MEDICA` ;
+DROP TABLE IF EXISTS `camilo_itsisaude`.`MEDICO_HAS_ESPECIALIDADE_MEDICA` ;
 
-CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`MEDICO_has_ESPECIALIDADE_MEDICA` (
+CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`MEDICO_HAS_ESPECIALIDADE_MEDICA` (
   `MEDICO_ID` INT NOT NULL ,
   `ESPECIALIDADE_MEDICA_ID` INT NOT NULL ,
   PRIMARY KEY (`MEDICO_ID`, `ESPECIALIDADE_MEDICA_ID`) ,
