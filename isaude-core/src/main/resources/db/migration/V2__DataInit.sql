@@ -1,18 +1,10 @@
 
 
---
--- Dumping data for table `ESPECIALIDADE_MEDICA`
---
-
 INSERT INTO `ESPECIALIDADE_MEDICA` (`ID`, `DESCRICAO`) VALUES
 (2, 'Cardiologia'),
 (1, 'Pediatria');
 
 -- --------------------------------------------------------
-
---
--- Dumping data for table `INSTITUICAO_MEDICA`
---
 
 INSERT INTO `INSTITUICAO_MEDICA` (`ID`, `NOME_FANTASIA`, `RAZAO_SOCIAL`, `CNPJ`) VALUES
 (1, 'Hospital Espanhol', 'Hospital Espanhol Ltda', '06752293000140'),
@@ -29,7 +21,6 @@ INSERT INTO `MEDICO` (`ID`, `NOME`, `SOBRENOME`, `EMAIL`, `CURRICULO`, `TELEFONE
 (2, 'Camilo', 'Lopes', 'camilo.lopes@itscompany.com.br', 'Formado pela UNICAMP', '1158987598', 'CRM3698');
 
 -- --------------------------------------------------------
-
 --
 -- Dumping data for table `MEDICO_HAS_ESPECIALIDADE_MEDICA`
 --
@@ -40,7 +31,3 @@ INSERT INTO `MEDICO_HAS_ESPECIALIDADE_MEDICA` (`MEDICO_ID`, `ESPECIALIDADE_MEDIC
 (2, 2);
 
 -- --------------------------------------------------------
-
-
-
-
