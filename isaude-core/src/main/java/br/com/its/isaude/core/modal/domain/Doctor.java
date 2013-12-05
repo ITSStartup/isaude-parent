@@ -151,7 +151,7 @@ public class Doctor implements java.io.Serializable {
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "instituicao_medica_has_medico", 
+	@JoinTable(name = "INSTITUICAO_MEDICA_HAS_MEDICO", 
 	joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, 
 	inverseJoinColumns = { @JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, updatable = false) })
 	public Set<MedicalInstitutional> getInstituicaoMedicas() {
