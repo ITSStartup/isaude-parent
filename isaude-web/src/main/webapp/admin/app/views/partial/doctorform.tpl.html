@@ -193,20 +193,20 @@
         <span>{{doctorInfo.nome}}</span>
         
       </div>
-      <div >
+      <div>
         <span><b>Sobrenome:</b> {{doctorInfo.sobrenome}}</span>
       </div>
-      <div >
+      <div>
         <span><b>E-mail:</b> {{doctorInfo.email}}</span>
       </div>
-      <div >
+      <div>
         <span><b>Telefone:</b> {{doctorInfo.telefone}}</span>
       </div>
-      <div >
+      <div>
         <span><b>CRM:</b> {{doctorInfo.crm}}</span>
       </div>
-      <div >
-        <span><b>Especialidades Médica:</b>
+      <div>
+        <span><b>Especialidades Médicas:</b>
           <ul>
             <li ng-repeat="speciality in doctorInfo.especialidadeMedicas">
               {{speciality.description}}
@@ -214,7 +214,16 @@
           </ul>
         </span>
       </div>
-      <div >
+      <div>
+        <span><b>Instituições Médicas:</b>
+          <ul>
+            <li ng-repeat="institute in doctorInfo.instituicaoMedicas">
+              {{institute.nomeFantasia}}
+            </li>
+          </ul>
+        </span>
+      </div>
+      <div>
         <span><b>Curriculo:</b> {{doctorInfo.curriculo}}</span>
       </div>
 		</div>
