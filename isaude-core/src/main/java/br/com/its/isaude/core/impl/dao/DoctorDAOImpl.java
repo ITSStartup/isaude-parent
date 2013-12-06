@@ -26,6 +26,7 @@ public class DoctorDAOImpl extends GenericHibernateDAO<Doctor> implements
 		Criteria criteria = getCurrentSession().createCriteria(getPersistentClass());
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.setFetchMode("especialidadeMedicas", FetchMode.JOIN);
+        criteria.setFetchMode("instituicaoMedicas", FetchMode.JOIN);
 		criteria.addOrder(Order.desc("id"));
 		final List<Doctor> listDoctors = criteria.list();
 		return listDoctors;

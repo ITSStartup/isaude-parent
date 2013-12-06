@@ -149,7 +149,6 @@ public class Doctor implements java.io.Serializable {
 		this.agendaMedicos = agendaMedicos;
 	}
 
-	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "INSTITUICAO_MEDICA_HAS_MEDICO", 
 	joinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) }, 
