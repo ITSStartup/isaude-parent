@@ -2,31 +2,34 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-name="agenda_consulta_medica"
+	<table-filter match-name="doctor"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="agenda_medico"
+	<table-filter match-name="doctor_has_medical_speciality"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="agendamento_consulta_medica_paciente"
+	<table-filter match-name="medical_agenda"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="especialidade_medica"
+	<table-filter match-name="medical_agenda_consult_patient"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="instituicao_medica"
+	<table-filter match-name="medical_consult_agenda"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="instituicao_medica_has_medico"
+	<table-filter match-name="medical_institutional"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="medico"
+	<table-filter match-name="medical_institutional_has_doctor"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="medico_has_especialidade_medica"
+	<table-filter match-name="medical_speciality"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
-	<table-filter match-name="paciente"
+	<table-filter match-name="patient"
+		match-catalog="camilo_itsisaude">
+	</table-filter>
+	<table-filter match-name="worktime_doctor"
 		match-catalog="camilo_itsisaude">
 	</table-filter>
 </hibernate-reverse-engineering>
