@@ -70,27 +70,49 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `camilo_itsisaude`.`EXPEDIENTE_MEDICO`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `camilo_itsisaude`.`EXPEDIENTE_MEDICO` ;
+
+CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`EXPEDIENTE_MEDICO` (
+  `ID` INT NOT NULL ,
+  `UNIDADE` VARCHAR(45) NULL ,
+  `INTERVALO` INT NULL ,
+  `HORARIO_INICIAL` TIME NULL ,
+  `HORARIO_FINAL` TIME NULL ,
+  `INSTITUICAO_MEDICA_ID` INT NOT NULL ,
+  `MEDICO_ID` INT NOT NULL ,
+  PRIMARY KEY (`ID`, `INSTITUICAO_MEDICA_ID`) ,
+  INDEX `fk_EXPEDIENTE_MEDICO_INSTITUICAO_MEDICA1` (`INSTITUICAO_MEDICA_ID` ASC) ,
+  INDEX `fk_EXPEDIENTE_MEDICO_MEDICO1` (`MEDICO_ID` ASC) ,
+  CONSTRAINT `fk_EXPEDIENTE_MEDICO_INSTITUICAO_MEDICA1`
+    FOREIGN KEY (`INSTITUICAO_MEDICA_ID` )
+    REFERENCES `camilo_itsisaude`.`INSTITUICAO_MEDICA` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_EXPEDIENTE_MEDICO_MEDICO1`
+    FOREIGN KEY (`MEDICO_ID` )
+    REFERENCES `camilo_itsisaude`.`MEDICO` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `camilo_itsisaude`.`AGENDA_MEDICO`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `camilo_itsisaude`.`AGENDA_MEDICO` ;
 
 CREATE  TABLE IF NOT EXISTS `camilo_itsisaude`.`AGENDA_MEDICO` (
   `ID` INT NOT NULL AUTO_INCREMENT ,
-  `MEDICO_ID` INT NOT NULL ,
-  `INSTITUICAO_MEDICA_ID` INT NOT NULL ,
   `NOME_AGENDA` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`ID`) ,
-  INDEX `fk_AGENDA_MEDICO_MEDICO` (`MEDICO_ID` ASC) ,
-  INDEX `fk_AGENDA_MEDICO_INSTITUICAO_MEDICA1` (`INSTITUICAO_MEDICA_ID` ASC) ,
+  `EXPEDIENTE_MEDICO_ID` INT NOT NULL ,
+  PRIMARY KEY (`ID`, `EXPEDIENTE_MEDICO_ID`) ,
   UNIQUE INDEX `NOME_AGENDA_UNIQUE` (`NOME_AGENDA` ASC) ,
-  CONSTRAINT `fk_AGENDA_MEDICO_MEDICO`
-    FOREIGN KEY (`MEDICO_ID` )
-    REFERENCES `camilo_itsisaude`.`MEDICO` (`ID` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AGENDA_MEDICO_INSTITUICAO_MEDICA1`
-    FOREIGN KEY (`INSTITUICAO_MEDICA_ID` )
-    REFERENCES `camilo_itsisaude`.`INSTITUICAO_MEDICA` (`ID` )
+  INDEX `fk_AGENDA_MEDICO_EXPEDIENTE_MEDICO1` (`EXPEDIENTE_MEDICO_ID` ASC) ,
+  CONSTRAINT `fk_AGENDA_MEDICO_EXPEDIENTE_MEDICO1`
+    FOREIGN KEY (`EXPEDIENTE_MEDICO_ID` )
+    REFERENCES `camilo_itsisaude`.`EXPEDIENTE_MEDICO` (`ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,7 +164,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `camilo_itsisaude`.`INSTITUICAO_MEDICA_has_MEDICO`
+-- Table `camilo_itsisaude`.`INSTITUICAO_MEDICA_HAS_MEDICO`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `camilo_itsisaude`.`INSTITUICAO_MEDICA_HAS_MEDICO` ;
 
@@ -166,7 +188,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `camilo_itsisaude`.`MEDICO_has_ESPECIALIDADE_MEDICA`
+-- Table `camilo_itsisaude`.`MEDICO_HAS_ESPECIALIDADE_MEDICA`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `camilo_itsisaude`.`MEDICO_HAS_ESPECIALIDADE_MEDICA` ;
 
