@@ -1,16 +1,16 @@
 package br.com.itsisaude.core.model.domain.generated;
 
-// Generated 08/12/2013 12:06:24 by Hibernate Tools 4.0.0
+// Generated 09/12/2013 18:20:45 by Hibernate Tools 4.0.0
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name = "worktime_doctor", catalog = "camilo_itsisaude")
 public class WorktimeDoctor implements java.io.Serializable {
 
-	private WorktimeDoctorId id;
+	private Integer id;
 	private MedicalInstitutional medicalInstitutional;
 	private Doctor doctor;
 	private String unidade;
@@ -37,18 +37,15 @@ public class WorktimeDoctor implements java.io.Serializable {
 	public WorktimeDoctor() {
 	}
 
-	public WorktimeDoctor(WorktimeDoctorId id,
-			MedicalInstitutional medicalInstitutional, Doctor doctor) {
-		this.id = id;
+	public WorktimeDoctor(MedicalInstitutional medicalInstitutional,
+			Doctor doctor) {
 		this.medicalInstitutional = medicalInstitutional;
 		this.doctor = doctor;
 	}
 
-	public WorktimeDoctor(WorktimeDoctorId id,
-			MedicalInstitutional medicalInstitutional, Doctor doctor,
-			String unidade, Integer intervalo, Date horarioInicial,
-			Date horarioFinal, Set medicalAgendas) {
-		this.id = id;
+	public WorktimeDoctor(MedicalInstitutional medicalInstitutional,
+			Doctor doctor, String unidade, Integer intervalo,
+			Date horarioInicial, Date horarioFinal, Set medicalAgendas) {
 		this.medicalInstitutional = medicalInstitutional;
 		this.doctor = doctor;
 		this.unidade = unidade;
@@ -58,20 +55,19 @@ public class WorktimeDoctor implements java.io.Serializable {
 		this.medicalAgendas = medicalAgendas;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "id", column = @Column(name = "ID", nullable = false)),
-			@AttributeOverride(name = "instituicaoMedicaId", column = @Column(name = "INSTITUICAO_MEDICA_ID", nullable = false)) })
-	public WorktimeDoctorId getId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(WorktimeDoctorId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false)
 	public MedicalInstitutional getMedicalInstitutional() {
 		return this.medicalInstitutional;
 	}
