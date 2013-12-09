@@ -1,6 +1,6 @@
 package br.com.itsisaude.core.model.domain.generated;
 
-// Generated 08/12/2013 12:06:24 by Hibernate Tools 4.0.0
+// Generated 09/12/2013 18:20:45 by Hibernate Tools 4.0.0
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +30,10 @@ public class MedicalSpeciality implements java.io.Serializable {
 	public MedicalSpeciality() {
 	}
 
+	public MedicalSpeciality(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public MedicalSpeciality(String descricao, Set doctors) {
 		this.descricao = descricao;
 		this.doctors = doctors;
@@ -46,7 +50,7 @@ public class MedicalSpeciality implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "DESCRICAO", unique = true, length = 80)
+	@Column(name = "DESCRICAO", unique = true, nullable = false, length = 80)
 	public String getDescricao() {
 		return this.descricao;
 	}

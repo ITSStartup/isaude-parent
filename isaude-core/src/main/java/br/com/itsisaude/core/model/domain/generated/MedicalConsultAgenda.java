@@ -1,6 +1,6 @@
 package br.com.itsisaude.core.model.domain.generated;
 
-// Generated 08/12/2013 12:06:24 by Hibernate Tools 4.0.0
+// Generated 09/12/2013 18:20:45 by Hibernate Tools 4.0.0
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -62,10 +61,7 @@ public class MedicalConsultAgenda implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "AGENDA_MEDICO_ID", referencedColumnName = "ID", nullable = false),
-			@JoinColumn(name = "AGENDA_MEDICO_EXPEDIENTE_MEDICO_ID", referencedColumnName = "EXPEDIENTE_MEDICO_ID", nullable = false),
-			@JoinColumn(name = "AGENDA_MEDICO_INSTITUICAO_MEDICA_ID", referencedColumnName = "INSTITUICAO_MEDICA_ID", nullable = false) })
+	@JoinColumn(name = "AGENDA_MEDICO_ID", nullable = false)
 	public MedicalAgenda getMedicalAgenda() {
 		return this.medicalAgenda;
 	}

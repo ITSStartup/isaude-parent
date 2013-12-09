@@ -1,17 +1,16 @@
 package br.com.itsisaude.core.model.domain.generated;
 
-// Generated 08/12/2013 12:06:24 by Hibernate Tools 4.0.0
+// Generated 09/12/2013 18:20:45 by Hibernate Tools 4.0.0
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,7 +23,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "medical_agenda", catalog = "camilo_itsisaude", uniqueConstraints = @UniqueConstraint(columnNames = "NOME_AGENDA"))
 public class MedicalAgenda implements java.io.Serializable {
 
-	private MedicalAgendaId id;
+	private Integer id;
 	private WorktimeDoctor worktimeDoctor;
 	private String nomeAgenda;
 	private String status;
@@ -33,39 +32,32 @@ public class MedicalAgenda implements java.io.Serializable {
 	public MedicalAgenda() {
 	}
 
-	public MedicalAgenda(MedicalAgendaId id, WorktimeDoctor worktimeDoctor,
-			String nomeAgenda) {
-		this.id = id;
+	public MedicalAgenda(WorktimeDoctor worktimeDoctor, String nomeAgenda) {
 		this.worktimeDoctor = worktimeDoctor;
 		this.nomeAgenda = nomeAgenda;
 	}
 
-	public MedicalAgenda(MedicalAgendaId id, WorktimeDoctor worktimeDoctor,
-			String nomeAgenda, String status, Set medicalConsultAgendas) {
-		this.id = id;
+	public MedicalAgenda(WorktimeDoctor worktimeDoctor, String nomeAgenda,
+			String status, Set medicalConsultAgendas) {
 		this.worktimeDoctor = worktimeDoctor;
 		this.nomeAgenda = nomeAgenda;
 		this.status = status;
 		this.medicalConsultAgendas = medicalConsultAgendas;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "id", column = @Column(name = "ID", nullable = false)),
-			@AttributeOverride(name = "expedienteMedicoId", column = @Column(name = "EXPEDIENTE_MEDICO_ID", nullable = false)),
-			@AttributeOverride(name = "instituicaoMedicaId", column = @Column(name = "INSTITUICAO_MEDICA_ID", nullable = false)) })
-	public MedicalAgendaId getId() {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(MedicalAgendaId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "EXPEDIENTE_MEDICO_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "INSTITUICAO_MEDICA_ID", referencedColumnName = "INSTITUICAO_MEDICA_ID", nullable = false, insertable = false, updatable = false) })
+	@JoinColumn(name = "EXPEDIENTE_MEDICO_ID", nullable = false)
 	public WorktimeDoctor getWorktimeDoctor() {
 		return this.worktimeDoctor;
 	}

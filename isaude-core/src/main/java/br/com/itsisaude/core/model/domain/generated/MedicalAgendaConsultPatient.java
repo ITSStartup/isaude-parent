@@ -1,6 +1,6 @@
 package br.com.itsisaude.core.model.domain.generated;
 
-// Generated 08/12/2013 12:06:24 by Hibernate Tools 4.0.0
+// Generated 09/12/2013 18:20:45 by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
