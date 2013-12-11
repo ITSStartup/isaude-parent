@@ -28,103 +28,100 @@ import br.com.its.isaude.web.util.AjaxMsg;
 @Controller
 @Path("/medicalinstitution")
 public class MedicalInstitutionController {
-	@Autowired
-	@Qualifier("medicalInstitutionServiceImpl")
-	private MedicalInstitutionService medicalInstitutionServiceImpl;
-	
-	private List<AjaxMsg>listErrors = new ArrayList<AjaxMsg>();
-	private AjaxMsg ajaxMessageError;
-	private String messageError = null;
-	
 
-	public MedicalInstitutionService getMedicalInstitutionServiceImpl() {
-		return medicalInstitutionServiceImpl;
-	}
+    @Autowired
+    @Qualifier("medicalInstitutionServiceImpl")
+    private MedicalInstitutionService medicalInstitutionServiceImpl;
 
-	public void setMedicalInstitutionServiceImpl(
-			MedicalInstitutionService medicalInstitutionServiceImpl) {
-		this.medicalInstitutionServiceImpl = medicalInstitutionServiceImpl;
-	}
+    private List<AjaxMsg> listErrors = new ArrayList<AjaxMsg>();
+    private AjaxMsg ajaxMessageError;
+    private String messageError = null;
 
-	@SuppressWarnings("finally")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response save(MedicalInstitutional medicalInstitutional) {
-		 Response response = Response.ok().build();
-		try {
-			medicalInstitutionServiceImpl.save(medicalInstitutional);
-		} catch (MedicalInstitutionException e) {
-			messageError = e.getMsg().toString();
-			ajaxMessageError =  new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-		
-			 response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
-		}catch (ConstraintViolationException e) {
-			messageError = MessageResponseStatusEnum.CNPJ_INVALID.toString();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
-		}
-		
-		catch (Exception e) {
-			messageError = e.getMessage();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
-		}finally{
-			return response;
-		}
-		
-	}
-	
-	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(MedicalInstitutional medicalInstitutional){
-		Response response = Response.ok().build();
-		try {
-			medicalInstitutionServiceImpl.update(medicalInstitutional);
-		} catch (Exception e) {
-			messageError = e.getMessage(); 
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
-		}finally{
-			return response;
-		}
-	}
-	
-	@DELETE
-	@Path("/{id}")
-	@Consumes({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
-	public Response remove(@PathParam("id")Long id){
-		Response response = Response.ok().build();
-		try {
-			MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getById(id);
-			medicalInstitutionServiceImpl.delete(medicalInstitutional);
-		}
-		catch (Exception e) {
-			messageError = e.getMessage();
-			ajaxMessageError = new AjaxMsg(messageError);
-			response  = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
-		}finally{
-			return response;
-		}
-	}
+    public MedicalInstitutionService getMedicalInstitutionServiceImpl() {
+        return medicalInstitutionServiceImpl;
+    }
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response list(){
-		List<MedicalInstitutional> list = new ArrayList<MedicalInstitutional>();
-		 Response response = Response.ok().build();
-		try {
-			list = medicalInstitutionServiceImpl.list();
-			response = Response.status(Response.Status.OK).entity(list).build();
-		} catch (Exception e) {
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-		}finally{
-			return response;
-		}
-		
-	}
+    public void setMedicalInstitutionServiceImpl(
+            MedicalInstitutionService medicalInstitutionServiceImpl) {
+        this.medicalInstitutionServiceImpl = medicalInstitutionServiceImpl;
+    }
+
+    @SuppressWarnings("finally")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response save(MedicalInstitutional medicalInstitutional) {
+        Response response = Response.ok().build();
+        try {
+            medicalInstitutionServiceImpl.save(medicalInstitutional);
+        } catch (MedicalInstitutionException e) {
+            messageError = e.getMsg().toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+        } catch (ConstraintViolationException e) {
+            messageError = MessageResponseStatusEnum.CNPJ_INVALID.toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+        } catch (Exception e) {
+            messageError = e.getMessage();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+        } finally {
+            return response;
+        }
+
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(MedicalInstitutional medicalInstitutional) {
+        Response response = Response.ok().build();
+        try {
+            medicalInstitutionServiceImpl.update(medicalInstitutional);
+        } catch (Exception e) {
+            messageError = e.getMessage();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+        } finally {
+            return response;
+        }
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    public Response remove(@PathParam("id") Long id) {
+        Response response = Response.ok().build();
+        try {
+            MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getById(id);
+            medicalInstitutionServiceImpl.delete(medicalInstitutional);
+        } catch (Exception e) {
+            messageError = e.getMessage();
+            ajaxMessageError = new AjaxMsg(messageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+        } finally {
+            return response;
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response list() {
+        List<MedicalInstitutional> list = new ArrayList<MedicalInstitutional>();
+        Response response = Response.ok().build();
+        try {
+            list = medicalInstitutionServiceImpl.list();
+            response = Response.status(Response.Status.OK).entity(list).build();
+        } catch (Exception e) {
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        } finally {
+            return response;
+        }
+
+    }
 
 }
