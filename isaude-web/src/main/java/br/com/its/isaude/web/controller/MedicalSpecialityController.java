@@ -28,162 +28,162 @@ import br.com.its.isaude.web.util.AjaxMsg;
 @Path("/speciality")
 public class MedicalSpecialityController {
 
-	private List<AjaxMsg> listErrors;
-	private AjaxMsg ajaxMessageError;
-	private Response response;
+    private List<AjaxMsg> listErrors;
+    private AjaxMsg ajaxMessageError;
+    private Response response;
 
-	@Autowired
-	@Qualifier("medicalSpecialityServiceImpl")
-	private MedicalSpecialityService medicalSpecialityServiceImpl;
+    @Autowired
+    @Qualifier("medicalSpecialityServiceImpl")
+    private MedicalSpecialityService medicalSpecialityServiceImpl;
 
-	@GET
-	@SuppressWarnings("finally")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getList() throws Exception {
+    @GET
+    @SuppressWarnings("finally")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getList() throws Exception {
 
-		listErrors = new ArrayList<AjaxMsg>();
-		response = Response.ok().build();
+        listErrors = new ArrayList<AjaxMsg>();
+        response = Response.ok().build();
 
-		try {
+        try {
 
-			List<MedicalSpeciality> list = medicalSpecialityServiceImpl.list();
-			response = Response.status(Response.Status.OK).entity(list).build();
+            List<MedicalSpeciality> list = medicalSpecialityServiceImpl.list();
+            response = Response.status(Response.Status.OK).entity(list).build();
 
-		} catch (MedicalSpecialityException e) {
+        } catch (MedicalSpecialityException e) {
 
-			String messageErrorName = e.getMsg().toString();
-			ajaxMessageError = new AjaxMsg(messageErrorName);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+            String messageErrorName = e.getMsg().toString();
+            ajaxMessageError = new AjaxMsg(messageErrorName);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			String messageError = MessageResponseStatusEnum.CANNOT_BE_LISTED.toString();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+            String messageError = MessageResponseStatusEnum.CANNOT_BE_LISTED.toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
 
-		} finally {
+        } finally {
 
-			return response;
+            return response;
 
-		}
+        }
 
-	}
+    }
 
-	@POST
-	@SuppressWarnings("finally")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response save(MedicalSpeciality medicalSpeciality) {
+    @POST
+    @SuppressWarnings("finally")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response save(MedicalSpeciality medicalSpeciality) {
 
-		listErrors = new ArrayList<AjaxMsg>();
-		response = Response.ok().build();
+        listErrors = new ArrayList<AjaxMsg>();
+        response = Response.ok().build();
 
-		try {
+        try {
 
-			medicalSpecialityServiceImpl.save(medicalSpeciality);
+            medicalSpecialityServiceImpl.save(medicalSpeciality);
 
-		} catch (MedicalSpecialityException e) {
+        } catch (MedicalSpecialityException e) {
 
-			String messageErrorName = e.getMsg().toString();
-			ajaxMessageError = new AjaxMsg(messageErrorName);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+            String messageErrorName = e.getMsg().toString();
+            ajaxMessageError = new AjaxMsg(messageErrorName);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+            String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
 
-		} finally {
+        } finally {
 
-			return response;
+            return response;
 
-		}
-		
-	}
+        }
 
-	@PUT
-	@Path("/{id}")
-	@SuppressWarnings("finally")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
-		
-		listErrors = new ArrayList<AjaxMsg>();
-		response = Response.ok().build();
+    }
 
-		try {
+    @PUT
+    @Path("/{id}")
+    @SuppressWarnings("finally")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") Long id, MedicalSpeciality medicalSpeciality) {
 
-			medicalSpeciality.setId(id);
-			medicalSpecialityServiceImpl.update(medicalSpeciality);
+        listErrors = new ArrayList<AjaxMsg>();
+        response = Response.ok().build();
 
-		} catch (MedicalSpecialityException e) {
+        try {
 
-			String messageErrorName = e.getMsg().toString();
-			ajaxMessageError = new AjaxMsg(messageErrorName);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+            medicalSpeciality.setId(id);
+            medicalSpecialityServiceImpl.update(medicalSpeciality);
 
-		} catch (Exception e) {
+        } catch (MedicalSpecialityException e) {
 
-			String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+            String messageErrorName = e.getMsg().toString();
+            ajaxMessageError = new AjaxMsg(messageErrorName);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
 
-		} finally {
+        } catch (Exception e) {
 
-			return response;
+            String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
 
-		}
+        } finally {
 
-	}
+            return response;
 
-	@DELETE
-	@Path("/{id}")
-	@SuppressWarnings("finally")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response remove(@PathParam("id") Long id) {
-	
-		listErrors = new ArrayList<AjaxMsg>();
-		response = Response.ok().build();
+        }
 
-		try {
+    }
 
-			MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
-			medicalSpecialityServiceImpl.delete(medicalSpeciality);
+    @DELETE
+    @Path("/{id}")
+    @SuppressWarnings("finally")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response remove(@PathParam("id") Long id) {
 
-		} catch (MedicalSpecialityException e) {
+        listErrors = new ArrayList<AjaxMsg>();
+        response = Response.ok().build();
 
-			String messageErrorName = e.getMsg().toString();
-			ajaxMessageError = new AjaxMsg(messageErrorName);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
+        try {
 
-		} catch (Exception e) {
+            MedicalSpeciality medicalSpeciality = medicalSpecialityServiceImpl.getById(id);
+            medicalSpecialityServiceImpl.delete(medicalSpeciality);
 
-			String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
-			ajaxMessageError = new AjaxMsg(messageError);
-			listErrors.add(ajaxMessageError);
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
+        } catch (MedicalSpecialityException e) {
 
-		} finally {
+            String messageErrorName = e.getMsg().toString();
+            ajaxMessageError = new AjaxMsg(messageErrorName);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.NOT_ACCEPTABLE).entity(listErrors).build();
 
-			return response;
+        } catch (Exception e) {
 
-		}
+            String messageError = MessageResponseStatusEnum.SAVE_NOT_SUCCESS.toString();
+            ajaxMessageError = new AjaxMsg(messageError);
+            listErrors.add(ajaxMessageError);
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(listErrors).build();
 
-	}
+        } finally {
 
-	public MedicalSpecialityService getMedicalSpecialityServiceImpl() {
-		return medicalSpecialityServiceImpl;
-	}
-	
-	public void setMedicalSpecialityServiceImpl(MedicalSpecialityService medicalSpecialityServiceImpl) {
-		this.medicalSpecialityServiceImpl = medicalSpecialityServiceImpl;
-	}
+            return response;
+
+        }
+
+    }
+
+    public MedicalSpecialityService getMedicalSpecialityServiceImpl() {
+        return medicalSpecialityServiceImpl;
+    }
+
+    public void setMedicalSpecialityServiceImpl(MedicalSpecialityService medicalSpecialityServiceImpl) {
+        this.medicalSpecialityServiceImpl = medicalSpecialityServiceImpl;
+    }
 
 }

@@ -1,16 +1,13 @@
 package br.com.its.isaude.core.modal.domain;
 
-// Generated 21/11/2013 15:00:51 by Hibernate Tools 4.0.0
-
-import static javax.persistence.GenerationType.IDENTITY;
-
+// Generated 09/12/2013 22:31:28 by Hibernate Tools 4.0.0
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,7 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -29,87 +25,74 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "ESPECIALIDADE_MEDICA", uniqueConstraints = @UniqueConstraint(columnNames = "DESCRICAO"))
 public class MedicalSpeciality implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1476922851920296985L;
-	private Long id;
-	private String description;
-	private Set<Doctor> doctors = new HashSet<Doctor>();
+    private Long id;
+    private String description;
+    private Set<Doctor> doctors = new HashSet<Doctor>();
 
-	public MedicalSpeciality() {
-	}
+    public MedicalSpeciality() {
+    }
 
-	public MedicalSpeciality(String description, Set<Doctor> doctors) {
-		this.description = description;
-		this.doctors = doctors;
-	}
+    public MedicalSpeciality(String descricao, Set doctors) {
+        this.description = descricao;
+        this.doctors = doctors;
+    }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false)
-	public Long getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    public Long getId() {
+        return this.id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@NotNull
-	@NotEmpty
-	@Column(name = "DESCRICAO", unique = true, length = 80, nullable = false)
-	public String getDescription() {
-		return this.description;
-	}
+    @NotNull
+    @NotEmpty
+    @Column(name = "DESCRICAO", unique = true, length = 80)
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String descricao) {
-		this.description = descricao;
-	}
-	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "medico_has_especialidade_medica",
-	joinColumns = { @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false) },
-	inverseJoinColumns = { @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false) })
-	public Set<Doctor> getDoctors() {
-		return this.doctors;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setDoctors(Set<Doctor> medicos) {
-		this.doctors = medicos;
-	}
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "MEDICO_HAS_ESPECIALIDADE_MEDICA", joinColumns = {
+        @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)})
+    public Set<Doctor> getDoctors() {
+        return this.doctors;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setDoctors(Set<Doctor> doctors) {
+        this.doctors = doctors;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof MedicalSpeciality))
-			return false;
-		MedicalSpeciality other = (MedicalSpeciality) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 53 * hash + (this.description != null ? this.description.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MedicalSpeciality other = (MedicalSpeciality) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
 }

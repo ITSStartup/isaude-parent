@@ -1,7 +1,6 @@
 package br.com.its.isaude.core.modal.domain;
 
-// Generated 21/11/2013 15:00:51 by Hibernate Tools 4.0.0
-
+// Generated 09/12/2013 22:31:28 by Hibernate Tools 4.0.0
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,125 +24,111 @@ import javax.persistence.TemporalType;
 @Table(name = "AGENDA_CONSULTA_MEDICA")
 public class MedicalConsultAgenda implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6610793708956177589L;
-	private Integer id;
-	private AgendaDoctor agendaMedico;
-	private Date dataConsulta;
-	private Date horarioConsulta;
-	private Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AgendaConsultMedicalPatient>();
+    private Long id;
+    private AgendaDoctor agendaMedico;
+    private Date dataConsulta;
+    private Date horarioConsulta;
+    private String status;
+    private Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes = new HashSet<AgendaConsultMedicalPatient>();
 
-	public MedicalConsultAgenda() {
-	}
+    public MedicalConsultAgenda() {
+    }
 
-	public MedicalConsultAgenda(AgendaDoctor agendaMedico) {
-		this.agendaMedico = agendaMedico;
-	}
+    public MedicalConsultAgenda(AgendaDoctor agendaMedico) {
+        this.agendaMedico = agendaMedico;
+    }
 
-	public MedicalConsultAgenda(AgendaDoctor agendaMedico, Date dataConsulta,
-			Date horarioConsulta, Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
-		this.agendaMedico = agendaMedico;
-		this.dataConsulta = dataConsulta;
-		this.horarioConsulta = horarioConsulta;
-		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
-	}
+    public MedicalConsultAgenda(AgendaDoctor agendaMedico, Date dataConsulta, Date horarioConsulta, String status, Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+        this.agendaMedico = agendaMedico;
+        this.dataConsulta = dataConsulta;
+        this.horarioConsulta = horarioConsulta;
+        this.status = status;
+        this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
+    }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false)
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    public Long getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AGENDA_MEDICO_ID", nullable = false)
-	public AgendaDoctor getAgendaMedico() {
-		return this.agendaMedico;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AGENDA_MEDICO_ID", nullable = false)
+    public AgendaDoctor getAgendaMedico() {
+        return this.agendaMedico;
+    }
 
-	public void setAgendaMedico(AgendaDoctor agendaMedico) {
-		this.agendaMedico = agendaMedico;
-	}
+    public void setAgendaMedico(AgendaDoctor agendaMedico) {
+        this.agendaMedico = agendaMedico;
+    }
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_CONSULTA", length = 10)
-	public Date getDataConsulta() {
-		return this.dataConsulta;
-	}
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATA_CONSULTA", length = 0)
+    public Date getDataConsulta() {
+        return this.dataConsulta;
+    }
 
-	public void setDataConsulta(Date dataConsulta) {
-		this.dataConsulta = dataConsulta;
-	}
+    public void setDataConsulta(Date dataConsulta) {
+        this.dataConsulta = dataConsulta;
+    }
 
-	@Temporal(TemporalType.TIME)
-	@Column(name = "HORARIO_CONSULTA", length = 8)
-	public Date getHorarioConsulta() {
-		return this.horarioConsulta;
-	}
+    @Temporal(TemporalType.TIME)
+    @Column(name = "HORARIO_CONSULTA", length = 0)
+    public Date getHorarioConsulta() {
+        return this.horarioConsulta;
+    }
 
-	public void setHorarioConsulta(Date horarioConsulta) {
-		this.horarioConsulta = horarioConsulta;
-	}
+    public void setHorarioConsulta(Date horarioConsulta) {
+        this.horarioConsulta = horarioConsulta;
+    }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agendaConsultaMedica")
-	public Set<AgendaConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
-		return this.agendamentoConsultaMedicaPacientes;
-	}
+    @Column(name = "STATUS", length = 45)
+    public String getStatus() {
+        return this.status;
+    }
 
-	public void setAgendamentoConsultaMedicaPacientes(Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
-		this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((agendaMedico == null) ? 0 : agendaMedico.hashCode());
-		result = prime * result
-				+ ((dataConsulta == null) ? 0 : dataConsulta.hashCode());
-		result = prime * result
-				+ ((horarioConsulta == null) ? 0 : horarioConsulta.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "agendaConsultaMedica")
+    public Set<AgendaConsultMedicalPatient> getAgendamentoConsultaMedicaPacientes() {
+        return this.agendamentoConsultaMedicaPacientes;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof MedicalConsultAgenda))
-			return false;
-		MedicalConsultAgenda other = (MedicalConsultAgenda) obj;
-		if (agendaMedico == null) {
-			if (other.agendaMedico != null)
-				return false;
-		} else if (!agendaMedico.equals(other.agendaMedico))
-			return false;
-		if (dataConsulta == null) {
-			if (other.dataConsulta != null)
-				return false;
-		} else if (!dataConsulta.equals(other.dataConsulta))
-			return false;
-		if (horarioConsulta == null) {
-			if (other.horarioConsulta != null)
-				return false;
-		} else if (!horarioConsulta.equals(other.horarioConsulta))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public void setAgendamentoConsultaMedicaPacientes(Set<AgendaConsultMedicalPatient> agendamentoConsultaMedicaPacientes) {
+        this.agendamentoConsultaMedicaPacientes = agendamentoConsultaMedicaPacientes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 79 * hash + (this.agendaMedico != null ? this.agendaMedico.hashCode() : 0);
+        hash = 79 * hash + (this.dataConsulta != null ? this.dataConsulta.hashCode() : 0);
+        hash = 79 * hash + (this.horarioConsulta != null ? this.horarioConsulta.hashCode() : 0);
+        hash = 79 * hash + (this.status != null ? this.status.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MedicalConsultAgenda other = (MedicalConsultAgenda) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
 }
