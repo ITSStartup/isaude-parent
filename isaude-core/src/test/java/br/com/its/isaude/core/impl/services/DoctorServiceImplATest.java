@@ -159,4 +159,11 @@ public class DoctorServiceImplATest extends DBUnitConfiguration {
     	int totalDoctorsExpected=2;
 		assertEquals(totalDoctorsExpected, list.size());
     }
+    @Test
+    public void testSearchDoctorCRMCaseInsensitive(){
+    	List<Doctor> list = doctorServiceImpl.search("crm-BA 6698");
+    	final int index = 0;
+		final String doctorCrm = list.get(index).getCrm();
+		assertEquals("CRM-BA 6698", doctorCrm);
+    }
 }
