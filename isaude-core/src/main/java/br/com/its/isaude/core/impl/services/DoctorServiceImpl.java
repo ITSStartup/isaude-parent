@@ -1,5 +1,7 @@
 package br.com.its.isaude.core.impl.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -43,5 +45,11 @@ public class DoctorServiceImpl extends GenericServiceImpl<Doctor, DoctorDAO> imp
 			throw new DoctorException(MessageResponseStatusEnum.CRM_EXISTS);
 		}
 		
+	}
+
+	@Override
+	public List<Doctor> search(String description) {
+		List<Doctor>listDoctors = getDao().search(description);
+		return listDoctors;
 	}
 }

@@ -1,105 +1,105 @@
 <div class="span9" id="content">
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="block">
-				<div class="navbar navbar-inner block-header">
-					<div class="muted pull-left">Especialidade Médica</div>
-				</div>
-				<div class="block-content collapse in">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Especialidade Médica</div>
+                </div>
+                <div class="block-content collapse in">
 
-					<div class="alert alert-success" ng-show="dataSuccess">As informações foram salvas com sucesso</div>
-					<div class="alert alert-danger" ng-show="dataNotSuccess">As informações não foram salvas</div>
+                    <div class="alert alert-success" ng-show="dataSuccess">As informações foram salvas com sucesso</div>
+                    <div class="alert alert-danger" ng-show="dataNotSuccess">As informações não foram salvas</div>
 
-					<div class="span12">
-						<form class="form-horizontal" novalidate name="medicalSpecialityform">
-							<fieldset>
-								<legend>Cadastro Especialidade Médica </legend>
-								<span class="badge badge-info">Os campos * são obrigatórios</span>
-								<p/>
-								<div class="control-group">
-									<label class="control-label" for="description">Descrição *</label>
-									<div class="controls">
-										<input class="input-xlarge" id="description" ng-model="speciality.description" type="text" 
-											ng-maxlength=80 name="description" placeholder="Informe a Especialidade Médica" required/>
-										<span class="alert alert-warning" 
-											ng-show="medicalSpecialityform.description.$pristine &&medicalSpecialityform.description.$dirty && medicalSpecialityform.description.$error.required">
-											Descrição da especialidade é obrigatória
-										</span>
-										<span class="alert alert-warning" ng-show="medicalSpecialityform.description.$error.maxlength">
-											O tamanho máximo do campo foi excedido (80 caracteres)
-										</span>
-										<span class="alert alert-warning" ng-show="isDescriptionDuplicated">
-											Especialidade existente
-										</span>
-									</div>
-								</div>
-							</fieldset>
-							<div class="form-actions">
-								<button type="submit" class="btn btn-success" ng-disabled="medicalSpecialityform.$invalid" ng-click="save()"><i class="icon-ok"></i>Salvar</button>
-								<button type="reset" class="btn" ng-click="reset()"><i class="icon-ban-circle"></i>Limpar</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--remove this and adjust css class span12-->
-	<div class="row-fluid"><!--remove this and adjust css class span12-->
-		<div class="span12">
-			<div class="block">
-				<div class="navbar navbar-inner block-header">
-					<div class="muted pull-left">Últimas Especialidades Médicas Cadastradas</div>
-				</div>
-				<div class="block-content collapse in">
-					<div class="alert alert-danger" ng-show="dataCannotBelisted">Não foi possível exibir as especialidades cadastradas</div>
-					<div class="alert alert-success" ng-show="dataRemoveSuccess">Remoção realizada com sucesso</div>
-					<div class="alert alert-danger" ng-show="dataRemoveNotSuccess">Remoção não realizada</div>
-					<div ng-show="!dataCannotBelisted">
-						<h4>Especialidades Médicas Cadastradas</h4>
-						<table class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Excluir</th>
-									<th>Editar</th>
-									<th>Descrição</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="speciality in specialities">
-									<td class="span1">
-										<a href="#removeModal" data-toggle="modal" ng-click="remove(speciality)">
-											<div class="btn">
-												<i class="icon-trash"></i>
-											</div>
-										</a>
-									</td>
-									<td class="span1">
-										<span ng-click="edit(speciality)">
-											<div class="btn">
-												<i class="icon-edit"></i>
-											</div>
-										</span>
-									</td>
-									<td>{{speciality.description}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="removeModal" class="modal hide">
-		<div class="modal-header">
-			<button data-dismiss="modal" class="close" type="button">&times;</button>
-			<h4>Remover Especialidade Médica</h4>
-		</div>
-		<div class="modal-body">
-			Tem certeza que deseja remover a especialidade <b>"{{specialityToRemove.description}}"</b>?
-		</div>
-		<div class="modal-footer">
-			<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
-			<a data-dismiss="modal" class="btn" href="#">Não</a>
-		</div>
-	</div>
+                    <div class="span12">
+                        <form class="form-horizontal" novalidate name="medicalSpecialityform">
+                            <fieldset>
+                                <legend>Cadastro Especialidade Médica </legend>
+                                <span class="badge badge-info">Os campos * são obrigatórios</span>
+                                <p/>
+                                <div class="control-group">
+                                    <label class="control-label" for="description">Descrição *</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge" id="description" ng-model="speciality.description" type="text" 
+                                               ng-maxlength=80 name="description" placeholder="Informe a Especialidade Médica" required/>
+                                        <span class="alert alert-warning" 
+                                              ng-show="medicalSpecialityform.description.$pristine && medicalSpecialityform.description.$dirty && medicalSpecialityform.description.$error.required">
+                                            Descrição da especialidade é obrigatória
+                                        </span>
+                                        <span class="alert alert-warning" ng-show="medicalSpecialityform.description.$error.maxlength">
+                                            O tamanho máximo do campo foi excedido (80 caracteres)
+                                        </span>
+                                        <span class="alert alert-warning" ng-show="isDescriptionDuplicated">
+                                            Especialidade existente
+                                        </span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success" ng-disabled="medicalSpecialityform.$invalid" ng-click="save()"><i class="icon-ok"></i>Salvar</button>
+                                <button type="reset" class="btn" ng-click="reset()"><i class="icon-ban-circle"></i>Limpar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--remove this and adjust css class span12-->
+    <div class="row-fluid"><!--remove this and adjust css class span12-->
+        <div class="span12">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Últimas Especialidades Médicas Cadastradas</div>
+                </div>
+                <div class="block-content collapse in">
+                    <div class="alert alert-danger" ng-show="dataCannotBelisted">Nenhum registro encontrado</div>
+                    <div class="alert alert-success" ng-show="dataRemoveSuccess">Remoção realizada com sucesso</div>
+                    <div class="alert alert-danger" ng-show="dataRemoveNotSuccess">Remoção não realizada</div>
+                    <div ng-show="!dataCannotBelisted">
+                        <h4>Especialidades Médicas Cadastradas</h4>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Excluir</th>
+                                    <th>Editar</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="speciality in specialities">
+                                    <td class="span1">
+                                        <a href="#removeModal" data-toggle="modal" ng-click="remove(speciality)">
+                                            <div class="btn">
+                                                <i class="icon-trash"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="span1">
+                                        <div ng-click="edit(speciality)">
+                                            <div class="btn">
+                                                <i class="icon-edit"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{speciality.description}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="removeModal" class="modal hide">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button">&times;</button>
+            <h4>Remover Especialidade Médica</h4>
+        </div>
+        <div class="modal-body">
+            Tem certeza que deseja remover a especialidade <b>"{{specialityToRemove.description}}"</b>?
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
+            <a data-dismiss="modal" class="btn" href="#">Não</a>
+        </div>
+    </div>
 </div>

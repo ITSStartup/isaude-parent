@@ -1,7 +1,6 @@
 package br.com.its.isaude.core.modal.domain;
 
-// Generated 21/11/2013 15:00:51 by Hibernate Tools 4.0.0
-
+// Generated 09/12/2013 22:31:28 by Hibernate Tools 4.0.0
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,94 +18,71 @@ import javax.persistence.Table;
 @Table(name = "AGENDAMENTO_CONSULTA_MEDICA_PACIENTE")
 public class AgendaConsultMedicalPatient implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5211071137689033585L;
-	private Integer id;
-	private Patient paciente;
-	private MedicalConsultAgenda agendaConsultaMedica;
+    private Long id;
+    private Patiente paciente;
+    private MedicalConsultAgenda agendaConsultaMedica;
 
-	public AgendaConsultMedicalPatient() {
-	}
+    public AgendaConsultMedicalPatient() {
+    }
 
-	public AgendaConsultMedicalPatient(Patient paciente,
-			MedicalConsultAgenda agendaConsultaMedica) {
-		this.paciente = paciente;
-		this.agendaConsultaMedica = agendaConsultaMedica;
-	}
+    public AgendaConsultMedicalPatient(Patiente paciente, MedicalConsultAgenda agendaConsultaMedica) {
+        this.paciente = paciente;
+        this.agendaConsultaMedica = agendaConsultaMedica;
+    }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false)
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    public Long getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PACIENTE_ID", nullable = false)
-	public Patient getPaciente() {
-		return this.paciente;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PACIENTE_ID", nullable = false)
+    public Patiente getPaciente() {
+        return this.paciente;
+    }
 
-	public void setPaciente(Patient paciente) {
-		this.paciente = paciente;
-	}
+    public void setPaciente(Patiente paciente) {
+        this.paciente = paciente;
+    }
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AGENDA_CONSULTA_MEDICA_ID", nullable = false)
-	public MedicalConsultAgenda getAgendaConsultaMedica() {
-		return this.agendaConsultaMedica;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AGENDA_CONSULTA_MEDICA_ID", nullable = false)
+    public MedicalConsultAgenda getAgendaConsultaMedica() {
+        return this.agendaConsultaMedica;
+    }
 
-	public void setAgendaConsultaMedica(
-			MedicalConsultAgenda agendaConsultaMedica) {
-		this.agendaConsultaMedica = agendaConsultaMedica;
-	}
+    public void setAgendaConsultaMedica(MedicalConsultAgenda agendaConsultaMedica) {
+        this.agendaConsultaMedica = agendaConsultaMedica;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime
-				* result
-				+ ((agendaConsultaMedica == null) ? 0 : agendaConsultaMedica
-						.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((paciente == null) ? 0 : paciente.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 29 * hash + (this.paciente != null ? this.paciente.hashCode() : 0);
+        hash = 29 * hash + (this.agendaConsultaMedica != null ? this.agendaConsultaMedica.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof AgendaConsultMedicalPatient))
-			return false;
-		AgendaConsultMedicalPatient other = (AgendaConsultMedicalPatient) obj;
-		if (agendaConsultaMedica == null) {
-			if (other.agendaConsultaMedica != null)
-				return false;
-		} else if (!agendaConsultaMedica.equals(other.agendaConsultaMedica))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (paciente == null) {
-			if (other.paciente != null)
-				return false;
-		} else if (!paciente.equals(other.paciente))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AgendaConsultMedicalPatient other = (AgendaConsultMedicalPatient) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
 }

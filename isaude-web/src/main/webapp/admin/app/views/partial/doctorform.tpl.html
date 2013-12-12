@@ -1,242 +1,244 @@
 <div class="span9" id="content">
-	<!-- morris stacked chart -->
-	<div class="row-fluid">
-		<!-- block -->
-		<div class="block">
-		  <div class="navbar navbar-inner block-header">
-				<div class="muted pull-left">Cadastro Médico</div>
-			</div>
-			<div class="block-content collapse in">
-				<div class="alert alert-success" ng-show="dataSuccess">As
-					informações foram salvas com sucesso.</div>
-				<div class="span12">
+    <!-- morris stacked chart -->
+    <div class="row-fluid">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Cadastro Médico</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="alert alert-success" ng-show="dataSuccess">As
+                    informações foram salvas com sucesso.</div>
+                <div class="span12">
 
-				                   		
-				<form class="form-horizontal" novalidate name="doctorform">
-					<fieldset>
-						<legend>Cadastro Médico</legend>
-						 <span class="badge badge-info">Os campos * são obrigatórios</span>
-						 <p/>
-						<div class="control-group">
-							<label class="control-label" for="nome">Nome *</label>
-							<div class="controls">
-								<input class="span6" name="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
-							</div>
-						</div>
 
-						<div class="control-group">
-							<label class="control-label" for="sobrenome">Sobrenome *</label>
-							<div class="controls">
-								<input class="span6" id="sobrenome" name="sobrenome" type="text" placeholder="Informe o sobrenome" required ng-model="doctor.sobrenome" ng-maxlength="45">
-							</div>
-						</div>
+                    <form class="form-horizontal" novalidate name="doctorform">
+                        <fieldset>
+                            <legend>Cadastro Médico</legend>
+                            <span class="badge badge-info">Os campos * são obrigatórios</span>
+                            <p/>
+                            <div class="control-group">
+                                <label class="control-label" for="nome">Nome *</label>
+                                <div class="controls">
+                                    <input class="span6" id="nome" type="text" placeholder="Informe o nome" required ng-model="doctor.nome" ng-maxlength="45">
 
-						<div class="control-group">
-							<label class="control-label" for="email">E-mail *</label>
-							<div class="controls">
-								<input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">
-                <span class="alert alert-warning" ng-show="doctorform.email.$error.email">Formato do email inválido</span>
-                <span class="alert alert-warning" ng-show="doctorEmailExists">Email existente</span>
-							</div>
-						</div>
+                                </div>
+                            </div>
 
-						<div class="control-group">
-							<label class="control-label" for="telefone">Telefone *</label>
-							<div class="controls">
-						<input class="span6" id="telefone" type="text" name="telefone" placeholder="Informe apenas os números " required ng-model="doctor.telefone" ng-pattern="/^\d+$/">
-                			<span class="alert alert-warning" ng-show="doctorform.telefone.$dirty && doctorform.telefone.$invalid">Apenas números são permitido</span>
-							</div>
-						</div>
+                            <div class="control-group">
+                                <label class="control-label" for="sobrenome">Sobrenome *</label>
+                                <div class="controls">
+                                    <input class="span6" id="sobrenome" name="sobrenome" type="text" placeholder="Informe o sobrenome" required ng-model="doctor.sobrenome" ng-maxlength="45">
+                                </div>
+                            </div>
 
-						<div class="control-group">
-							<label class="control-label" for="crm">CRM *</label>
-							<div class="controls">
-								<input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm" ng-disabled="disableCrm">
-                <span class="alert alert-warning" ng-show="crmExists">CRM existente</span>
-							</div>
-						</div>
+                            <div class="control-group">
+                                <label class="control-label" for="email">E-mail *</label>
+                                <div class="controls">
+                                    <input class="span6" id="email" type="email" name="email" placeholder="seuemail@xxx.xx" required ng-model="doctor.email" ng-maxlength="45">
+                                    <span class="alert alert-warning" ng-show="doctorform.email.$error.email">Formato do email inválido</span>
+                                    <span class="alert alert-warning" ng-show="doctorEmailExists">Email existente</span>
+                                </div>
+                            </div>
 
-						<div class="control-group">
-							<label class="control-label" for="especialidademedicas">Especialidades Médica *</label>
-							<div class="controls">
-          			      <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple name="especialidademedicas" ng-options="e.description for e in medicalSpecialities" required></select>
-							</div>
-						</div>
-							
-						<div class="control-group">
-							<label class="control-label" for="instituicoesmedicas">Instituições Médicas *</label>
-							<div class="controls">
-                			<select class="form-control" ng-model="doctor.instituicaoMedicas" multiple 
-                			name="instituicaoMedicas" required ng-options="e.nomeFantasia for e in listMedicalInstitutional"></select>
-							</div>
-						</div> 
+                            <div class="control-group">
+                                <label class="control-label" for="telefone">Telefone *</label>
+                                <div class="controls">
+                                    <input class="span6" id="telefone" type="text" name="telefone" placeholder="Informe apenas os números " required ng-model="doctor.telefone" ng-pattern="/^\d+$/">
+                                    <span class="alert alert-warning" ng-show="doctorform.telefone.$dirty && doctorform.telefone.$invalid">Apenas números são permitido</span>
+                                </div>
+                            </div>
 
-						<div class="control-group">
-							<label class="control-label" for="Foto">Foto</label>
-							<div class="controls">
-								<button type="submit" class="btn btn-success" ng-disabled="true" value="upload">
-									<i class="icon-upload"></i> Upload
-								</button>
-							</div>
-						</div>
+                            <div class="control-group">
+                                <label class="control-label" for="crm">CRM *</label>
+                                <div class="controls">
+                                    <input class="span6" id="crm" type="tel" name="crm" placeholder="informe o CRM" required ng-model="doctor.crm" ng-disabled="disableCrm">
+                                    <span class="alert alert-warning" ng-show="crmExists">CRM existente</span>
+                                </div>
+                            </div>
 
-						<div class="control-group">
-							<label class="control-label" for="cv">Curriculo *</label>
-							<div class="controls">
-								<textarea name="cv" ng-model="doctor.curriculo" required></textarea>
-							</div>
-						</div>
+                            <div class="control-group">
+                                <label class="control-label" for="especialidademedicas">Especialidades Médica *</label>
+                                <div class="controls">
+                                    <select class="form-control" ng-model="doctor.especialidadeMedicas" multiple id="especialidademedicas" ng-options="e.description for e in medicalSpecialities" required></select>
+                                </div>
+                            </div>
 
-						<div class="form-actions">
-							<button type="submit" class="btn btn-success" ng-disabled="doctorform.$invalid" value="salvar" ng-click="save()">
-								<i class="icon-ok"></i> Salvar
-							</button>
-							<button type="reset" ng-click="reset()" class="btn">
-								<i class="icon-ban-circle"></i>Limpar
-							</button>
-						</div>
+                            <div class="control-group">
+                                <label class="control-label" for="instituicaoMedicas">Instituições Médicas *</label>
+                                <div class="controls">
+                                    <select class="form-control" ng-model="doctor.instituicaoMedicas" multiple 
+                                            id="instituicaoMedicas" required ng-options="e.nomeFantasia for e in listMedicalInstitutional"></select>
+                                </div>
+                            </div> 
 
-					</fieldset>
-				</form>
+                            <div class="control-group">
+                                <label class="control-label" for="Foto">Foto</label>
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-success" id="Foto" ng-disabled="true" value="upload">
+                                        <i class="icon-upload"></i> Upload
+                                    </button>
+                                </div>
+                            </div>
 
-				</div>
+                            <div class="control-group">
+                                <label class="control-label" for="cv">Curriculo *</label>
+                                <div class="controls">
+                                    <textarea id="cv" ng-model="doctor.curriculo" required></textarea>
+                                </div>
+                            </div>
 
-			</div>
-		</div>
-		<!-- /block -->
-		<!--Table -->
-		<div>
-			<!-- block -->
-			<div class="block">
-				<div class="navbar navbar-inner block-header">
-					<div class="muted pull-left">Médicos Cadastrados</div>
-				</div>
-				<div class="block-content collapse in">
-					<div class="span12">
-						
-						<h4>Últimos Médicos Cadastrados</h4> 
-							<div class="control-group">
-							<form class="form-horizontal" novalidate name="doctorsearchform">
-								<div class="controls">
-								<input class="span5 offset5" name="searchvalue" type="text" placeholder="CRM, Nome ou Sobrenome do Médico" required ng-model="searchvalue">
-							<button type="submit" class="btn btn-success" ng-disabled="doctorsearchform.$invalid" required value="salvar" ng-click="search()">
-								<i class="icon-search"></i>Pesquisar
-							</button>							
-							</div>
-						</form>
-						</div>
-						<table class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Excluir</th>
-									<th>Editar</th>
-									<th>Info</th>
-									<th>Nome</th>
-									<th>Sobrenome</th>
-									<th>CRM</th>
-									<th>Especialidades Médica</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="doctor in doctors">
-									<td>
-                    <a href="#removeModal" data-toggle="modal" ng-click="remove(doctor)" title="remover">
-											<div class="btn">
-												<div class="icon-trash"></div>
-											</div>
-                    </a>
-                  </td>
-						<td><a href="" ng-click="edit(doctor)" title="editar">
-                      <div class="btn">
-  											<div class="icon-edit"></div>
-                      </div>
-									</a></td>
-									<td><a href="#infoModal" ng-click="info(doctor)" data-toggle="modal" title="informações detalhadas">
-											<div class="btn">
-												<div class="icon-info-sign"></div>
-											</div>
-									</a></td>
-									<td>{{doctor.nome}}</td>
-									<td>{{doctor.sobrenome}}</td>
-									<td>{{doctor.crm}}</td>
-                  <td>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success" ng-disabled="doctorform.$invalid" value="salvar" ng-click="save()">
+                                    <i class="icon-ok"></i> Salvar
+                                </button>
+                                <button type="reset" ng-click="reset()" class="btn">
+                                    <i class="icon-ban-circle"></i>Limpar
+                                </button>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /block -->
+        <!--Table -->
+        <div>
+            <!-- block -->
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Médicos Cadastrados</div>
+                </div>
+                <div class="block-content collapse in">
+                    <div class="span12">
+
+                            <h4>Últimos Médicos Cadastrados</h4> 
+                            <div class="control-group">
+                            <form class="form-horizontal" novalidate name="doctorsearchform">
+                                <div class="controls">
+                                <input class="span5 offset5" name="searchvalue" type="text" placeholder="CRM, Nome ou Sobrenome do Médico" required ng-model="searchvalue">
+                            <button type="submit" class="btn btn-success" ng-disabled="doctorsearchform.$invalid" required value="salvar" ng-click="search()">
+                                <i class="icon-search"></i>Pesquisar
+                            </button>                           
+                            </div>
+                        </form>
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Excluir</th>
+                                    <th>Editar</th>
+                                    <th>Info</th>
+                                    <th>Nome</th>
+                                    <th>Sobrenome</th>
+                                    <th>CRM</th>
+                                    <th>Especialidades Médica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="doctor in doctors">
+                                    <td>
+                                        <a href="#removeModal" data-toggle="modal" ng-click="remove(doctor)" title="remover">
+                                            <div class="btn">
+                                                <div class="icon-trash"></div>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td><a href="" ng-click="edit(doctor)" title="editar">
+                                            <div class="btn">
+                                                <div class="icon-edit"></div>
+                                            </div>
+                                        </a></td>
+                                    <td><a href="#infoModal" ng-click="info(doctor)" data-toggle="modal" title="informações detalhadas">
+                                            <div class="btn">
+                                                <div class="icon-info-sign"></div>
+                                            </div>
+                                        </a></td>
+                                    <td>{{doctor.nome}}</td>
+                                    <td>{{doctor.sobrenome}}</td>
+                                    <td>{{doctor.crm}}</td>
+                                    <td>
+                                        <ul>
+                                            <li ng-repeat="speciality in doctor.especialidadeMedicas">{{speciality.description}}</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /block -->
+        </div>
+
+    </div>
+    <!-- REMOVE CONFIRMATION DIALOG -->
+    <div id="removeModal" class="modal hide">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button">&times;</button>
+            <h4>Remover Médico</h4>
+        </div>
+        <div class="modal-body">
+            Tem certeza que deseja remover o(a) médico (a) <b>"{{doctorToRemove.nome}}"?</b>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
+            <a data-dismiss="modal" class="btn" href="#">Não</a>
+        </div>
+    </div>
+
+    <!-- INFO DETAILS DIALOG -->
+    <div id="infoModal" class="modal hide">
+        <div class="modal-header">
+            <h4>Informações sobre Médico {{doctorInfo.nome}}</h4>
+        </div>  
+        <div class="modal-body">
+            <div>
+                <span><b>Nome:</b></span>
+                <span>{{doctorInfo.nome}}</span>
+
+            </div>
+            <div>
+                <span><b>Sobrenome:</b> {{doctorInfo.sobrenome}}</span>
+            </div>
+            <div>
+                <span><b>E-mail:</b> {{doctorInfo.email}}</span>
+            </div>
+            <div>
+                <span><b>Telefone:</b> {{doctorInfo.telefone}}</span>
+            </div>
+            <div>
+                <span><b>CRM:</b> {{doctorInfo.crm}}</span>
+            </div>
+            <div>
+                <div><b>Especialidades Médicas:</b>
                     <ul>
-                      <li ng-repeat="speciality in doctor.especialidadeMedicas">{{speciality.description}}</li>
+                        <li ng-repeat="speciality in doctorInfo.especialidadeMedicas">
+                            {{speciality.description}}
+                        </li>
                     </ul>
-                  </td>
-								</tr>
-
-							</tbody>
-						</table>
-
-					</div>
-				</div>
-			</div>
-			<!-- /block -->
-		</div>
-
-	</div>
-	<!-- REMOVE CONFIRMATION DIALOG -->
-	<div id="removeModal" class="modal hide">
-		<div class="modal-header">
-			<button data-dismiss="modal" class="close" type="button">&times;</button>
-			<h4>Remover Médico</h4>
-		</div>
-		<div class="modal-body">
-			Tem certeza que deseja remover o(a) médico (a) <b>"{{doctorToRemove.nome}}"?</b>
-		</div>
-		<div class="modal-footer">
-			<a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
-      		<a data-dismiss="modal" class="btn" href="#">Não</a>
-		</div>
-	</div>
-
-	<!-- INFO DETAILS DIALOG -->
-	<div id="infoModal" class="modal hide">
-		<div class="modal-header">
-			<h4>Informações sobre Médico {{doctorInfo.nome}}</h4>
-		</div>	
-		<div class="modal-body">
-      <div>
-        <span><b>Nome:</b></span>
-        <span>{{doctorInfo.nome}}</span>
-        
-      </div>
-      <div>
-        <span><b>Sobrenome:</b> {{doctorInfo.sobrenome}}</span>
-      </div>
-      <div>
-        <span><b>E-mail:</b> {{doctorInfo.email}}</span>
-      </div>
-      <div>
-        <span><b>Telefone:</b> {{doctorInfo.telefone}}</span>
-      </div>
-      <div>
-        <span><b>CRM:</b> {{doctorInfo.crm}}</span>
-      </div>
-      <div>
-        <span><b>Especialidades Médicas:</b>
-          <ul>
-            <li ng-repeat="speciality in doctorInfo.especialidadeMedicas">
-              {{speciality.description}}
-            </li>
-          </ul>
-        </span>
-      </div>
-      <div>
-        <span><b>Instituições Médicas:</b>
-          <ul>
-            <li ng-repeat="institute in doctorInfo.instituicaoMedicas">
-              {{institute.nomeFantasia}}
-            </li>
-          </ul>
-        </span>
-      </div>
-      <div>
-        <span><b>Curriculo:</b> {{doctorInfo.curriculo}}</span>
-      </div>
-		</div>
-		<div class="modal-footer">
-			<a data-dismiss="modal" class="btn" href="#">Fechar</a>
-		</div>
-	</div>
+                </div>
+            </div>
+            <div>
+                <div><b>Instituições Médicas:</b>
+                    <ul>
+                        <li ng-repeat="institute in doctorInfo.instituicaoMedicas">
+                            {{institute.nomeFantasia}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <span><b>Curriculo:</b> {{doctorInfo.curriculo}}</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn" href="#">Fechar</a>
+        </div>
+    </div>
+</div>

@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<instituicao_medica id="1" nome_fantasia="Hospital Holândes"
-		razao_social="hospital holandes SA" CNPJ="18495662000145" />
-	<instituicao_medica id="2" nome_fantasia="Hospital Europa"
-		razao_social="hospital europa SA" CNPJ="72872581000162" />
+    
+    <INSTITUICAO_MEDICA id="1" nome_fantasia="Hospital Holândes" razao_social="hospital holandes SA" CNPJ="18495662000145" />
+    <INSTITUICAO_MEDICA id="2" nome_fantasia="Hospital Europa" razao_social="hospital europa SA" CNPJ="72872581000162" />
 
-	<especialidade_medica id="1" descricao="Cardiologia" />		
-	<especialidade_medica id="2" descricao="Ginecologia" />		
-	<especialidade_medica id="3" descricao="Urologia" />		
-	<especialidade_medica id="4" descricao="Geriatria" />	
+    <ESPECIALIDADE_MEDICA id="1" descricao="Cardiologia" />		
+    <ESPECIALIDADE_MEDICA id="2" descricao="Ginecologia" />		
+    <ESPECIALIDADE_MEDICA id="3" descricao="Urologia" />		
+    <ESPECIALIDADE_MEDICA id="4" descricao="Geriatria" />	
 	
-	<medico id="1" nome="Roberto" sobrenome="Carlos" email="rc@xpto.com" curriculo="Formado em medicina pela USP em 1998" telefone="1196989969" crm="CRM-987" />
+    <MEDICO id="1" nome="Roberto" sobrenome="Carlos" email="rc@xpto.com" curriculo="Formado em medicina pela USP em 1998" telefone="1196989969" crm="CRM-SP 987" />
 	
-	<medico id="2" nome="Renato" sobrenome="Pereira" email="rt@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196989978" crm="CRM-982" />
+    <MEDICO id="2" nome="Renato" sobrenome="Pereira" email="rt@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196989978" crm="CRM-SP 9828" />
 	
-	<medico_has_especialidade_medica MEDICO_ID="1" ESPECIALIDADE_MEDICA_ID="1"/>
-	<medico_has_especialidade_medica MEDICO_ID="2" ESPECIALIDADE_MEDICA_ID="3"/>
+	<MEDICO id="3" nome="Carlos" sobrenome="Pereira" email="carlos@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196988977" crm="CRM-BA 6698" />
 	
-	<instituicao_medica_has_medico INSTITUICAO_MEDICA_ID="1" MEDICO_ID="1" />
-	<instituicao_medica_has_medico INSTITUICAO_MEDICA_ID="1" MEDICO_ID="2" />
+    <MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="1" ESPECIALIDADE_MEDICA_ID="1"/>
+    <MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="2" ESPECIALIDADE_MEDICA_ID="3"/>
+	<MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="3" ESPECIALIDADE_MEDICA_ID="3"/>
+	
+    <INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="1" />
+    <INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="2" />
+	<INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="3" />
 
 </dataset>
