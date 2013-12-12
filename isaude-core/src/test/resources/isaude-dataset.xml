@@ -9,14 +9,18 @@
     <ESPECIALIDADE_MEDICA id="3" descricao="Urologia" />		
     <ESPECIALIDADE_MEDICA id="4" descricao="Geriatria" />	
 	
-    <MEDICO id="1" nome="Roberto" sobrenome="Carlos" email="rc@xpto.com" curriculo="Formado em medicina pela USP em 1998" telefone="1196989969" crm="CRM-987" />
+    <MEDICO id="1" nome="Roberto" sobrenome="Carlos" email="rc@xpto.com" curriculo="Formado em medicina pela USP em 1998" telefone="1196989969" crm="CRM-SP 987" />
 	
-    <MEDICO id="2" nome="Renato" sobrenome="Pereira" email="rt@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196989978" crm="CRM-982" />
+    <MEDICO id="2" nome="Renato" sobrenome="Pereira" email="rt@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196989978" crm="CRM-SP 9828" />
+	
+	<MEDICO id="3" nome="Carlos" sobrenome="Pereira" email="carlos@xpto.com" curriculo="Formado em medicina pela USP em 2000" telefone="1196988977" crm="CRM-BA 6698" />
 	
     <MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="1" ESPECIALIDADE_MEDICA_ID="1"/>
     <MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="2" ESPECIALIDADE_MEDICA_ID="3"/>
+	<MEDICO_HAS_ESPECIALIDADE_MEDICA MEDICO_ID="3" ESPECIALIDADE_MEDICA_ID="3"/>
 	
     <INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="1" />
     <INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="2" />
+	<INSTITUICAO_MEDICA_HAS_MEDICO INSTITUICAO_MEDICA_ID="1" MEDICO_ID="3" />
 
 </dataset>

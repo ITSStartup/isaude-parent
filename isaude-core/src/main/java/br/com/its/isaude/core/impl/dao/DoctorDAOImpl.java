@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -44,5 +47,25 @@ public class DoctorDAOImpl extends GenericHibernateDAO<Doctor> implements Doctor
         criteria.add(Restrictions.ilike("email", email));
         return (Doctor) criteria.uniqueResult();
     }
+
+	@Override
+	public List<Doctor> search(String description) {
+		Criteria criteria = getCurrentSession().createCriteria(getPersistentClass(),"d");
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		criteria.setFetchMode("d.especialidadeMedicas", FetchMode.JOIN);
+		criteria.createAlias("d.especialidadeMedicas", "e");				
+		Criterion crm = Restrictions.ilike("crm", description,MatchMode.ANYWHERE);
+		Criterion name = Restrictions.ilike("nome",description,MatchMode.ANYWHERE);
+		Criterion lastname = Restrictions.ilike("sobrenome",description,MatchMode.ANYWHERE);
+		Criterion specialityDoctor = Restrictions.ilike("e.description",description,MatchMode.EXACT);
+		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(crm);
+		disjunction.add(name);
+		disjunction.add(lastname);
+		disjunction.add(specialityDoctor);
+		criteria.add(disjunction);
+		List<Doctor> listDoctors = criteria.list();
+		return listDoctors;
+	}
 
 }

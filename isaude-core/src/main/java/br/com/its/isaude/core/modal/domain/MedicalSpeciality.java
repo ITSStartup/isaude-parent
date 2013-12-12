@@ -25,16 +25,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "ESPECIALIDADE_MEDICA", uniqueConstraints = @UniqueConstraint(columnNames = "DESCRICAO"))
 public class MedicalSpeciality implements java.io.Serializable {
 
-    private Long id;
+  
+	private static final long serialVersionUID = -5720193835383318715L;
+	private Long id;
     private String description;
     private Set<Doctor> doctors = new HashSet<Doctor>();
 
     public MedicalSpeciality() {
-    }
-
-    public MedicalSpeciality(String descricao, Set doctors) {
-        this.description = descricao;
-        this.doctors = doctors;
     }
 
     @Id
