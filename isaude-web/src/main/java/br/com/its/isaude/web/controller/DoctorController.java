@@ -114,4 +114,15 @@ public class DoctorController {
         return response;
     }
     
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/search/{description}")
+    public Response search(@PathParam("description")String description){
+    	Response response = Response.ok().build();
+    	List<Doctor> listDoctors = doctorServiceImpl.search(description);
+    	response = Response.status(Status.OK).entity(listDoctors).build();
+    	return response;
+    }
+    
 }

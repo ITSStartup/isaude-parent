@@ -51,12 +51,12 @@ public class DoctorDAOImpl extends GenericHibernateDAO<Doctor> implements Doctor
 	@Override
 	public List<Doctor> search(String description) {
 		Criteria criteria = getCurrentSession().createCriteria(getPersistentClass(),"d");
-		criteria.setFetchMode("d.especialidadeMedicas", FetchMode.JOIN);
 		criteria.createAlias("d.especialidadeMedicas", "e");
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		Criterion crm = Restrictions.ilike("crm", description,MatchMode.ANYWHERE);
 		Criterion name = Restrictions.ilike("nome",description,MatchMode.ANYWHERE);
 		Criterion lastname = Restrictions.ilike("sobrenome",description,MatchMode.ANYWHERE);
-		Criterion specialityDoctor = Restrictions.ilike("e.description",description,MatchMode.ANYWHERE);
+		Criterion specialityDoctor = Restrictions.ilike("e.description",description,MatchMode.EXACT);
 		Disjunction disjunction = Restrictions.disjunction();
 		disjunction.add(crm);
 		disjunction.add(name);

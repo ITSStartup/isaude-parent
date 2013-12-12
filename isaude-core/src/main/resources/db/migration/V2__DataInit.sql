@@ -17,8 +17,8 @@ INSERT INTO `INSTITUICAO_MEDICA` (`ID`, `NOME_FANTASIA`, `RAZAO_SOCIAL`, `CNPJ`)
 --
 
 INSERT INTO `MEDICO` (`ID`, `NOME`, `SOBRENOME`, `EMAIL`, `CURRICULO`, `TELEFONE`, `CRM`) VALUES
-(1, 'Thiago', 'Pinto', 'trgpwild@gmail.com', 'Formado pela USP', '1133245566', 'CRM2233'),
-(2, 'Camilo', 'Lopes', 'camilo.lopes@itscompany.com.br', 'Formado pela UNICAMP', '1158987598', 'CRM3698');
+(1, 'Thiago', 'Pinto', 'trgpwild@gmail.com', 'Formado pela USP', '1133245566', 'CRM-SP 2233'),
+(2, 'Camilo', 'Lopes', 'camilo.lopes@itscompany.com.br', 'Formado pela UNICAMP', '1158987598', 'CRM-BA 3698');
 
 -- --------------------------------------------------------
 --

@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -28,7 +30,11 @@ import org.hibernate.validator.constraints.NotEmpty;
     @UniqueConstraint(columnNames = "CRM")})
 public class Doctor implements java.io.Serializable {
 
-    private Long id;
+   
+	private static final long serialVersionUID = -6427508514192035137L;
+
+	
+	private Long id;
     private String nome;
     private String sobrenome;
     private String email;
@@ -151,7 +157,7 @@ public class Doctor implements java.io.Serializable {
     public void setExpedienteMedicos(Set<WorktimeDoctor> expedienteMedicos) {
         this.expedienteMedicos = expedienteMedicos;
     }
-
+   
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "INSTITUICAO_MEDICA_HAS_MEDICO", joinColumns = {
         @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)}, inverseJoinColumns = {

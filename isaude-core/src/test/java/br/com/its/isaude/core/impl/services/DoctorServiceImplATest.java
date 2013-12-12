@@ -139,20 +139,7 @@ public class DoctorServiceImplATest extends DBUnitConfiguration {
     	List<Doctor> list = doctorServiceImpl.search("Pediatria");
     	assertTrue(list.isEmpty());	
     }
-    @Test
-    public void testSearchDoctorBySpecialityMedicalPartialDescription(){
-    	List<Doctor> list = doctorServiceImpl.search("Uro");
-    	assertFalse(list.isEmpty());
-    	int totalDoctorUrologiaExpected = 2;
-		assertEquals(totalDoctorUrologiaExpected , list.size());
-		for (Doctor doctor : list) {
-			Set<MedicalSpeciality> listMedicalSpecialities = doctor.getEspecialidadeMedicas();
-			for (MedicalSpeciality medicalSpeciality : listMedicalSpecialities) {
-				final String expectedMedicalSpeciality = "Urologia";
-				assertEquals(expectedMedicalSpeciality, medicalSpeciality.getDescription());
-			}
-		}
-    }
+    
     @Test
     public void testSearchDoctorByCRMParcialDescription(){
     	List<Doctor> list = doctorServiceImpl.search("CRM-SP");
