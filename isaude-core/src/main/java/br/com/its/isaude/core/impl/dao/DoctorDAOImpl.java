@@ -53,7 +53,9 @@ public class DoctorDAOImpl extends GenericHibernateDAO<Doctor> implements Doctor
 		Criteria criteria = getCurrentSession().createCriteria(getPersistentClass(),"d");
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.setFetchMode("d.especialidadeMedicas", FetchMode.JOIN);
-		criteria.createAlias("d.especialidadeMedicas", "e");				
+		criteria.createAlias("d.especialidadeMedicas", "e");		
+		criteria.setFetchMode("instituicaoMedicas", FetchMode.JOIN);
+        criteria.setFetchMode("expedienteMedicos", FetchMode.JOIN);
 		Criterion crm = Restrictions.ilike("crm", description,MatchMode.ANYWHERE);
 		Criterion name = Restrictions.ilike("nome",description,MatchMode.ANYWHERE);
 		Criterion lastname = Restrictions.ilike("sobrenome",description,MatchMode.ANYWHERE);
