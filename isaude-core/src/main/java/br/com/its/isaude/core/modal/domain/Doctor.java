@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -137,7 +139,7 @@ public class Doctor implements java.io.Serializable {
         this.crm = crm;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinTable(name = "MEDICO_HAS_ESPECIALIDADE_MEDICA", joinColumns = {
         @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false)})
@@ -149,7 +151,7 @@ public class Doctor implements java.io.Serializable {
         this.especialidadeMedicas = especialidadeMedicas;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "medico")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "medico",cascade=CascadeType.ALL)
     public Set<WorktimeDoctor> getExpedienteMedicos() {
         return this.expedienteMedicos;
     }
@@ -158,7 +160,7 @@ public class Doctor implements java.io.Serializable {
         this.expedienteMedicos = expedienteMedicos;
     }
    
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     @JoinTable(name = "INSTITUICAO_MEDICA_HAS_MEDICO", joinColumns = {
         @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, updatable = false)})

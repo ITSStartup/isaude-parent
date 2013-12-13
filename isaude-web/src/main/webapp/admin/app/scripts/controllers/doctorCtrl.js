@@ -18,6 +18,8 @@ angular.module('iSaudeAdminApp')
 			$scope.doctorEmailExists=false;
 			$scope.dataRemoveSuccess = false;
 			$scope.disableCrm=false;
+			$scope.searchvalue;
+			$scope.norecordfound = false;
 
 		};
 
@@ -128,6 +130,20 @@ angular.module('iSaudeAdminApp')
 			$scope.dataSuccess = true;
 			})
 		};
+
+		$scope.search = function(){
+			$scope.prepareValidations();
+			DoctorService.search({description:$scope.searchvalue},function(data){
+				$scope.doctors = data;
+				$scope.validationListDoctors();
+			});
+		}
+
+		$scope.validationListDoctors = function(){
+			if($scope.doctors.length==0){
+				$scope.norecordfound = true;
+			}
+		}
 
 		$scope.doctors = [];
 		$scope.fillSpecialities();

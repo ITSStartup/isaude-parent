@@ -113,13 +113,16 @@
                     <div class="muted pull-left">Médicos Cadastrados</div>
                 </div>
                 <div class="block-content collapse in">
-                    <div class="span12">
+                    <div class="alert alert-danger" ng-show="norecordfound">Nenhum registro foi encontrado
+                    </div>
+                    <div class="block-content collapse in">
 
+                    <div class="span12">
                             <h4>Últimos Médicos Cadastrados</h4> 
                             <div class="control-group">
                             <form class="form-horizontal" novalidate name="doctorsearchform">
                                 <div class="controls">
-                                <input class="span5 offset5" name="searchvalue" type="text" placeholder="CRM, Nome ou Sobrenome do Médico" required ng-model="searchvalue">
+                                <input class="span5 offset4" name="searchvalue" type="text" placeholder="CRM, Nome ou Sobrenome do Médico" required ng-model="searchvalue">
                             <button type="submit" class="btn btn-success" ng-disabled="doctorsearchform.$invalid" required value="salvar" ng-click="search()">
                                 <i class="icon-search"></i>Pesquisar
                             </button>                           

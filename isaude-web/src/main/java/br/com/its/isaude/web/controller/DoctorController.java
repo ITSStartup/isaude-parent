@@ -117,7 +117,7 @@ public class DoctorController {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/search/{description}")
+    @Path("/{description}")
     public Response search(@PathParam("description")String description){
     	Response response = Response.ok().build();
     	List<Doctor> listDoctors = doctorServiceImpl.search(description);
