@@ -14,9 +14,9 @@ import org.codehaus.jackson.map.JsonDeserializer;
 public class TimeDeserializer extends JsonDeserializer<Date> {
 
     @Override
-    public Date deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         try {
-            return new SimpleDateFormat("HHmmss").parse(jp.getText());
+            return new SimpleDateFormat("HHmmss").parse(jsonParser.getText());
         } catch (ParseException ex) {
             Logger.getLogger(TimeDeserializer.class.getName()).log(Level.SEVERE, null, ex);
             throw new IOException(ex.getCause());
