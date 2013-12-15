@@ -12,7 +12,6 @@ import br.com.its.isaude.core.interfaces.services.WorktimeDoctorService;
 import br.com.its.isaude.core.modal.domain.Doctor;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 import br.com.its.isaude.core.modal.domain.WorktimeDoctor;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,8 +63,8 @@ public class WorktimeDoctorServiceImpl extends GenericServiceImpl<WorktimeDoctor
     }
 
     @Override
-    public WorktimeDoctor getByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
-        return getDao().getByDoctorAndMedicalInstitutional(doctor, medicalInstitutional);
+    public List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
+        return getDao().listByDoctorAndMedicalInstitutional(doctor, medicalInstitutional);
     }
 
     @Override

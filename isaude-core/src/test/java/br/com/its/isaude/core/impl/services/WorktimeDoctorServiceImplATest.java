@@ -60,6 +60,31 @@ public class WorktimeDoctorServiceImplATest extends DBUnitConfiguration {
     }
 
     @Test
+    public void testGetAllWorktimeDoctorByDoctorAndMedicalInstitutionalRegistered() throws Exception {
+
+        Long idMedico = 1l;
+        Doctor doctor = new Doctor();
+        doctor.setId(idMedico);
+
+        Long idInstituicao = 1l;
+        MedicalInstitutional medicalInstitutional = new MedicalInstitutional();
+        medicalInstitutional.setId(idInstituicao);
+
+        List<WorktimeDoctor> worktimeDoctors = worktimeDoctorServiceImpl.listByDoctorAndMedicalInstitutional(doctor, medicalInstitutional);
+
+        int quantity = worktimeDoctors.size();
+
+        int quantityExpected = 1;
+        
+        assertNotNull(worktimeDoctors);
+
+        assertFalse(worktimeDoctors.isEmpty());
+
+        assertEquals(quantityExpected, quantity);
+
+    }
+
+    @Test
     public void testSaveWorktimeDoctorWithSuccessAfterWorktimeRegistered() throws Exception {
 
         createWorktimeDoctorForSaveTest();
@@ -140,7 +165,7 @@ public class WorktimeDoctorServiceImplATest extends DBUnitConfiguration {
     }
 
     @Test
-    public void testUpdateWorktimeDoctorWithSuccessDecreasingWorktimeRegistered() throws Exception {
+    public void testUpdateWorktimeDoctorDecreasingTimeWithSuccess() throws Exception {
 
         createWorktimeDoctorForUpdateTest();
 

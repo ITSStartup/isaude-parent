@@ -1,0 +1,126 @@
+<div class="span9" id="content">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Expediente Médico</div>
+                </div>
+                <div class="block-content collapse in">
+
+                    <div class="alert alert-success" ng-show="dataSuccess">As informações foram salvas com sucesso</div>
+                    <div class="alert alert-danger" ng-show="dataNotSuccess">As informações não foram salvas</div>
+                    <div class="alert alert-warning" ng-show="isWorktimeDoctorExists">Conflito de expedientes</div>
+
+                    <div class="span12">
+                        <form class="form-horizontal" novalidate name="worktimeDoctorForm">
+                            <fieldset>
+                                <legend>Cadastro Expediente Médico </legend>
+                                <span class="badge badge-info">Os campos * são obrigatórios</span>
+                                <p></p>
+                                <span class="badge badge-info">{{worktime.medico.nome}}</span><p></p>
+                                <div class="control-group">
+                                    <label class="control-label" for="intervalo">Intervalo das consultas *</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge" id="intervalo" ng-model="worktime.intervalo" type="number"
+                                               ng-disabled="disableIntervalo" min="15" max="60" name="intervalo" placeholder="Informe a Expediente Médico" required/>
+                                        <span class="alert alert-warning" ng-show="worktimeDoctorForm.intervalo.$pristine && worktimeDoctorForm.intervalo.$dirty && worktimeDoctorForm.intervalo.$error.required">
+                                            Intervalo do expediente é obrigatório
+                                        </span>
+                                        <span class="alert alert-warning" ng-show="worktimeDoctorForm.intervalo.$error.min">O tempo mínimo é de 15 minutos</span>
+                                        <span class="alert alert-warning" ng-show="worktimeDoctorForm.intervalo.$error.max">O tempo máximo é de 60 minutos</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="horarioInicial">Horário Inicial *</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge" id="horarioInicial" ng-model="worktime.horarioInicial" type="text" name="horarioInicial" ui-mask="99:99:99" required/>
+                                        <span class="alert alert-warning" ng-show="worktimeDoctorForm.horarioInicial.$pristine && worktimeDoctorForm.horarioInicial.$dirty && worktimeDoctorForm.horarioInicial.$error.required">
+                                            Horário inicial do expediente é obrigatório
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="horarioFinal">Horário Final *</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge" id="horarioFinal" ng-model="worktime.horarioFinal" type="text" name="horarioFinal" ui-mask="99:99:99" required/>
+                                        <span class="alert alert-warning" ng-show="worktimeDoctorForm.horarioFinal.$pristine && worktimeDoctorForm.horarioFinal.$dirty && worktimeDoctorForm.horarioFinal.$error.required">
+                                            Horário Final do expediente é obrigatório
+                                        </span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success" ng-disabled="worktimeDoctorForm.$invalid" ng-click="save()"><i class="icon-ok"></i>Salvar</button>
+                                <button type="reset" class="btn" ng-click="reset()"><i class="icon-ban-circle"></i>Limpar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--remove this and adjust css class span12-->
+    <div class="row-fluid"><!--remove this and adjust css class span12-->
+        <div class="span12">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Últimas Expedientes Médicos Cadastrados</div>
+                </div>
+                <div class="block-content collapse in">
+                    <div class="alert alert-danger" ng-show="dataCannotBelisted">Nenhum registro foi encontrado</div>
+                    <div class="alert alert-success" ng-show="dataRemoveSuccess">Remoção realizada com sucesso</div>
+                    <div class="alert alert-danger" ng-show="dataRemoveNotSuccess">Remoção não realizada</div>
+                    <div ng-show="!dataCannotBelisted">
+                        <h4>Expedientes Médicos Cadastrados</h4>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Excluir</th>
+                                    <th>Editar</th>
+                                    <th>Intervalo</th>
+                                    <th>Horário Inicial</th>
+                                    <th>Horário Final</th>
+                                    <th>Instituição Médica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="worktime in worktimes">
+                                    <td class="span1">
+                                        <a href="#removeModal" data-toggle="modal" ng-click="remove(worktime)">
+                                            <div class="btn">
+                                                <i class="icon-trash"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="span1">
+                                        <div ng-click="edit(worktime)">
+                                            <div class="btn">
+                                                <i class="icon-edit"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{worktime.intervalo}} minutos</td>
+                                    <td>{{worktime.horarioInicial}}</td>
+                                    <td>{{worktime.horarioFinal}}</td>
+                                    <td>{{worktime.instituicaoMedica.nomeFantasia}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="removeModal" class="modal hide">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button">&times;</button>
+            <h4>Remover Expediente Médico</h4>
+        </div>
+        <div class="modal-body">
+            Tem certeza que deseja remover o expediente?<hr/>De <b>{{worktimeToRemove.horarioInicial}}</b> até <b>{{worktimeToRemove.horarioFinal}}</b> com <b>{{worktimeToRemove.intervalo}}</b> minutos de intervalo
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn btn-danger" href="#" ng-click="doRemove()">Sim</a>
+            <a data-dismiss="modal" class="btn" href="#">Não</a>
+        </div>
+    </div>
+</div>

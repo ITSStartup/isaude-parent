@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('iSaudeAdminApp', ['ngCookies', 'ngResource', 'ngSanitize'])
+angular.module('iSaudeAdminApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ui.mask'])
 
 .config(function ($routeProvider) {
 	
@@ -26,6 +26,11 @@ angular.module('iSaudeAdminApp', ['ngCookies', 'ngResource', 'ngSanitize'])
 		controller : 'DoctorCtrl'
 	})
 
-	.otherwise({redirectTo : '/'});
+        .when('/worktimeDoctor', {
+            templateUrl: 'views/partial/worktimedoctorform.html',
+            controller: 'WorktimeDoctorCtrl'
+        })
+        
+        .otherwise({redirectTo: '/'});
 	
 });

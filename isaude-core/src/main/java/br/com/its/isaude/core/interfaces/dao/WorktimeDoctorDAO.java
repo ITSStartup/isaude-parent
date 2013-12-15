@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface WorktimeDoctorDAO extends GenericDAO<WorktimeDoctor>{
 
-    WorktimeDoctor getByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional);
+    List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional);
     
     List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor);
 
