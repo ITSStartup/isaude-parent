@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,9 +34,11 @@ public class WorktimeDoctor implements java.io.Serializable {
     private Set<AgendaDoctor> agendaMedicos = new HashSet<AgendaDoctor>();
 
     public WorktimeDoctor() {
+        this.setUnidade("min");
     }
 
     public WorktimeDoctor(Long id, Doctor medico, MedicalInstitutional instituicaoMedica) {
+        this();
         this.id = id;
         this.medico = medico;
         this.instituicaoMedica = instituicaoMedica;
@@ -52,6 +56,7 @@ public class WorktimeDoctor implements java.io.Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     public Long getId() {
         return this.id;
