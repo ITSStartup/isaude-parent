@@ -38,7 +38,7 @@ public class WorktimeDoctorDAOImpl extends GenericHibernateDAO<WorktimeDoctor> i
     }
 
     @Override
-    public List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
+    public List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
         
         Criteria criteria = getCurrentSession().createCriteria(WorktimeDoctor.class);
         

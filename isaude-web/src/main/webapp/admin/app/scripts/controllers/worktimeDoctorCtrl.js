@@ -86,6 +86,7 @@ angular.module('iSaudeAdminApp')
                             $scope.dataRemoveNotSuccess = true;
                         }
                     });
+                    $scope.list();
                 });
 
                 $scope.reset();

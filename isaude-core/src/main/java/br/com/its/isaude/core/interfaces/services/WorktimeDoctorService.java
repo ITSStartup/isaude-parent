@@ -13,6 +13,6 @@ public interface WorktimeDoctorService extends GenericService<WorktimeDoctor> {
     @Transactional(propagation=Propagation.REQUIRED,readOnly=true)
     List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) throws Exception;
 
-    List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor);
+    List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor);
 
 }

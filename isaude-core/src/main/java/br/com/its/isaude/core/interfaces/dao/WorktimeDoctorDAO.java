@@ -10,6 +10,6 @@ public interface WorktimeDoctorDAO extends GenericDAO<WorktimeDoctor>{
 
     List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional);
     
-    List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor);
+    List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor);
 
 }
