@@ -9,6 +9,7 @@ import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 import br.com.its.isaude.core.modal.domain.WorktimeDoctor;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
@@ -21,19 +22,27 @@ public class WorktimeDoctorDAOImpl extends GenericHibernateDAO<WorktimeDoctor> i
     }
 
     @Override
-    public WorktimeDoctor getByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
-        WorktimeDoctor worktimeDoctor = (WorktimeDoctor) getCurrentSession()
+    public List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
+        List<WorktimeDoctor> worktimeDoctors = getCurrentSession()
             .createCriteria(WorktimeDoctor.class)
+            .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+            .setFetchMode("medico", FetchMode.JOIN)
+            .setFetchMode("instituicaoMedica", FetchMode.JOIN)
+            .setFetchMode("medico.especialidadeMedicas", FetchMode.JOIN)
+            .setFetchMode("medico.instituicaoMedicas", FetchMode.JOIN)
+            .setFetchMode("medico.expedienteMedicos", FetchMode.JOIN)
             .add(Restrictions.eq("medico.id", doctor.getId()))
-            .add(Restrictions.eq("instituicaoMedica.id", doctor.getId()))
-            .uniqueResult();
-        return worktimeDoctor;
+            .add(Restrictions.eq("instituicaoMedica.id", medicalInstitutional.getId()))
+            .list();
+        return worktimeDoctors;
     }
 
     @Override
-    public List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
+    public List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
         
         Criteria criteria = getCurrentSession().createCriteria(WorktimeDoctor.class);
+        
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         
         criteria.add(Restrictions.eq("medico.id", worktimeDoctor.getMedico().getId()));
         

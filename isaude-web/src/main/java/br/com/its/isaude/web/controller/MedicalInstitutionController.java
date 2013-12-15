@@ -50,6 +50,7 @@ public class MedicalInstitutionController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(MedicalInstitutional medicalInstitutional) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             medicalInstitutionServiceImpl.save(medicalInstitutional);
@@ -78,6 +79,7 @@ public class MedicalInstitutionController {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(MedicalInstitutional medicalInstitutional) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             medicalInstitutionServiceImpl.update(medicalInstitutional);
@@ -95,6 +97,7 @@ public class MedicalInstitutionController {
     @Path("/{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public Response remove(@PathParam("id") Long id) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             MedicalInstitutional medicalInstitutional = medicalInstitutionServiceImpl.getById(id);

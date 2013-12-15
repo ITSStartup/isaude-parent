@@ -5,11 +5,14 @@ import br.com.its.isaude.core.modal.domain.Doctor;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 import br.com.its.isaude.core.modal.domain.WorktimeDoctor;
 import java.util.List;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface WorktimeDoctorService extends GenericService<WorktimeDoctor> {
 
-    WorktimeDoctor getByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional);
+    @Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+    List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) throws Exception;
 
-    List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor);
+    List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor);
 
 }

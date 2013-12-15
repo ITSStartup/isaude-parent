@@ -32,11 +32,9 @@ import org.hibernate.validator.constraints.NotEmpty;
     @UniqueConstraint(columnNames = "CRM")})
 public class Doctor implements java.io.Serializable {
 
-   
-	private static final long serialVersionUID = -6427508514192035137L;
+    private static final long serialVersionUID = -6427508514192035137L;
 
-	
-	private Long id;
+    private Long id;
     private String nome;
     private String sobrenome;
     private String email;
@@ -139,7 +137,7 @@ public class Doctor implements java.io.Serializable {
         this.crm = crm;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "MEDICO_HAS_ESPECIALIDADE_MEDICA", joinColumns = {
         @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "ESPECIALIDADE_MEDICA_ID", nullable = false, updatable = false)})
@@ -151,7 +149,8 @@ public class Doctor implements java.io.Serializable {
         this.especialidadeMedicas = especialidadeMedicas;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "medico",cascade=CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "medico", cascade = CascadeType.ALL)
     public Set<WorktimeDoctor> getExpedienteMedicos() {
         return this.expedienteMedicos;
     }
@@ -159,8 +158,8 @@ public class Doctor implements java.io.Serializable {
     public void setExpedienteMedicos(Set<WorktimeDoctor> expedienteMedicos) {
         this.expedienteMedicos = expedienteMedicos;
     }
-   
-    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "INSTITUICAO_MEDICA_HAS_MEDICO", joinColumns = {
         @JoinColumn(name = "MEDICO_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "INSTITUICAO_MEDICA_ID", nullable = false, updatable = false)})

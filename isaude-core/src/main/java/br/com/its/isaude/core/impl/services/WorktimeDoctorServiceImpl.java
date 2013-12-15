@@ -12,7 +12,6 @@ import br.com.its.isaude.core.interfaces.services.WorktimeDoctorService;
 import br.com.its.isaude.core.modal.domain.Doctor;
 import br.com.its.isaude.core.modal.domain.MedicalInstitutional;
 import br.com.its.isaude.core.modal.domain.WorktimeDoctor;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,7 +46,7 @@ public class WorktimeDoctorServiceImpl extends GenericServiceImpl<WorktimeDoctor
 
     private void checkConflictBetweenWorktimeDoctors(WorktimeDoctor worktimeDoctor) throws WorktimeDoctorException {
         int minimalQuantityToBeOk = 0;
-        List<WorktimeDoctor> list = checkConflictBetweenWorktimeDoctor(worktimeDoctor);
+        List<WorktimeDoctor> list = validateWorktimeDoctor(worktimeDoctor);
         Boolean existsConflict = list.size() > minimalQuantityToBeOk;
         if (existsConflict) {
             throw new WorktimeDoctorException(MessageResponseStatusEnum.WORKTIMEDOCTOR_EXISTS);
@@ -64,13 +63,13 @@ public class WorktimeDoctorServiceImpl extends GenericServiceImpl<WorktimeDoctor
     }
 
     @Override
-    public WorktimeDoctor getByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
-        return getDao().getByDoctorAndMedicalInstitutional(doctor, medicalInstitutional);
+    public List<WorktimeDoctor> listByDoctorAndMedicalInstitutional(Doctor doctor, MedicalInstitutional medicalInstitutional) {
+        return getDao().listByDoctorAndMedicalInstitutional(doctor, medicalInstitutional);
     }
 
     @Override
-    public List<WorktimeDoctor> checkConflictBetweenWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
-        return getDao().checkConflictBetweenWorktimeDoctor(worktimeDoctor);
+    public List<WorktimeDoctor> validateWorktimeDoctor(WorktimeDoctor worktimeDoctor) {
+        return getDao().validateWorktimeDoctor(worktimeDoctor);
     }
 
 }
