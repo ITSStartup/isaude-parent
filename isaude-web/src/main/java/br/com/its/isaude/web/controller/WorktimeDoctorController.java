@@ -157,6 +157,7 @@ public class WorktimeDoctorController {
 
             WorktimeDoctor worktimeDoctor = worktimeDoctorServiceImpl.getById(id);
             worktimeDoctorServiceImpl.delete(worktimeDoctor);
+            response = Response.status(Response.Status.OK).build();
 
         } catch (WorktimeDoctorException e) {
 

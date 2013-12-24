@@ -19,6 +19,7 @@ angular.module('iSaudeAdminApp')
             $scope.dataRemoveNotSuccess = false;
 
             $scope.isWorktimeDoctorExists = false;
+            $scope.isInvalidTimeOrder = false;
 
         };
 
@@ -142,7 +143,19 @@ angular.module('iSaudeAdminApp')
 
         };
 
-        $scope.reset();
+    $scope.watchSizeTimeFields = function() {
+        var bigger = $scope.worktime.horarioInicial > $scope.worktime.horarioFinal;
+        if (bigger) {
+            $scope.isInvalidTimeOrder = true;
+        } else {
+            $scope.isInvalidTimeOrder = false;
+        }
+    };
+    
+    $scope.$watch('worktime.horarioInicial', $scope.watchSizeTimeFields);
+    $scope.$watch('worktime.horarioFinal', $scope.watchSizeTimeFields);
+    
+    $scope.reset();
 
     }
 ]);
