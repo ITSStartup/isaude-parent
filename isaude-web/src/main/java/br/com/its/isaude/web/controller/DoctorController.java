@@ -40,6 +40,7 @@ public class DoctorController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(Doctor doctor) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             doctorServiceImpl.save(doctor);
@@ -58,6 +59,7 @@ public class DoctorController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getList() {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             List<Doctor> listDoctors = doctorServiceImpl.list();
@@ -83,6 +85,7 @@ public class DoctorController {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public Response remove(@PathParam("id") Long id) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
             Doctor doctor = doctorServiceImpl.getById(id);
@@ -99,11 +102,14 @@ public class DoctorController {
     }
 
     @PUT
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(Doctor doctor) {
+    public Response update(@PathParam("id") Long id, Doctor doctor) {
+        listErrors = new ArrayList<AjaxMsg>();
         Response response = Response.ok().build();
         try {
+            doctor.setId(id);
             doctorServiceImpl.update(doctor);
         } catch (Exception e) {
             messageError = e.getMessage();
