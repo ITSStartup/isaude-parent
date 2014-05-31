@@ -121,8 +121,8 @@
 		<module>isaude-core</module>
 	</modules>
 	<scm>
-		<connection>git@github.com:ITSStartup/isaude-parent.git</connection>
-		<url>git@github.com:ITSStartup/isaude-parent.git</url>
-		<developerConnection>git@github.com:ITSStartup/isaude-parent.git</developerConnection>
+		<connection>scm:git@github.com:ITSStartup/isaude-parent.git</connection>
+		<url>scm:git@github.com:ITSStartup/isaude-parent.git</url>
+		<developerConnection>scm:git@github.com:ITSStartup/isaude-parent.git</developerConnection>
 	</scm>
 </project>
