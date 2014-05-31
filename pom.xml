@@ -21,14 +21,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-<<<<<<< HEAD
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5</version>
-			</plugin>
-=======
->>>>>>> parent of a3337a4... adicionado maven release scm
+
 		</plugins>
 		<resources>
 			<resource>
